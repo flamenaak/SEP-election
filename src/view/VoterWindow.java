@@ -82,7 +82,7 @@ public class VoterWindow
       @Override
       public void actionPerformed(ActionEvent arg0)
       {
-         //controller.backPressed
+         //controller.backPressed  
       }
    }
    
