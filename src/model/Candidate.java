@@ -57,5 +57,5 @@ public class Candidate
       this.description = description;
    }
    
-    
+   
 }
