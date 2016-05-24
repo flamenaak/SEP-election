@@ -1,10 +1,6 @@
 package controller;
 
-<<<<<<< HEAD
-public class Controller
-{
-   
-=======
+
 import model.*;
 
 public class Controller implements IController{
@@ -105,6 +101,5 @@ public class Controller implements IController{
 	}
 
 	
-	
->>>>>>> refs/remotes/origin/master
+
 }
