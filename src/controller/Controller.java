@@ -1,5 +1,6 @@
 package controller;
 
+
 import model.*;
 
 public class Controller implements IController{
@@ -100,5 +101,5 @@ public class Controller implements IController{
 	}
 
 	
-	
+
 }
