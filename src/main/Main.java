@@ -2,7 +2,7 @@ package main;
 
 import javax.swing.JFrame;
 
-import view.ResultsView;
+import view.NewPositionPanel;
 
 public class Main
 {
@@ -14,8 +14,8 @@ public class Main
      //vw.setComponents();
       //AdminWindow win = new AdminWindow();
       JFrame frame = new JFrame();
-      //NewPositionPanel pan = new NewPositionPanel();
-        ResultsView pan = new ResultsView();   
+      NewPositionPanel pan = new NewPositionPanel();
+        //ResultsView pan = new ResultsView();   
       frame.add(pan);
       frame.setVisible(true); 
    }

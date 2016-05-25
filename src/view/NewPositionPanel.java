@@ -18,7 +18,7 @@ public class NewPositionPanel extends JPanel implements ActionListener
    private Controller cont;
    private JLabel label;
    private JTextField tField;
-   private JButton save, back;
+   private JButton save;
    private GridBagConstraints c;
    private JPanel subPanel;
    
@@ -35,7 +35,6 @@ public class NewPositionPanel extends JPanel implements ActionListener
       label = new JLabel("Enter name of the position");
       tField= new JTextField();
       save = new JButton("Save");
-      back = new JButton("Back");
       c = new GridBagConstraints();
       subPanel = new JPanel();
    }
@@ -52,9 +51,6 @@ public class NewPositionPanel extends JPanel implements ActionListener
       
       c.gridy = 0;
       subPanel.add(save, c);
-      
-      c.gridx = 1;
-      subPanel.add(back, c);
       
       c.gridx = 0;
       c.gridy = 2;
