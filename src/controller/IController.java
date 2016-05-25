@@ -22,4 +22,7 @@ public interface IController {
 	
 	public void viewCandidatesAndPositions();
 	public void viewResults(Election election, Position position);
+	public void okPressed();
+	
+	public void vote(int candidateIndex);
 }

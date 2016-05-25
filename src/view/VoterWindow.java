@@ -9,22 +9,25 @@ import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
+import controller.Controller;
 import model.Election;
 import model.Position;
 
 public class VoterWindow 
 {
-   private JFrame mainFrame;
-   private JComboBox<String> candidateBox;
-   private JComboBox<String> positionBox;
-   private Position position;
-   private Election election;
+   private static JFrame mainFrame;
+   private static JComboBox<String> candidateBox;
+   private static JComboBox<String> positionBox;
+   private static Position position;
+   private static Election election;
    private JPanel comboBoxPanel;
    private JPanel voter;
    private JButton ok;
-   private JButton back;
+   private JButton logOut;
+   private static Controller controller;
    
    
    public void setComponents()
@@ -42,30 +45,31 @@ public class VoterWindow
       mainFrame.setLocation(x, y);
       
       voter = new JPanel();
-      ok = new JButton("ok");
-      back = new JButton("back");
+      ok = new JButton("OK");
+      logOut = new JButton("Log out");
       
-      candidateBox = new JComboBox<String>(); /*after merging, it might need a bit change --position.toStringArray()*/
-      positionBox = new JComboBox<String>(); /*need a to string.. or a method in election which returns a string of positions*/
+      candidateBox = new JComboBox<String>(controller.getCandidates()); /*position.getCandidates()*/
+      positionBox = new JComboBox<String>(controller.getPositions()); /*controller.getPositions()*/
+      
       candidateBox.setEditable(false);
       positionBox.setEditable(false);
+      
       candidateBox.setPreferredSize(new Dimension(100, 25));
       positionBox.setPreferredSize(new Dimension(100, 25));
       
+      candidateBox.addActionListener(new candidateBox());
+      positionBox.addActionListener(new positionBox());
+      
       JPanel np = new JPanel();
       
-      //comboBoxPanel.add(positionBox);
-      //comboBoxPanel.add(candidateBox);
       np.add(positionBox);
       np.add(candidateBox);
       voter.add(ok);
-      voter.add(back);
+      voter.add(logOut);
 
       ok.addActionListener(new okPressed());
-      back.addActionListener(new backPressed());
+      logOut.addActionListener(new logOutPressed());
       
-      //mainFrame.add(comboBoxPanel);
-      //mainFrame.add(positionBox);
       mainFrame.add(np);
       mainFrame.add(voter);
       mainFrame.setVisible(true);
@@ -76,18 +80,47 @@ public class VoterWindow
       @Override
       public void actionPerformed(ActionEvent arg0)
       {
-         //controller.okPressed
+         controller.okPressed();
+         JOptionPane.showMessageDialog(mainFrame, "Thanks for voting");
+         controller.logOut();
       }
+      
+      
    }
    
-   public static class backPressed implements ActionListener
+   public static class logOutPressed implements ActionListener
    {
       @Override
       public void actionPerformed(ActionEvent arg0)
       {
-         //controller.backPressed  
+         controller.logOut(); 
       }
    }
+   
+   public static class candidateBox implements ActionListener
+   {
+
+      @Override
+      public void actionPerformed(ActionEvent arg0)
+      {
+         int candidateIndex = candidateBox.getSelectedIndex();
+         controller.vote(candidateIndex);
+      }
+      
+   }
+   
+   public static class positionBox implements ActionListener
+   {
+
+      @Override
+      public void actionPerformed(ActionEvent arg0)
+      {
+         int positionIndex = positionBox.getSelectedIndex();
+         position = election.getPosition(positionIndex);
+      }
+      
+   }
+   
    
    
    
