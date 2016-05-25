@@ -11,7 +11,6 @@ import javax.swing.JTextField;
 
 public class NewCandidatePanel extends JPanel
 {
-   private JPanel main;
    private JComboBox posComboBox;
    private JLabel position, name;
    private JTextField nameField;
@@ -19,32 +18,32 @@ public class NewCandidatePanel extends JPanel
 
    public NewCandidatePanel()
    {
+      super(new GridBagLayout());
       initialize();
       build();
-      main.setVisible(true);
+      setVisible(true);
    }
 
    private void build()
    {
       c.gridx = 0;
       c.gridy = 0;
-      main.add(name, c);
+      add(name, c);
       
       c.gridx = 1;
-      main.add(position, c);
+      add(position, c);
       
       c.gridx = 0;
       c.gridy = 1;
-      main.add(nameField, c);
+      add(nameField, c);
       
       c.gridx = 1;
-      main.add(posComboBox, c); 
+      add(posComboBox, c); 
       
    }
 
    private void initialize()
    {
-      main = new JPanel(new GridBagLayout());
       posComboBox = new JComboBox();
       name = new JLabel("Name");
       position = new JLabel("Position");
