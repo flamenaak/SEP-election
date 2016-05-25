@@ -1,24 +1,23 @@
 package view;
 
 import java.awt.GridBagConstraints;
-import java.awt.GridBagLayout;
 
 import javax.swing.JComboBox;
-import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
+
 public class NewCandidatePanel extends JPanel
 {
-   private JComboBox posComboBox;
+   private static final long serialVersionUID = 1L;
+   
+   private JComboBox<Object> posComboBox;
    private JLabel position, name;
    private JTextField nameField;
-   private GridBagConstraints c;
 
    public NewCandidatePanel()
    {
-      super(new GridBagLayout());
       initialize();
       build();
       setVisible(true);
@@ -26,29 +25,44 @@ public class NewCandidatePanel extends JPanel
 
    private void build()
    {
-      c.gridx = 0;
-      c.gridy = 0;
-      add(name, c);
+      GridBagConstraints c1 = new GridBagConstraints();
+      GridBagConstraints c2 = new GridBagConstraints();
+      GridBagConstraints c3 = new GridBagConstraints();
+      GridBagConstraints c4 = new GridBagConstraints();
       
-      c.gridx = 1;
-      add(position, c);
-      
-      c.gridx = 0;
-      c.gridy = 1;
-      add(nameField, c);
-      
-      c.gridx = 1;
-      add(posComboBox, c); 
-      
+      setLayout(null);
+
+      c1.gridx = 0;
+      c1.gridy = 0;
+      add(name);
+
+      c2.gridx = 1;
+      add(position);
+
+      c3.gridx = 0;
+      c3.gridy = 1;
+      add(nameField);
+
+      c4.gridx = 1;
+      add(posComboBox);
+
    }
 
    private void initialize()
    {
-      posComboBox = new JComboBox();
+      setBounds(0, 0, 400, 200);
+
+      posComboBox = new JComboBox<Object>();
+      posComboBox.setBounds(45, 99, 118, 22);
+
       name = new JLabel("Name");
+      name.setBounds(252, 70, 33, 16);
+
       position = new JLabel("Position");
+      position.setBounds(77, 70, 44, 16);
+
       nameField = new JTextField();
-      c = new GridBagConstraints();
+      nameField.setBounds(213, 99, 118, 22);
    }
 
 }
