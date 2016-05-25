@@ -52,10 +52,12 @@ public class VoterWindow
       candidateBox.setPreferredSize(new Dimension(100, 25));
       positionBox.setPreferredSize(new Dimension(100, 25));
       
+      JPanel np = new JPanel();
+      
       //comboBoxPanel.add(positionBox);
       //comboBoxPanel.add(candidateBox);
-      voter.add(positionBox);
-      voter.add(candidateBox);
+      np.add(positionBox);
+      np.add(candidateBox);
       voter.add(ok);
       voter.add(back);
 
@@ -64,6 +66,7 @@ public class VoterWindow
       
       //mainFrame.add(comboBoxPanel);
       //mainFrame.add(positionBox);
+      mainFrame.add(np);
       mainFrame.add(voter);
       mainFrame.setVisible(true);
    }
