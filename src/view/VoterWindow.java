@@ -48,8 +48,8 @@ public class VoterWindow
       ok = new JButton("OK");
       logOut = new JButton("Log out");
       
-      candidateBox = new JComboBox<String>(controller.getCandidates()); /*position.getCandidates()*/
-      positionBox = new JComboBox<String>(controller.getPositions()); /*controller.getPositions()*/
+      candidateBox = new JComboBox<String>(controller.getCandidates());
+      positionBox = new JComboBox<String>(controller.getPositions()); 
       
       candidateBox.setEditable(false);
       positionBox.setEditable(false);

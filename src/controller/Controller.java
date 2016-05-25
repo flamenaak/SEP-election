@@ -141,12 +141,6 @@ public class Controller implements IController{
       
    }
 
-   @Override
-   public void viewCandidatesAndPositions()
-   {
-      // TODO Auto-generated method stub
-      
-   }
 
    @Override
    public void vote(int candidateIndex)
