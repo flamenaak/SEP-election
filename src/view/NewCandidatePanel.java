@@ -44,7 +44,6 @@ public class NewCandidatePanel extends JPanel
 
    private void initialize()
    {
-
       posComboBox = new JComboBox();
       name = new JLabel("Name");
       position = new JLabel("Position");

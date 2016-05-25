@@ -1,5 +1,6 @@
 package view;
 
+import java.awt.Dimension;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.event.ActionEvent;
@@ -19,13 +20,14 @@ public class NewPositionPanel extends JPanel implements ActionListener
    private JTextField tField;
    private JButton save, back;
    private GridBagConstraints c;
+   private JPanel subPanel;
    
    public NewPositionPanel()//Controller cont)
    {
       super(new GridBagLayout());
       this.cont = cont;
-      
-      
+      initialize();
+      build();
    }
    
    public void initialize()
@@ -35,6 +37,7 @@ public class NewPositionPanel extends JPanel implements ActionListener
       save = new JButton("Save");
       back = new JButton("Back");
       c = new GridBagConstraints();
+      subPanel = new JPanel();
    }
    
    public void build()
@@ -44,14 +47,18 @@ public class NewPositionPanel extends JPanel implements ActionListener
       add(label,c);
       
       c.gridy = 1;
+      tField.setPreferredSize(new Dimension(100,25));
       add(tField,c);
       
-      c.gridy = 2;
-      add(save, c);
+      c.gridy = 0;
+      subPanel.add(save, c);
       
       c.gridx = 1;
-      add(back, c);
+      subPanel.add(back, c);
       
+      c.gridx = 0;
+      c.gridy = 2;
+      add(subPanel, c);
    }
    
    

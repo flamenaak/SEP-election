@@ -15,9 +15,9 @@ public class Main
       //AdminWindow win = new AdminWindow();
       JFrame frame = new JFrame();
       NewPositionPanel pan = new NewPositionPanel();
-      frame.setVisible(true);
+           
       frame.add(pan);
-      
+      frame.setVisible(true); 
    }
 
 }
