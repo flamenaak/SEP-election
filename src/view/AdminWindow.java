@@ -62,6 +62,11 @@ public class AdminWindow extends JFrame implements ActionListener
      setResizable(false);
      
      candiPanel = new NewCandidatePanel();
+
+	  setResizable(false);
+	  
+	  candiPanel = new NewCandidatePanel();
+
      setResizable(false);
      
      candiPanel = new NewCandidatePanel();
