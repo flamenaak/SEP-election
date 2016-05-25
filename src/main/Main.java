@@ -1,6 +1,8 @@
 package main;
 
-import view.AdminWindow;
+import javax.swing.JFrame;
+
+import view.NewPositionPanel;
 
 public class Main
 {
@@ -10,7 +12,12 @@ public class Main
 
     // VoterWindow vw = new VoterWindow();
      //vw.setComponents();
-      AdminWindow win = new AdminWindow();
+      //AdminWindow win = new AdminWindow();
+      JFrame frame = new JFrame();
+      NewPositionPanel pan = new NewPositionPanel();
+      frame.setVisible(true);
+      frame.add(pan);
+      
    }
 
 }
