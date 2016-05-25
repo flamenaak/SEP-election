@@ -10,47 +10,7 @@ import javax.swing.JTextField;
 
 public class NewCandidatePanel extends JPanel
 {
-<<<<<<< HEAD
-   private JComboBox posComboBox;
-   private JLabel position, name;
-   private JTextField nameField;
-   private GridBagConstraints c;
-
-   public NewCandidatePanel()
-   {
-      super(new GridBagLayout());
-      initialize();
-      build();
-      setVisible(true);
-   }
-
-   private void build()
-   {
-      c.gridx = 0;
-      c.gridy = 0;
-      add(name, c);
-      
-      c.gridx = 1;
-      add(position, c);
-      
-      c.gridx = 0;
-      c.gridy = 1;
-      add(nameField, c);
-      
-      c.gridx = 1;
-      add(posComboBox, c); 
-      
-   }
-
-   private void initialize()
-   {
-      posComboBox = new JComboBox();
-      name = new JLabel("Name");
-      position = new JLabel("Position");
-      nameField = new JTextField();
-      c = new GridBagConstraints();
-   }
-=======
+   
 	private static final long serialVersionUID = 1L;
 	
 	private JComboBox<Object> posComboBox;
@@ -105,6 +65,4 @@ public class NewCandidatePanel extends JPanel
 		nameField = new JTextField();
 		nameField.setBounds(213, 99, 118, 22);
 	}
->>>>>>> refs/remotes/origin/Ben
-
 }

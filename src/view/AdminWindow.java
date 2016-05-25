@@ -18,11 +18,8 @@ import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTabbedPane;
 
-<<<<<<< HEAD
 public class AdminWindow extends JFrame implements ActionListener
-=======
-public class AdminWindow extends JFrame implements ActionListener 
->>>>>>> refs/remotes/origin/Ben
+
 {
    private JTabbedPane tabPane;
    private TextField name;
@@ -62,12 +59,11 @@ public class AdminWindow extends JFrame implements ActionListener
 
    private void createGUI()
    {
-<<<<<<< HEAD
       tabPane.add(candiPanel, "Add candidate");
       candiPanel.setOpaque(false);
       tabPane.addTab("Firzt", new JPanel());
       tabPane.addTab("Firzt", new JPanel());
-=======
+
 	  setResizable(false);
 	  
 	  candiPanel = new NewCandidatePanel();
@@ -76,7 +72,6 @@ public class AdminWindow extends JFrame implements ActionListener
       tabPane.add("1st", candiPanel);
       tabPane.add("3rd", new Label("dsa"));
       
->>>>>>> refs/remotes/origin/Ben
       tabPane.setVisible(true);
       add(tabPane);
       
