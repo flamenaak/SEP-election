@@ -26,7 +26,7 @@ public class Election
 	
 	public Position getPosition(String name){
 		for (int i = 0; i < positions.size(); i++) {
-			if (positions.get(i).getName().equals(name)){
+			if (positions.get(i).getPositionName().equals(name)){
 				return positions.get(i);
 			}
 		}
@@ -47,11 +47,23 @@ public class Election
 	}
 	
 	public void startElection(){
-		controller.startEletion();
+		controller.startElection();
 	}
 	
 	public void closeEection(){
 		active=false;
+	}
+	
+	public String[] positionsToString()
+	{
+	   String[] positionArray = new String[positions.size()];
+	   
+      for(int i = 0; i < positions.size(); i++)
+      {
+         positionArray[i] = positions.get(i).getPositionName();
+      }
+      
+      return positionArray;
 	}
 
 }
