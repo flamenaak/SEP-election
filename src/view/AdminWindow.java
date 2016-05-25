@@ -3,10 +3,13 @@ package view;
 import java.awt.Dimension;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
+import java.awt.Label;
 import java.awt.TextField;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+
+import javafx.collections.SetChangeListener;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -15,7 +18,7 @@ import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTabbedPane;
 
-public class AdminWindow implements ActionListener
+public class AdminWindow extends JFrame implements ActionListener 
 {
    private JFrame frame;
    private JTabbedPane tabPane;
@@ -23,7 +26,7 @@ public class AdminWindow implements ActionListener
    private JLabel nameLab, passLab;
    private GridBagConstraints c;
    private JButton butt;
-   private NewCandidatePanel candiPanel;
+   private JPanel candiPanel;
    // private Controller controller;
 
    public AdminWindow(/* Controller controller */)
@@ -51,19 +54,24 @@ public class AdminWindow implements ActionListener
    {
       frame = new JFrame();
       tabPane = new JTabbedPane();
-      candiPanel = new NewCandidatePanel();
+      candiPanel = new JPanel();
    }
 
    private void createGUI()
    {
-      tabPane.addTab("Add candidate",null, candiPanel, null);
+	  setResizable(false);
+	  
+	  candiPanel = new NewCandidatePanel();
       candiPanel.setOpaque(false);
-      tabPane.addTab("Firzt", new JLabel("o"));
-      tabPane.addTab("Firzt", new JLabel("k"));
+      
+      tabPane.add("1st", candiPanel);
+      tabPane.add("3rd", new Label("dsa"));
+      
       tabPane.setVisible(true);
       frame.add(tabPane);
       
-      tabPane.repaint();   }
+      tabPane.repaint();
+   }
 
    public void actionPerformed(ActionEvent action)
    {
