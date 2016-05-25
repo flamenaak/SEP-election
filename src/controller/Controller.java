@@ -1,9 +1,14 @@
 package controller;
 
 
-import javax.swing.ComboBoxModel;
+import java.util.ArrayList;
 
-import model.*;
+import model.Admin;
+import model.Candidate;
+import model.Election;
+import model.Position;
+import model.User;
+import model.Voter;
 
 public class Controller implements IController{
 
@@ -86,7 +91,7 @@ public class Controller implements IController{
 	public ArrayList<Candidate> viewCandidatesAndPositions() {
 		ArrayList<Candidate> candidates = new ArrayList<>();
 
-		for (int i = 0; i < election.getPositionsLength(); i++) {
+		for (int i = 0; i < election.getPositions.size(); i++) {
 			for (int j = 0; j < array.length; j++) {
 				candidates.add(election.getPosition(i).getCandidate(j));
 			}
@@ -95,20 +100,10 @@ public class Controller implements IController{
 		return candidates;
 	}
 
-	@Override
-	public void viewResults(Election election, Position position) {
+	public void viewResults(Position position) {
 
-		for (int i = 0; i < election.positions.size(); i++) {
-			if(positions.get(i))
-		}
 	}
 
-   @Override
-   public void viewCandidatesAndPositions()
-   {
-      // TODO Auto-generated method stub
-      
-   }
 
    @Override
    public void okPressed()
@@ -127,19 +122,6 @@ public class Controller implements IController{
       return election.positionsToString();
    }
 
-   @Override
-   public void viewCandidatesAndPositions()
-   {
-      // TODO Auto-generated method stub
-      
-   }
-
-   @Override
-   public void backPressed()
-   {
-      // TODO Auto-generated method stub
-      
-   }
 
 
    @Override
