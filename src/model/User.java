@@ -2,6 +2,7 @@ package model;
 
 public class User
 {
+<<<<<<< HEAD
 	private String name;
 	protected String password;
 	
@@ -14,4 +15,7 @@ public class User
 		return password;
 	}
 
+=======
+//chacne
+>>>>>>> refs/remotes/origin/develop
 }
