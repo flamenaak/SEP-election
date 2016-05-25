@@ -1,6 +1,8 @@
 package controller;
 
 
+import javax.swing.ComboBoxModel;
+
 import model.*;
 
 public class Controller implements IController{
@@ -10,6 +12,7 @@ public class Controller implements IController{
 	private Admin admin;
 	private Election election;
 	private DBManager dbm;
+	private Position position;
 	
 	public Controller() {
 		user = new User();
@@ -99,6 +102,53 @@ public class Controller implements IController{
 			if(positions.get(i))
 		}
 	}
+
+   @Override
+   public void viewCandidatesAndPositions()
+   {
+      // TODO Auto-generated method stub
+      
+   }
+
+   @Override
+   public void okPressed()
+   {
+      // TODO Auto-generated method stub
+      
+   }
+
+   public String[] getCandidates()
+   {
+      return position.toStringArray();
+   }
+
+   public String[] getPositions()
+   {
+      return election.positionsToString();
+   }
+
+   @Override
+   public void viewCandidatesAndPositions()
+   {
+      // TODO Auto-generated method stub
+      
+   }
+
+   @Override
+   public void backPressed()
+   {
+      // TODO Auto-generated method stub
+      
+   }
+
+
+   @Override
+   public void vote(int candidateIndex)
+   {
+      // TODO Auto-generated method stub
+      
+   }
+
 
 	
 
