@@ -64,5 +64,4 @@ public class NewCandidatePanel extends JPanel
       nameField = new JTextField();
       nameField.setBounds(213, 99, 118, 22);
    }
-
 }

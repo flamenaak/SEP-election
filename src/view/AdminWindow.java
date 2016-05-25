@@ -62,6 +62,9 @@ public class AdminWindow extends JFrame implements ActionListener
      setResizable(false);
      
      candiPanel = new NewCandidatePanel();
+	  setResizable(false);
+	  
+	  candiPanel = new NewCandidatePanel();
       candiPanel.setOpaque(false);
       
       tabPane.add("1st", candiPanel);
