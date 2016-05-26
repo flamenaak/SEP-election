@@ -1,5 +1,4 @@
 package view;
-
 import java.awt.Dimension;
 import java.awt.GridBagConstraints;
 import java.awt.TextField;
@@ -59,22 +58,22 @@ public class AdminWindow extends JFrame implements ActionListener
       setResizable(false);
       // candiPanel, positionPanel, viewPanel, resultsPanel, passwordPanel;
 
-      candiPanel = new NewCandidatePanel();
+      candiPanel = new NewCandidatePanel(controller);
       candiPanel.setOpaque(false);
 
-      positionPanel = new NewPositionPanel();
+      positionPanel = new NewPositionPanel(controller);
       positionPanel.setOpaque(false);
       
-      viewPanel = new CandidateNPositionPanel();
+      viewPanel = new CandidateNPositionPanel(controller);
       viewPanel.setOpaque(false);
       
-      passwordPanel = new PasswordChangeWindow();
+      passwordPanel = new PasswordChangeWindow(controller);
       passwordPanel.setOpaque(false);
       
-      resultsPanel = new ResultsView();
+      resultsPanel = new ResultsView(controller);
       resultsPanel.setOpaque(false);
       
-      welcome = new WelcomePanel();
+      welcome = new WelcomePanel(controller);
       welcome.setOpaque(false);
       
       tabPane.add("Welcome", welcome);

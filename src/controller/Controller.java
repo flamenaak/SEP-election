@@ -1,12 +1,12 @@
-package controller;
-import java.util.ArrayList;
 
+package controller;
 import model.Admin;
 import model.Candidate;
 import model.Election;
 import model.Position;
 import model.User;
 import model.Voter;
+import storage.DBManager;
 import view.AdminWindow;
 import view.LogInWindow;
 import view.VoterWindow;
@@ -63,12 +63,12 @@ public class Controller implements IController{
    }
 
    @Override
-   public void startElection(Election election) {
+   public void startElection() {
       dbm.startElection();
    }
    
    @Override
-   public void endElection(Election election) {
+   public void endElection() {
       dbm.stopElection();
    }
 
@@ -129,8 +129,4 @@ public class Controller implements IController{
    {
       logIn = new LogInWindow(this);
    }
-
-
-	
-
 }

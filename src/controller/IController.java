@@ -9,19 +9,18 @@ public interface IController {
 	
 	public void logIn(String name, char[] password);
 	public void logOut();
-	public boolean checkPassword(String password);
-	public boolean checkName(String name);
+	//public boolean checkPassword(String password);
+	//public boolean checkName(String name);
 	
 	public void changePassword(String password);
 
-	public void createElection();
-	public void startElection(Election election);
-	public void endElection(Election election);
-	public void addPosition(Election election, Position position);
+	public void startElection();
+	public void endElection();
+	public void addPosition(Position position);
 	public void addCandidate(Position position, Candidate candidate);
 	
-	public void viewCandidatesAndPositions();
-	public void viewResults(Election election, Position position);
+	//public void viewCandidatesAndPositions();
+	//public void viewResults(Position position);
 	public void okPressed();
 	
 	public void vote(int candidateIndex);

@@ -7,15 +7,19 @@ import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
+import controller.Controller;
+
 public class WelcomePanel extends JPanel
 {
    private JLabel instructions;
    private JButton start, stop, logOut, chameleon;
    private GridBagConstraints c;
+   private Controller controller;
    
-   public WelcomePanel()
+   public WelcomePanel(Controller controller)
    {
       super(new GridBagLayout());
+      this.controller = controller;
       initialize();
       build();
    }
