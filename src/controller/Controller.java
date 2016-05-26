@@ -115,8 +115,7 @@ public class Controller implements IController{
    @Override
    public void vote(int candidateIndex)
    {
-      // TODO Auto-generated method stub
-      
+      // TODO Auto-generated method stub      
    }
 
 
