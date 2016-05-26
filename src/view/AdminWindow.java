@@ -26,7 +26,7 @@ public class AdminWindow extends JFrame implements ActionListener
    private JLabel nameLab, passLab;
    private GridBagConstraints c;
    private JButton butt;
-   private JPanel candiPanel, positionPanel, viewPanel, resultsPanel, passwordPanel;
+   private JPanel candiPanel, positionPanel, viewPanel, resultsPanel, passwordPanel, welcome;
    // private Controller controller;
 
    public AdminWindow(/* Controller controller */)
@@ -76,7 +76,11 @@ public class AdminWindow extends JFrame implements ActionListener
       
       resultsPanel = new ResultsView();
       resultsPanel.setOpaque(false);
-
+      
+      welcome = new WelcomePanel();
+      welcome.setOpaque(false);
+      
+      tabPane.add("Welcome", welcome);
       tabPane.add("New Candidate", candiPanel);
       tabPane.add("New Position", positionPanel);
       tabPane.add("Registered entities", viewPanel);
