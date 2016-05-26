@@ -18,7 +18,7 @@ public class Main
 {
    public static void main(String[] args)
    {
-      VoterWindow vw = new VoterWindow();
+      /*VoterWindow vw = new VoterWindow();
       vw.setComponents();
 
       // VoterWindow vw = new VoterWindow();
@@ -35,7 +35,7 @@ public class Main
          // VoterWindow vw = new VoterWindow();
 
          // vw.setComponents();
-      }
-
+      }*/ AdminWindow win = new AdminWindow();
+	   
    }
 }

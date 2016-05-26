@@ -20,69 +20,61 @@ import javax.swing.JTabbedPane;
 
 public class AdminWindow extends JFrame implements ActionListener 
 {
-   private JFrame frame;
-   private JTabbedPane tabPane;
-   private TextField name;
-   private JLabel nameLab, passLab;
-   private GridBagConstraints c;
-   private JButton butt;
-   private JPanel candiPanel;
-   // private Controller controller;
+	private JFrame frame;
+	private JTabbedPane tabPane;
+	private TextField name;
+	private JLabel nameLab, passLab;
+	private GridBagConstraints c;
+	private JButton butt;
+	private JPanel candiPanel;
+	// private Controller controller;
 
-   public AdminWindow(/* Controller controller */)
-   {
-      // this.controller = controller;
-      this.createComponents();
-      this.createGUI();
-      this.setFrame();
-   }
+	public AdminWindow(/* Controller controller */)
+	{
+		// this.controller = controller;
+		this.createComponents();
+		this.createGUI();
+		this.setFrame();
+	}
 
-   private void setFrame()
-   {
-      Dimension s = Toolkit.getDefaultToolkit().getScreenSize();
-      frame.setSize(500, 300);
-      int x = (int) ((s.getWidth() - frame.getWidth()) / 2);
-      int y = (int) ((s.getHeight() - frame.getHeight()) / 2);
+	private void setFrame()
+	{
+		Dimension s = Toolkit.getDefaultToolkit().getScreenSize();
+		frame.setSize(500, 300);
+		int x = (int) ((s.getWidth() - frame.getWidth()) / 2);
+		int y = (int) ((s.getHeight() - frame.getHeight()) / 2);
 
-      frame.setLocation(x, y);
-      frame.setVisible(true);
-      frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-      
-   }
+		frame.setLocation(x, y);
+		frame.setVisible(true);
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-   private void createComponents()
-   {
-      frame = new JFrame();
-      tabPane = new JTabbedPane();
-      candiPanel = new JPanel();
-   }
+	}
 
-   private void createGUI()
-   {
-     setResizable(false);
-     
-     candiPanel = new NewCandidatePanel();
+	private void createComponents()
+	{
+		frame = new JFrame();
+		tabPane = new JTabbedPane();
+		candiPanel = new JPanel();
+	}
 
-	  setResizable(false);
-	  
-	  candiPanel = new NewCandidatePanel();
+	private void createGUI()
+	{
+		setResizable(false);
 
-     setResizable(false);
-     
-     candiPanel = new NewCandidatePanel();
-      candiPanel.setOpaque(false);
-      
-      tabPane.add("1st", candiPanel);
-      tabPane.add("3rd", new Label("dsa"));
-      
-      tabPane.setVisible(true);
-      frame.add(tabPane);
-      
-      tabPane.repaint();
-   }
+		candiPanel = new NewCandidatePanel();
+		candiPanel.setOpaque(false);
 
-   public void actionPerformed(ActionEvent action)
-   {
-   }
+		tabPane.add("1st", candiPanel);
+		tabPane.add("3rd", new Label("dsa"));
+
+		tabPane.setVisible(true);
+		frame.add(tabPane);
+
+		tabPane.repaint();
+	}
+
+	public void actionPerformed(ActionEvent action)
+	{
+	}
 
 }
