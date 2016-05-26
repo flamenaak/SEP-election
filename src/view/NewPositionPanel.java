@@ -22,7 +22,7 @@ public class NewPositionPanel extends JPanel implements ActionListener
    private GridBagConstraints c;
    private JPanel subPanel;
    
-   public NewPositionPanel()//Controller cont)
+   public NewPositionPanel(Controller cont)
    {
       super(new GridBagLayout());
       this.cont = cont;

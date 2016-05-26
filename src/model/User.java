@@ -14,5 +14,10 @@ public class User
 		return password;
 	}
 	
+	public String getName()
+	{
+	   return name;
+	}
+	
 	
 }

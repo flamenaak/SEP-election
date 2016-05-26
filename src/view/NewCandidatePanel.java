@@ -9,6 +9,8 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
+import controller.Controller;
+
 
 public class NewCandidatePanel extends JPanel
 {
@@ -17,10 +19,12 @@ public class NewCandidatePanel extends JPanel
    private JComboBox<Object> posComboBox;
    private JLabel position, name;
    private JTextField nameField;
+   private Controller controller;
 
-   public NewCandidatePanel()
+   public NewCandidatePanel(Controller controller)
    {
       super(new GridBagLayout());
+      this.controller = controller;
       initialize();
       build();
       setVisible(true);

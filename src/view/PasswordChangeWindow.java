@@ -9,13 +9,17 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 
+import controller.Controller;
+
 public class PasswordChangeWindow extends JPanel{
 	private JPasswordField passwordField;
 	private JPasswordField passwordField_1;
 	private GridBagConstraints c;
+	private Controller cont;
 
-	public PasswordChangeWindow() {
+	public PasswordChangeWindow(Controller cont) {
 	super(new GridBagLayout());
+	this.cont = cont;
 	c = new GridBagConstraints();
 	
 	JLabel lblNewLabel = new JLabel("Enter new password");
@@ -50,8 +54,5 @@ public class PasswordChangeWindow extends JPanel{
    c.gridy = 3;
 	add(btnSavePassword, c);
 	}
-	public static void main(String[] args) {
-		PasswordChangeWindow window = new PasswordChangeWindow();
-		window.setVisible(true);
-	}	
+	
 }

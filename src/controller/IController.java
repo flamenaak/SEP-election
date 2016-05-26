@@ -7,7 +7,7 @@ import model.Position;
 
 public interface IController {
 	
-	public void logIn(String name, String password);
+	public void logIn(String name, char[] password);
 	public void logOut();
 	public boolean checkPassword(String password);
 	public boolean checkName(String name);
@@ -18,7 +18,7 @@ public interface IController {
 	public void startElection(Election election);
 	public void endElection(Election election);
 	public void addPosition(Election election, Position position);
-	public void addCandidate(Election election, Position position, Candidate candidate);
+	public void addCandidate(Position position, Candidate candidate);
 	
 	public void viewCandidatesAndPositions();
 	public void viewResults(Election election, Position position);

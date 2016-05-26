@@ -2,21 +2,18 @@ package view;
 
 import java.awt.Dimension;
 import java.awt.GridBagConstraints;
-import java.awt.GridBagLayout;
-import java.awt.Label;
 import java.awt.TextField;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import javafx.collections.SetChangeListener;
-
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.JPasswordField;
 import javax.swing.JTabbedPane;
+
+import controller.Controller;
 
 public class AdminWindow extends JFrame implements ActionListener
 {
@@ -27,11 +24,11 @@ public class AdminWindow extends JFrame implements ActionListener
    private GridBagConstraints c;
    private JButton butt;
    private JPanel candiPanel, positionPanel, viewPanel, resultsPanel, passwordPanel, welcome;
-   // private Controller controller;
+    private Controller controller;
 
-   public AdminWindow(/* Controller controller */)
+   public AdminWindow(Controller controller)
    {
-      // this.controller = controller;
+      this.controller = controller;
       this.createComponents();
       this.createGUI();
       this.setFrame();

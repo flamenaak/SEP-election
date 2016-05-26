@@ -1,6 +1,4 @@
 package controller;
-
-
 import java.util.ArrayList;
 
 import model.Admin;
@@ -9,6 +7,9 @@ import model.Election;
 import model.Position;
 import model.User;
 import model.Voter;
+import view.AdminWindow;
+import view.LogInWindow;
+import view.VoterWindow;
 
 public class Controller implements IController{
 
@@ -17,80 +18,86 @@ public class Controller implements IController{
    private Admin admin;
    private Election election;
    private DBManager dbm;
+   private LogInWindow logIn;
+   private AdminWindow adminW;
+   private VoterWindow voterW;
    
    public Controller() {
-      user = new User();
-      voter = new Voter();
-      admin = new Admin();
-      election = new Election();
+      election = dbm.getElection();
    }
    
    
-   @Override
-   public void logIn(String name, String password) {
-      
+   public void logIn(String name, char[] passwordIn) {
+      if (!name.equals(""))
+      {
+         String password = new String(passwordIn);
+         user = new User(name, password);
+         //System.out.println(password);
+         if (dbm.logIn(name, password)instanceof Admin)
+         {
+            logIn.close();
+            adminW = new AdminWindow(this);  
+            logIn.clearFields();
+         }
+         else if(dbm.logIn(name, password)instanceof Voter)
+         {
+            logIn.close();
+            voterW = new VoterWindow(this);
+            logIn.clearFields();
+         }
+         else
+         {
+            logIn.clearFields();
+         }
+      }
    }
 
    @Override
    public void logOut() {
       
    }
-   
-   public boolean checkName(String name) {
-      return name.equals(user.getName());
-   }
-
-   @Override
-   public boolean checkPassword(String password) {
-      return password.equals(user.getPassword());
-   }
 
    @Override
    public void changePassword(String password) {
-      admin.setPassword(password);
-   }
-
-   @Override
-   public void createElection() {
-      
+      dbm.changePassword(password, user.getName());
    }
 
    @Override
    public void startElection(Election election) {
-      election.start();
+      dbm.startElection();
    }
    
    @Override
    public void endElection(Election election) {
-      election.end();
+      dbm.stopElection();
    }
 
    @Override
-   public void addPosition(Election election, Position position) {
-      election.getPosition(position);
+   public void addPosition(Position position) {
+      dbm.addPosition(position);
    }
 
    @Override
-   public void addCandidate(Election election, Position position, Candidate candidate) {
-      election.getPosition(position).addCandidate(candidate);
+   public void addCandidate(Position position, Candidate candidate) {
+      dbm.addCandidate(position, candidate);
    }
 
-   @Override
+  /* @Override
    public ArrayList<Candidate> viewCandidatesAndPositions() {
 
       return election.getAllCandidates();;
-   }
+   }*/
 
-   @Override
+   /*@Override
    public ArrayList<Candidate> viewResults(Election election, Position position) {
       ArrayList<Candidate> winning = new ArrayList<>();
 
-      for (int i = 0; i < election.getPositionSize(); i++) {
+      for (int i = 0; i < election.getPositions().size(); i++) {
          winning.add(election.getPosition(i).getWinningCandidate());
       }
       
       return winning;
-   }
+   }*/
 
 
    @Override
@@ -115,8 +122,12 @@ public class Controller implements IController{
    @Override
    public void vote(int candidateIndex)
    {
-      // TODO Auto-generated method stub
-      
+      // TODO Auto-generated method stub      
+   }
+   
+   public void run()
+   {
+      logIn = new LogInWindow(this);
    }
 
 
