@@ -1,7 +1,6 @@
 package view;
 
 import java.awt.Dimension;
-import java.awt.FlowLayout;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.TextField;
@@ -15,6 +14,8 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 
+import controller.Controller;
+
 
 
 public class LogInWindow implements ActionListener
@@ -26,21 +27,20 @@ public class LogInWindow implements ActionListener
    private JLabel nameLab, passLab;
    private GridBagConstraints c;
    private JButton butt;
-   //private Controller controller;
+   private Controller controller;
 
-   public LogInWindow(/*Controller controller*/)
+   public LogInWindow(Controller controller)
    {
-      //this.controller = controller;
+      this.controller = controller;
       this.createComponents();
       this.createGUI();
-      Dimension s = Toolkit.getDefaultToolkit().getScreenSize();
-      logInFrame.setSize(500, 300);
-      int x = (int) ((s.getWidth() - logInFrame.getWidth()) / 2);
-      int y = (int) ((s.getHeight() - logInFrame.getHeight()) / 2);
+      assignActionListener();
+   }
 
-      logInFrame.setLocation(x, y);
-      logInFrame.setVisible(true);
-      logInFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+   private void assignActionListener()
+   {
+      butt.addActionListener(this);
+      
    }
 
    private void createComponents()
@@ -61,6 +61,15 @@ public class LogInWindow implements ActionListener
 
    private void createGUI()
    {
+      Dimension s = Toolkit.getDefaultToolkit().getScreenSize();
+      logInFrame.setSize(500, 300);
+      int x = (int) ((s.getWidth() - logInFrame.getWidth()) / 2);
+      int y = (int) ((s.getHeight() - logInFrame.getHeight()) / 2);
+
+      logInFrame.setLocation(x, y);
+      logInFrame.setVisible(true);
+      logInFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);  //building and setting frame
+      
       c.gridwidth = 4;
       c.gridx = 0;
       c.gridy = 2;
@@ -84,6 +93,10 @@ public class LogInWindow implements ActionListener
 
    public void actionPerformed(ActionEvent action)
    {
+      if(action.getSource().equals(butt))
+      {
+         controller.logIn(name.getText(), this.password.getPassword());
+      }
    }
 
    public void close()
