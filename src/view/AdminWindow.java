@@ -22,6 +22,7 @@ public class AdminWindow extends JFrame implements ActionListener
    private JLabel nameLab, passLab;
    private GridBagConstraints c;
    private JButton butt;
+
    private JPanel candiPanel, positionPanel, viewPanel, resultsPanel, passwordPanel, welcome;
     private Controller controller;
 
@@ -36,6 +37,7 @@ public class AdminWindow extends JFrame implements ActionListener
    private void setFrame()
    {
       Dimension s = Toolkit.getDefaultToolkit().getScreenSize();
+
       frame.setSize(500, 300);
       int x = (int) ((s.getWidth() - frame.getWidth()) / 2);
       int y = (int) ((s.getHeight() - frame.getHeight()) / 2);
@@ -48,6 +50,7 @@ public class AdminWindow extends JFrame implements ActionListener
 
    private void createComponents()
    {
+
       frame = new JFrame();
       tabPane = new JTabbedPane();
       candiPanel = new JPanel();
@@ -55,7 +58,12 @@ public class AdminWindow extends JFrame implements ActionListener
 
    private void createGUI()
    {
-      setResizable(false);
+      tabPane.add(candiPanel, "Add candidate");
+      candiPanel.setOpaque(false);
+      tabPane.addTab("Firzt", new JPanel());
+      tabPane.addTab("Firzt", new JPanel());
+
+	  setResizable(false);
       // candiPanel, positionPanel, viewPanel, resultsPanel, passwordPanel;
 
       candiPanel = new NewCandidatePanel(controller);
