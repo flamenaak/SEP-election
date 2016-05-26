@@ -18,7 +18,7 @@ import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTabbedPane;
 
-public class AdminWindow extends JFrame implements ActionListener 
+public class AdminWindow extends JFrame implements ActionListener
 {
    private JFrame frame;
    private JTabbedPane tabPane;
@@ -26,7 +26,7 @@ public class AdminWindow extends JFrame implements ActionListener
    private JLabel nameLab, passLab;
    private GridBagConstraints c;
    private JButton butt;
-   private JPanel candiPanel;
+   private JPanel candiPanel, positionPanel, viewPanel, resultsPanel, passwordPanel;
    // private Controller controller;
 
    public AdminWindow(/* Controller controller */)
@@ -47,7 +47,7 @@ public class AdminWindow extends JFrame implements ActionListener
       frame.setLocation(x, y);
       frame.setVisible(true);
       frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-      
+
    }
 
    private void createComponents()
@@ -59,17 +59,34 @@ public class AdminWindow extends JFrame implements ActionListener
 
    private void createGUI()
    {
-     setResizable(false);
-     
-     candiPanel = new NewCandidatePanel();
+      setResizable(false);
+      // candiPanel, positionPanel, viewPanel, resultsPanel, passwordPanel;
+
+      candiPanel = new NewCandidatePanel();
       candiPanel.setOpaque(false);
+
+      positionPanel = new NewPositionPanel();
+      positionPanel.setOpaque(false);
       
-      tabPane.add("1st", candiPanel);
-      tabPane.add("3rd", new Label("dsa"));
+      viewPanel = new CandidateNPositionPanel();
+      viewPanel.setOpaque(false);
       
+      passwordPanel = new PasswordChangeWindow();
+      passwordPanel.setOpaque(false);
+      
+      resultsPanel = new ResultsView();
+      resultsPanel.setOpaque(false);
+
+      tabPane.add("New Candidate", candiPanel);
+      tabPane.add("New Position", positionPanel);
+      tabPane.add("Registered entities", viewPanel);
+      tabPane.add("Change password", passwordPanel);
+      tabPane.add("Votes Results", resultsPanel);
+      
+
       tabPane.setVisible(true);
       frame.add(tabPane);
-      
+
       tabPane.repaint();
    }
 

@@ -1,6 +1,8 @@
 package view;
 
+import java.awt.Dimension;
 import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
 
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
@@ -18,6 +20,7 @@ public class NewCandidatePanel extends JPanel
 
    public NewCandidatePanel()
    {
+      super(new GridBagLayout());
       initialize();
       build();
       setVisible(true);
@@ -30,38 +33,32 @@ public class NewCandidatePanel extends JPanel
       GridBagConstraints c3 = new GridBagConstraints();
       GridBagConstraints c4 = new GridBagConstraints();
       
-      setLayout(null);
 
       c1.gridx = 0;
       c1.gridy = 0;
-      add(name);
+      add(name, c1);
 
       c2.gridx = 1;
-      add(position);
+      add(position, c2);
 
       c3.gridx = 0;
       c3.gridy = 1;
-      add(nameField);
+      nameField.setPreferredSize(new Dimension(100,25));
+      add(nameField, c3);
 
       c4.gridx = 1;
-      add(posComboBox);
+      posComboBox.setPreferredSize(new Dimension(100,25));
+      add(posComboBox, c4);
 
    }
 
    private void initialize()
    {
-      setBounds(0, 0, 400, 200);
-
-      posComboBox = new JComboBox<Object>();
-      posComboBox.setBounds(45, 99, 118, 22);
-
+      //setBounds(0, 0, 400, 200);
+      posComboBox = new JComboBox<Object>();      
       name = new JLabel("Name");
-      name.setBounds(252, 70, 33, 16);
-
       position = new JLabel("Position");
-      position.setBounds(77, 70, 44, 16);
-
       nameField = new JTextField();
-      nameField.setBounds(213, 99, 118, 22);
+
    }
 }
