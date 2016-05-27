@@ -103,15 +103,13 @@ public class VoterWindow extends JFrame
    
    public static class candidateBox implements ActionListener
    {
-
       @Override
       public void actionPerformed(ActionEvent arg0)
       {
          String name = (String) candidateBox.getSelectedItem();
          String pos = (String) positionBox.getSelectedItem();
-         controller.vote(name, pos);
-      }
-      
+         controller.addVote(name, pos);
+      }     
    }
    
    public static class positionBox implements ActionListener
@@ -120,8 +118,8 @@ public class VoterWindow extends JFrame
       @Override
       public void actionPerformed(ActionEvent arg0)
       {
-         int positionIndex = positionBox.getSelectedIndex();
-         position = election.getPosition(positionIndex);
+         String positionName = (String) positionBox.getSelectedItem();
+         position = dbm.getPosition(positionName);
       }
       
    }

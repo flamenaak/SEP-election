@@ -14,20 +14,18 @@ import javax.swing.JTabbedPane;
 
 import controller.Controller;
 
-public class AdminWindow extends JFrame implements ActionListener
+public class AdminWindow extends JFrame
 {
-   private JFrame frame;
    private JTabbedPane tabPane;
-   private TextField name;
-   private JLabel nameLab, passLab;
+
    private GridBagConstraints c;
-   private JButton butt;
 
    private JPanel candiPanel, positionPanel, viewPanel, resultsPanel, passwordPanel, welcome;
     private Controller controller;
 
    public AdminWindow(Controller controller)
    {
+      super();
       this.controller = controller;
       this.createComponents();
       this.createGUI();
@@ -38,20 +36,18 @@ public class AdminWindow extends JFrame implements ActionListener
    {
       Dimension s = Toolkit.getDefaultToolkit().getScreenSize();
 
-      frame.setSize(500, 300);
-      int x = (int) ((s.getWidth() - frame.getWidth()) / 2);
-      int y = (int) ((s.getHeight() - frame.getHeight()) / 2);
+      setSize(500, 300);
+      int x = (int) ((s.getWidth() - getWidth()) / 2);
+      int y = (int) ((s.getHeight() - getHeight()) / 2);
 
-      frame.setLocation(x, y);
-      frame.setVisible(true);
-      frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+      setLocation(x, y);
+      setVisible(true);
+      setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
    }
 
    private void createComponents()
    {
-
-      frame = new JFrame();
       tabPane = new JTabbedPane();
       candiPanel = new JPanel();
    }
@@ -93,13 +89,9 @@ public class AdminWindow extends JFrame implements ActionListener
       
 
       tabPane.setVisible(true);
-      frame.add(tabPane);
+      add(tabPane);
 
       tabPane.repaint();
-   }
-
-   public void actionPerformed(ActionEvent action)
-   {
    }
 
 }
