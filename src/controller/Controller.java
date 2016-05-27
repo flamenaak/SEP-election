@@ -1,5 +1,7 @@
 
 package controller;
+import java.sql.SQLException;
+
 import model.Admin;
 import model.Candidate;
 import model.Election;
@@ -33,21 +35,29 @@ public class Controller implements IController{
          String password = new String(passwordIn);
          user = new User(name, password);
          //System.out.println(password);
-         if (dbm.logIn(name, password)instanceof Admin)
+         try
          {
-            logIn.close();
-            adminW = new AdminWindow(this);  
-            logIn.clearFields();
+            if (dbm.logIn(name, password)instanceof Admin)
+            {
+               logIn.close();
+               adminW = new AdminWindow(this);  
+               logIn.clearFields();
+            }
+            else if(dbm.logIn(name, password)instanceof Voter)
+            {
+               logIn.close();
+               voterW = new VoterWindow(this);
+               logIn.clearFields();
+            }
+            else
+            {
+               logIn.clearFields();
+            }
          }
-         else if(dbm.logIn(name, password)instanceof Voter)
+         catch (SQLException e)
          {
-            logIn.close();
-            voterW = new VoterWindow(this);
-            logIn.clearFields();
-         }
-         else
-         {
-            logIn.clearFields();
+            // TODO Auto-generated catch block
+            e.printStackTrace();
          }
       }
    }

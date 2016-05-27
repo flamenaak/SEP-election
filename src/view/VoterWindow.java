@@ -88,9 +88,7 @@ public class VoterWindow
          controller.okPressed();
          JOptionPane.showMessageDialog(mainFrame, "Thanks for voting");
          controller.logOut();
-      }
-      
-      
+      }          
    }
    
    public static class logOutPressed implements ActionListener
