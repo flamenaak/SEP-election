@@ -1,6 +1,7 @@
 package storage;
 
 import java.sql.*;
+import java.util.ArrayList;
 
 import model.*;
 
@@ -8,19 +9,25 @@ import org.postgresql.Driver;
 
 public class DBManager implements IDBManager{
 
-	private String username;
-	private String password;
 	private Voter voter;
 	private Admin admin;
-	
-	public User logIn(String username, String password) throws SQLException{
-		
+	private Driver driver;
+	private Connection connection;
+
+	public DBManager() throws SQLException {
+		voter = null;
+		admin = null;
+		driver = new Driver();
+		DriverManager.registerDriver(driver);
+	}
+
+	public User logIn(String username, String password) throws SQLException {
+
+		connection = DriverManager.getConnection( "jdbc:postgresql://localhost:5432/postgres", "postgres", "password");
+
 		admin = null;
 		voter = null;
-		
-		Driver driver = new Driver();
-		DriverManager.registerDriver(new org.postgresql.Driver());
-		Connection connection = DriverManager.getConnection( "jdbc:postgresql://localhost:5432/postgres", "postgres", "password");
+
 		try {
 			PreparedStatement statement = 
 					connection.prepareStatement("SELECT * FROM Users WHERE name = ? AND password = ?");
@@ -28,10 +35,9 @@ public class DBManager implements IDBManager{
 			statement.setString(2, password);
 
 			ResultSet result= statement.executeQuery();
-			
+
 			while (result.next()) {
-				this.username = result.getString("name");
-				this.password = result.getString("password");
+
 				int Id = result.getInt("ID");
 				Boolean adminBoolean = result.getBoolean("admin");
 				Boolean voted = result.getBoolean("voted");
@@ -43,10 +49,11 @@ public class DBManager implements IDBManager{
 						voter.vote();
 				}
 			}
-			
+
 		} finally {
 			connection.close();
 		}
+
 		if (admin == null)
 			return voter;
 		if (voter == null)
@@ -54,36 +61,229 @@ public class DBManager implements IDBManager{
 		return null;
 	}
 
-   public Election getElection()
-   {
-      // TODO Auto-generated method stub
-      return null;
-   }
+	@Override
+	public Election getElection() {
+		// TODO Auto-generated method stub
+		return null;
+	}
 
-   public void startElection()
-   {
-      // TODO Auto-generated method stub
-      
-   }
+	@Override
+	public void startElection() throws SQLException {
+		connection = DriverManager.getConnection( "jdbc:postgresql://localhost:5432/postgres", "postgres", "password");
 
-   public void stopElection()
-   {
-      // TODO Auto-generated method stub
-      
-   }
+		try {
+			PreparedStatement statement = 
+					connection.prepareStatement("UPDATE Election SET active = true WHERE active = false");
 
-   public void addPosition(Position position)
-   {
-      // TODO Auto-generated method stub
-      
-   }
+			statement.executeUpdate();
 
-   public void addCandidate(Position position, Candidate candidate)
-   {
-      // TODO Auto-generated method stub
-      
-   }
+		} finally {
+			connection.close();
+		}
+	}
+
+	@Override
+	public void stopElection() throws SQLException {
+		connection = DriverManager.getConnection( "jdbc:postgresql://localhost:5432/postgres", "postgres", "password");
+
+		try {
+			PreparedStatement statement = 
+					connection.prepareStatement("UPDATE Election SET active = false WHERE active = true");
+
+			statement.executeUpdate();
+
+		} finally {
+			connection.close();
+		}
+	}
+
+	@Override
+	public void addPosition(Position position) throws SQLException {
+		connection = DriverManager.getConnection( "jdbc:postgresql://localhost:5432/postgres", "postgres", "password");
+
+		try{
+			PreparedStatement statement = connection.prepareStatement("INSERT INTO Positions (name) VALUES(?)");
+
+			statement.setString(1, position.getPositionName());
+
+		} finally {
+			connection.close();
+		}
+
+	}
+
+	@Override
+	public void addCandidate(Position position, Candidate candidate) throws SQLException {
+		connection = DriverManager.getConnection( "jdbc:postgresql://localhost:5432/postgres", "postgres", "password");
+
+		try{
+			PreparedStatement statement = connection.prepareStatement("INSERT INTO Candidates(name, position, voteCount, ID, description) VALUES(?,?,?,?,?)");
+
+			statement.setString(1, candidate.getName());
+			statement.setString(2, position.getPositionName());
+			statement.setInt(3, 0);
+			statement.setInt(4, candidate.getID());
+			statement.setString(5, candidate.getDescription());
+
+		} finally {
+			connection.close();
+		}
+	}
+
+	@Override
+	public void changePassword(String username, String password) throws SQLException {
+
+		connection = DriverManager.getConnection( "jdbc:postgresql://localhost:5432/postgres", "postgres", "password");
+
+		try {
+			PreparedStatement statement = 
+					connection.prepareStatement("UPDATE Users SET password = ? WHERE username = ?");
+
+			statement.setString(1, password);
+			statement.setString(2, username);
+			statement.executeUpdate();
+
+		} finally {
+			connection.close();
+		}
+
+	}
+
+	public void vote(Candidate candidate) throws SQLException {
+
+		connection = DriverManager.getConnection( "jdbc:postgresql://localhost:5432/postgres", "postgres", "password");
+
+		try {
+			PreparedStatement statement = connection.prepareStatement("UPDATE Candidate SET voteCount = ? WHERE name = ?");
+
+			candidate.giveVote();
+			statement.setInt(1, candidate.getVotes());
+			statement.setString(2, candidate.getName());
+			statement.executeUpdate();
+
+		} finally {
+			connection.close();
+		}
+	}
+
+	public void getCandidate(String name, Position position) throws SQLException {
+
+		connection = DriverManager.getConnection( "jdbc:postgresql://localhost:5432/postgres", "postgres", "password");
+
+		try{
+			PreparedStatement statement = connection.prepareStatement("SELECT * FROM Candidates WHERE name = ? AND position = ?");
+			statement.setString(1, name);
+			statement.setString(2, position.getPositionName());
+			statement.executeUpdate();
+		} finally {
+			connection.close();
+		}
+	}
+
+	@Override
+	public ArrayList<Candidate> getCandidates(Position position) throws SQLException {
+
+		ArrayList<Candidate> candidates = new ArrayList<>();
+
+		try {
+			PreparedStatement statement = 
+					connection.prepareStatement("SELECT * FROM Candidates WHERE position = ?");
+
+			statement.setString(1, position.getPositionName());
+			ResultSet result= statement.executeQuery();
+
+			while (result.next()) {
+
+				Candidate temp = new Candidate(result.getString(1), position, result.getInt(4), result.getString(5));
+				temp.setVotes(result.getInt(3));
+				candidates.add(temp);
+
+			}
+
+		} finally {
+			connection.close();
+		}
+
+		return candidates;
+
+	}
+
+	public ArrayList<Position> getPositions() throws SQLException {
+
+		ArrayList<Position> positions = new ArrayList<>();
+
+		try {
+			PreparedStatement statement = 
+					connection.prepareStatement("SELECT * FROM Positions");
+
+			ResultSet result= statement.executeQuery();
+
+			while (result.next()) {
+
+				Position temp = new Position(result.getString(1));
+				positions.add(temp);
+
+			}
+
+		} finally {
+			connection.close();
+		}
+
+		return positions;
+
+	}
+
+	public void reset() throws SQLException{
+
+		connection = DriverManager.getConnection( "jdbc:postgresql://localhost:5432/postgres", "postgres", "password");
+
+		try{
+			PreparedStatement statement = connection.prepareStatement("DROP TABLE Users;");
+			PreparedStatement statement1 = connection.prepareStatement("DROP TABLE Candidate;");
+			PreparedStatement statement2 = connection.prepareStatement("DROP TABLE Election;");
+			PreparedStatement statement3 = connection.prepareStatement("DROP TABLE Position;");
+
+			statement.executeUpdate();
+			statement1.executeUpdate();
+			statement2.executeUpdate();
+			statement3.executeUpdate();
+
+		} finally {
+			connection.close();
+		}
+	}
 	
+	public void deletePosition(String position) throws SQLException {
+		
+		connection = DriverManager.getConnection( "jdbc:postgresql://localhost:5432/postgres", "postgres", "password");
+
+		try {
+			PreparedStatement statement = connection.prepareStatement("DELETE FROM Positions WHERE name = ?");
+		
+			statement.setString(1, position);
+			statement.executeUpdate();
+		
+		} finally {
+			connection.close();
+		}
+		
+	}
 	
-	
+	public void deleteCandidate(String candidate, String position) throws SQLException {
+		
+		connection = DriverManager.getConnection( "jdbc:postgresql://localhost:5432/postgres", "postgres", "password");
+
+		try {
+			PreparedStatement statement = connection.prepareStatement("DELETE FROM Candidates WHERE name = ? AND position = ?");
+		
+			statement.setString(1, candidate);
+			statement.setString(2, position);
+			statement.executeUpdate();
+		
+		} finally {
+			connection.close();
+		}
+		
+	}
+
 }
