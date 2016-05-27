@@ -53,6 +53,36 @@ public class DBManager implements IDBManager{
 			return admin;
 		return null;
 	}
+
+   public Election getElection()
+   {
+      // TODO Auto-generated method stub
+      return null;
+   }
+
+   public void startElection()
+   {
+      // TODO Auto-generated method stub
+      
+   }
+
+   public void stopElection()
+   {
+      // TODO Auto-generated method stub
+      
+   }
+
+   public void addPosition(Position position)
+   {
+      // TODO Auto-generated method stub
+      
+   }
+
+   public void addCandidate(Position position, Candidate candidate)
+   {
+      // TODO Auto-generated method stub
+      
+   }
 	
 	
 	
