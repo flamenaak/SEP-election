@@ -23,5 +23,5 @@ public interface IController {
 	//public void viewResults(Position position);
 	public void okPressed();
 	
-	public void vote(int candidateIndex);
+	public void addVote(String name, String pos);
 }
