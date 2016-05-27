@@ -11,8 +11,8 @@ import controller.Controller;
 
 public class AdminWindow extends JFrame
 {
-   private JTabbedPane tabPane;
 
+   private JTabbedPane tabPane;
    private GridBagConstraints c;
 
    private JPanel candiPanel, positionPanel, viewPanel, resultsPanel, passwordPanel, welcome;
@@ -37,8 +37,7 @@ public class AdminWindow extends JFrame
 
       setLocation(x, y);
       setVisible(true);
-      setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-
+      setDefaultCloseOperation(EXIT_ON_CLOSE);
    }
 
    private void createComponents()
@@ -82,11 +81,9 @@ public class AdminWindow extends JFrame
       tabPane.add("Change password", passwordPanel);
       tabPane.add("Votes Results", resultsPanel);
       
-
       tabPane.setVisible(true);
       add(tabPane);
 
       tabPane.repaint();
    }
-
 }
