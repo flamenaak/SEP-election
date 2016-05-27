@@ -8,7 +8,7 @@ import model.Position;
 public interface IController {
 	
 	public void logIn(String name, char[] password);
-	public void logOut();
+	public void voterLogOut();
 	//public boolean checkPassword(String password);
 	//public boolean checkName(String name);
 	

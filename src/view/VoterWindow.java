@@ -8,7 +8,7 @@ import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 import javax.swing.JComboBox;
-import javax.swing.JFrame;
+import javax.swing.*;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
@@ -16,7 +16,7 @@ import controller.Controller;
 import model.Election;
 import model.Position;
 
-public class VoterWindow extends JFrame
+public class VoterWindow extends JFrame implements ActionListener
 {
    private static JComboBox<String> candidateBox;
    private static JComboBox<String> positionBox;
@@ -63,8 +63,7 @@ public class VoterWindow extends JFrame
       candidateBox.setPreferredSize(new Dimension(100, 25));
       positionBox.setPreferredSize(new Dimension(100, 25));
       
-      candidateBox.addActionListener(new candidateBox());
-      positionBox.addActionListener(new positionBox());
+      
       
       JPanel np = new JPanel();
       
@@ -73,55 +72,39 @@ public class VoterWindow extends JFrame
       voter.add(ok);
       voter.add(logOut);
 
-      ok.addActionListener(new okPressed());
-      logOut.addActionListener(new logOutPressed());
+      ok.addActionListener(this);
+      logOut.addActionListener(this);
+      candidateBox.addActionListener(this);
+      positionBox.addActionListener(this);
       
       add(np);
       add(voter);
       setVisible(true);
    }
 
-   public static class okPressed implements ActionListener
+   @Override
+   public void actionPerformed(ActionEvent e)
    {
-      @Override
-      public void actionPerformed(ActionEvent arg0)
-      {
-         controller.okPressed();
-         JOptionPane.showMessageDialog(new JFrame(), "Thanks for voting");
-         controller.logOut();
-      }          
-   }
-   
-   public static class logOutPressed implements ActionListener
-   {
-      @Override
-      public void actionPerformed(ActionEvent arg0)
-      {
-         controller.logOut(); 
-      }
-   }
-   
-   public static class candidateBox implements ActionListener
-   {
-      @Override
-      public void actionPerformed(ActionEvent arg0)
-      {
-         String name = (String) candidateBox.getSelectedItem();
-         String pos = (String) positionBox.getSelectedItem();
-         controller.addVote(name, pos);
-      }     
-   }
-   
-   public static class positionBox implements ActionListener
-   {
-
-      @Override
-      public void actionPerformed(ActionEvent arg0)
+      if(e.getSource().equals(positionBox))
       {
          String positionName = (String) positionBox.getSelectedItem();
          position = dbm.getPosition(positionName);
       }
-      
+      else if(e.getSource().equals(candidateBox))
+      {
+         String name = (String) candidateBox.getSelectedItem();
+         String pos = (String) positionBox.getSelectedItem();
+         controller.addVote(name, pos);
+      }
+      else if(e.getSource().equals(logOut))
+      {
+         controller.voterLogOut();
+      }
+      else if(e.getSource().equals(ok))
+      {         
+         JOptionPane.showMessageDialog(new JFrame(), "Thanks for voting");
+         controller.okPressed();
+      }
    }
    
    

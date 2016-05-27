@@ -67,9 +67,11 @@ public class Controller implements IController
    }
 
    @Override
-   public void logOut()
+   public void voterLogOut()
    {
-
+      vote();
+      voterW.setVisible(false);
+      logIn = new LogInWindow(this);
    }
 
    @Override
@@ -118,8 +120,9 @@ public class Controller implements IController
    @Override
    public void okPressed()
    {
-      // TODO Auto-generated method stub
-
+      vote();
+      voterW.setVisible(false);
+      logIn = new LogInWindow(this);
    }
 
    public void addVote(String name, String pos)
@@ -139,12 +142,13 @@ public class Controller implements IController
       }
    }
    
-   public void vote()
+   private void vote()
    {
       for(int i = 0; i < voteList.size(); i++)
       {
          dbm.vote(voteList.get(i));        
       }
+      voteList = new ArrayList<Candidate>();
    }
 
    public void run()
