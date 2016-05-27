@@ -124,9 +124,9 @@ public class Controller implements IController
 
    public void addVote(String name, String pos)
    {
-      for(int i = 0; i < voteList.size(); i++)
+      for (int i = 0; i < voteList.size(); i++)
       {
-         if(voteList.get(i).getPosition().equals(pos))
+         if (voteList.get(i).getPosition().equals(pos))
             voteList.remove(i);
       }
       try
@@ -138,12 +138,12 @@ public class Controller implements IController
          e.printStackTrace();
       }
    }
-   
+
    public void vote()
    {
-      for(int i = 0; i < voteList.size(); i++)
+      for (int i = 0; i < voteList.size(); i++)
       {
-         dbm.vote(voteList.get(i));        
+         dbm.vote(voteList.get(i));
       }
    }
 
@@ -173,4 +173,29 @@ public class Controller implements IController
       }
       return array;
    }
+
+   public void deletePosition(String positionName)
+   {
+      dbm.deletePosition(positionName);
+   }
+
+   public void deleteCandidate(String candidateName)
+   {
+      dbm.deleteCandidate(candidateName);
+   }
+
+   public Position getPosition(int selectedIndex)
+   {
+      Position pos;
+      ArrayList<Position> list = dbm.getPositions();
+      for(int i = 0; i < list.size(); i++)
+      {
+         if (selectedIndex == list.indexOf(i))
+         {
+            pos = list.get(i);
+         }
+      }
+      return pos;
+   }
+
 }
