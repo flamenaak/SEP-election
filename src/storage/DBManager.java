@@ -53,7 +53,48 @@ public class DBManager implements IDBManager{
 			return admin;
 		return null;
 	}
-	
-	
-	
+
+   @Override
+   public Election getElection() throws SQLException
+   {
+      // TODO Auto-generated method stub
+      return null;
+   }
+
+   @Override
+   public void startElection() throws SQLException
+   {
+      // TODO Auto-generated method stub
+      
+   }
+
+   @Override
+   public void stopElection() throws SQLException
+   {
+      // TODO Auto-generated method stub
+      
+   }
+
+   @Override
+   public void addPosition(Position position) throws SQLException
+   {
+      // TODO Auto-generated method stub
+      
+   }
+
+   @Override
+   public void addCandidate(Position position, Candidate candidate)
+         throws SQLException
+   {
+      // TODO Auto-generated method stub
+      
+   }
+
+   @Override
+   public void changePassword(String username, String password)
+         throws SQLException
+   {
+      // TODO Auto-generated method stub
+      
+   }
 }
