@@ -28,6 +28,10 @@ public class Candidate
    {
       return voteCounter;
    }
+   public void setVotes(int voteCounter)
+   {
+	   this.voteCounter = voteCounter;
+   }
    public void giveVote()
    {
       this.voteCounter++;
