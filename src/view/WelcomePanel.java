@@ -2,6 +2,8 @@ package view;
 
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 import javax.swing.JLabel;
@@ -9,14 +11,14 @@ import javax.swing.JPanel;
 
 import controller.Controller;
 
-public class WelcomePanel extends JPanel
+public class WelcomePanel extends JPanel implements ActionListener
 {
    private JLabel instructions;
-   private JButton start, stop, logOut, chameleon;
+   private JButton start, stop, logOut, chameleon, reset;
    private GridBagConstraints c;
    private Controller controller;
    
-   public WelcomePanel(Controller controller)
+   public WelcomePanel(Controller controller) 
    {
       super(new GridBagLayout());
       this.controller = controller;
@@ -31,7 +33,7 @@ public class WelcomePanel extends JPanel
       stop = new JButton("Stop election");
       logOut = new JButton("Log out");
       chameleon = new JButton("This button has to be set to start or stop by the status of election");
-      
+      reset = new JButton("Reset values");
       c = new GridBagConstraints();   
    }
    
@@ -46,6 +48,16 @@ public class WelcomePanel extends JPanel
       add(chameleon, c);
       
       c.gridy = 2;
+      add(reset, c);
+      
+      c.gridy = 3;
       add(logOut, c);
+   }
+
+   @Override
+   public void actionPerformed(ActionEvent e)
+   {
+      // TODO Auto-generated method stub
+      
    }
 }

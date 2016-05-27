@@ -16,9 +16,8 @@ import controller.Controller;
 import model.Election;
 import model.Position;
 
-public class VoterWindow 
+public class VoterWindow extends JFrame
 {
-   private static JFrame mainFrame;
    private static JComboBox<String> candidateBox;
    private static JComboBox<String> positionBox;
    private static Position position;
@@ -39,22 +38,24 @@ public class VoterWindow
    {
 
       Dimension s = Toolkit.getDefaultToolkit().getScreenSize();
-      mainFrame = new JFrame();
 
-      mainFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-      mainFrame.setSize(300, 200);
-      mainFrame.setLayout(new FlowLayout());
+      setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+      setSize(300, 200);
+      setLayout(new FlowLayout());
 
-      int x = (int) ((s.getWidth() - mainFrame.getWidth()) / 2);
-      int y = (int) ((s.getHeight() - mainFrame.getHeight()) / 2);
-      mainFrame.setLocation(x, y);
+      int x = (int) ((s.getWidth() - getWidth()) / 2);
+      int y = (int) ((s.getHeight() - getHeight()) / 2);
+      setLocation(x, y);
       
       voter = new JPanel();
       ok = new JButton("OK");
       logOut = new JButton("Log out");
       
-      candidateBox = new JComboBox<String>(controller.getCandidates());
-      positionBox = new JComboBox<String>(controller.getPositions()); 
+      candidateBox = new JComboBox<String>();
+      positionBox = new JComboBox<String>(controller.getPositionsToCombo());
+      
+      positionBox.setSelectedItem(null);
+      candidateBox.setSelectedItem(null);
       
       candidateBox.setEditable(false);
       positionBox.setEditable(false);
@@ -75,9 +76,9 @@ public class VoterWindow
       ok.addActionListener(new okPressed());
       logOut.addActionListener(new logOutPressed());
       
-      mainFrame.add(np);
-      mainFrame.add(voter);
-      mainFrame.setVisible(true);
+      add(np);
+      add(voter);
+      setVisible(true);
    }
 
    public static class okPressed implements ActionListener
@@ -86,7 +87,7 @@ public class VoterWindow
       public void actionPerformed(ActionEvent arg0)
       {
          controller.okPressed();
-         JOptionPane.showMessageDialog(mainFrame, "Thanks for voting");
+         JOptionPane.showMessageDialog(new JFrame(), "Thanks for voting");
          controller.logOut();
       }          
    }
@@ -106,8 +107,9 @@ public class VoterWindow
       @Override
       public void actionPerformed(ActionEvent arg0)
       {
-         int candidateIndex = candidateBox.getSelectedIndex();
-         controller.vote(candidateIndex);
+         String name = (String) candidateBox.getSelectedItem();
+         String pos = (String) positionBox.getSelectedItem();
+         controller.vote(name, pos);
       }
       
    }
