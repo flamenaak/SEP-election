@@ -10,6 +10,8 @@ import javax.swing.JLabel;
 import javax.swing.JList;
 import javax.swing.JPanel;
 
+import controller.Controller;
+
 public class ResultsView extends JPanel
 {
    private JList list;
@@ -18,10 +20,12 @@ public class ResultsView extends JPanel
    private GridBagConstraints c;
    private JPanel sub;
    private JLabel lab;
+   private Controller controller;
    
-   public ResultsView()
+   public ResultsView(Controller cont)
    {
       super(new GridBagLayout());
+      controller = cont;
       initialize();
       build();
    }
@@ -57,7 +61,6 @@ public class ResultsView extends JPanel
       refresh = new JButton("Refresh");
       c = new GridBagConstraints();
       sub = new JPanel(new GridBagLayout());
-      lab = new JLabel("Select Position");
-      
+      lab = new JLabel("Select Position");    
    }
 }

@@ -1,24 +1,20 @@
 package view;
-
 import java.awt.Dimension;
 import java.awt.GridBagConstraints;
-import java.awt.GridBagLayout;
-import java.awt.Label;
 import java.awt.TextField;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import javafx.collections.SetChangeListener;
-
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.JPasswordField;
 import javax.swing.JTabbedPane;
 
-public class AdminWindow extends JFrame implements ActionListener 
+import controller.Controller;
+
+public class AdminWindow extends JFrame implements ActionListener
 {
    private JFrame frame;
    private JTabbedPane tabPane;
@@ -26,12 +22,13 @@ public class AdminWindow extends JFrame implements ActionListener
    private JLabel nameLab, passLab;
    private GridBagConstraints c;
    private JButton butt;
-   private JPanel candiPanel;
-   // private Controller controller;
 
-   public AdminWindow(/* Controller controller */)
+   private JPanel candiPanel, positionPanel, viewPanel, resultsPanel, passwordPanel, welcome;
+    private Controller controller;
+
+   public AdminWindow(Controller controller)
    {
-      // this.controller = controller;
+      this.controller = controller;
       this.createComponents();
       this.createGUI();
       this.setFrame();
@@ -40,6 +37,7 @@ public class AdminWindow extends JFrame implements ActionListener
    private void setFrame()
    {
       Dimension s = Toolkit.getDefaultToolkit().getScreenSize();
+
       frame.setSize(500, 300);
       int x = (int) ((s.getWidth() - frame.getWidth()) / 2);
       int y = (int) ((s.getHeight() - frame.getHeight()) / 2);
@@ -47,11 +45,12 @@ public class AdminWindow extends JFrame implements ActionListener
       frame.setLocation(x, y);
       frame.setVisible(true);
       frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-      
+
    }
 
    private void createComponents()
    {
+
       frame = new JFrame();
       tabPane = new JTabbedPane();
       candiPanel = new JPanel();
@@ -59,25 +58,43 @@ public class AdminWindow extends JFrame implements ActionListener
 
    private void createGUI()
    {
-     setResizable(false);
-     
-     candiPanel = new NewCandidatePanel();
+      tabPane.add(candiPanel, "Add candidate");
+      candiPanel.setOpaque(false);
+      tabPane.addTab("Firzt", new JPanel());
+      tabPane.addTab("Firzt", new JPanel());
 
 	  setResizable(false);
-	  
-	  candiPanel = new NewCandidatePanel();
+      // candiPanel, positionPanel, viewPanel, resultsPanel, passwordPanel;
 
-     setResizable(false);
-     
-     candiPanel = new NewCandidatePanel();
+      candiPanel = new NewCandidatePanel(controller);
       candiPanel.setOpaque(false);
+
+      positionPanel = new NewPositionPanel(controller);
+      positionPanel.setOpaque(false);
       
-      tabPane.add("1st", candiPanel);
-      tabPane.add("3rd", new Label("dsa"));
+      viewPanel = new CandidateNPositionPanel(controller);
+      viewPanel.setOpaque(false);
       
+      passwordPanel = new PasswordChangeWindow(controller);
+      passwordPanel.setOpaque(false);
+      
+      resultsPanel = new ResultsView(controller);
+      resultsPanel.setOpaque(false);
+      
+      welcome = new WelcomePanel(controller);
+      welcome.setOpaque(false);
+      
+      tabPane.add("Welcome", welcome);
+      tabPane.add("New Candidate", candiPanel);
+      tabPane.add("New Position", positionPanel);
+      tabPane.add("Registered entities", viewPanel);
+      tabPane.add("Change password", passwordPanel);
+      tabPane.add("Votes Results", resultsPanel);
+      
+
       tabPane.setVisible(true);
       frame.add(tabPane);
-      
+
       tabPane.repaint();
    }
 

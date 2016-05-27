@@ -4,11 +4,12 @@ import java.awt.Dimension;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 
-import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JList;
 import javax.swing.JPanel;
+
+import controller.Controller;
 
 public class CandidateNPositionPanel extends JPanel
 {
@@ -16,10 +17,12 @@ public class CandidateNPositionPanel extends JPanel
    private JComboBox cBox;
    private GridBagConstraints c;
    private JLabel lab;
+   private Controller controller;
    
-   public CandidateNPositionPanel()
+   public CandidateNPositionPanel(Controller controller)
    {
       super(new GridBagLayout());
+      this.controller = controller;
       initialize();
       build();
    }

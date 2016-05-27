@@ -16,7 +16,7 @@ public class Election
 		this.controller=controller;
 	}
 	
-	public void fillPositions(Position pos){
+	public void addPosition(Position pos){
 		positions.add(pos);
 	}
 	
@@ -37,21 +37,12 @@ public class Election
 		return positions.get(index);
 	}
 	
-	public Position getPosition(Position pos){
-		for (int i = 0; i < positions.size(); i++) {
-			if(positions.get(i).equals(pos)){
-				return positions.get(i);
-			}
-		}
-		return null;
-	}
-	
 	public void startElection(){
-		controller.startElection();
+	   active = true;
 	}
 	
 	public void closeEection(){
-		active=false;
+		active = false;
 	}
 	
 	public String[] positionsToString()
@@ -64,6 +55,11 @@ public class Election
       }
       
       return positionArray;
+	}
+	
+	public ArrayList<Position> getPositions()
+	{
+	   return positions;
 	}
 
 }

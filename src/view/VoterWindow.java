@@ -29,8 +29,13 @@ public class VoterWindow
    private JButton logOut;
    private static Controller controller;
    
+   public VoterWindow(Controller cont)
+   {
+      controller = cont;
+      setComponents();
+   }
    
-   public void setComponents()
+   private void setComponents()
    {
 
       Dimension s = Toolkit.getDefaultToolkit().getScreenSize();
