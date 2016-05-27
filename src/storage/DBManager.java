@@ -6,14 +6,14 @@ import model.*;
 
 import org.postgresql.Driver;
 
-public class DBManager {
+public class DBManager implements IDBManager{
 
 	private String username;
 	private String password;
 	private Voter voter;
 	private Admin admin;
 	
-	public User logIn(String username, String password) throws SQLException {
+	public User logIn(String username, String password) throws SQLException{
 		
 		admin = null;
 		voter = null;
@@ -53,4 +53,7 @@ public class DBManager {
 			return admin;
 		return null;
 	}
+	
+	
+	
 }
