@@ -1,7 +1,6 @@
 package controller;
 
 import java.io.Serializable;
-import java.sql.SQLException;
 import java.util.ArrayList;
 
 import model.Admin;
@@ -35,9 +34,8 @@ public class Controller implements IController, Serializable
       {
          election = dbm.getElection();
       }
-      catch (SQLException e)
+      catch (Exception e)
       {
-         // TODO Auto-generated catch block
          e.printStackTrace();
       }
    }
@@ -68,9 +66,8 @@ public class Controller implements IController, Serializable
                logIn.clearFields();
             }
          }
-         catch (SQLException e)
+         catch (Exception e)
          {
-            // TODO Auto-generated catch block
             e.printStackTrace();
          }
       }
@@ -79,7 +76,14 @@ public class Controller implements IController, Serializable
    @Override
    public void adminLogOut()
    {
-      
+      try
+      {
+         //do some stuff
+      }
+      catch (Exception e)
+      {
+         e.printStackTrace();
+      }
    }
 
    @Override
@@ -91,9 +95,8 @@ public class Controller implements IController, Serializable
          voterW.setVisible(false);
          logIn = new LogInWindow(this);
       }
-      catch (SQLException e)
+      catch (Exception e)
       {
-         // TODO Auto-generated catch block
          e.printStackTrace();
       }
      
@@ -106,9 +109,8 @@ public class Controller implements IController, Serializable
       {
          dbm.changePassword(password, user.getName());
       }
-      catch (SQLException e)
+      catch (Exception e)
       {
-         // TODO Auto-generated catch block
          e.printStackTrace();
       }
    }
@@ -120,9 +122,8 @@ public class Controller implements IController, Serializable
       {
          dbm.startElection();
       }
-      catch (SQLException e)
+      catch (Exception e)
       {
-         // TODO Auto-generated catch block
          e.printStackTrace();
       }
    }
@@ -134,9 +135,8 @@ public class Controller implements IController, Serializable
       {
          dbm.stopElection();
       }
-      catch (SQLException e)
+      catch (Exception e)
       {
-         // TODO Auto-generated catch block
          e.printStackTrace();
       }
    }
@@ -148,9 +148,8 @@ public class Controller implements IController, Serializable
       {
          dbm.addPosition(position);
       }
-      catch (SQLException e)
+      catch (Exception e)
       {
-         // TODO Auto-generated catch block
          e.printStackTrace();
       }
    }
@@ -162,9 +161,8 @@ public class Controller implements IController, Serializable
       {
          dbm.addCandidate(position, candidate);
       }
-      catch (SQLException e)
+      catch (Exception e)
       {
-         // TODO Auto-generated catch block
          e.printStackTrace();
       }
    }
@@ -191,9 +189,8 @@ public class Controller implements IController, Serializable
          voterW.setVisible(false);
          logIn = new LogInWindow(this);
       }
-      catch (SQLException e)
+      catch (Exception e)
       {
-         // TODO Auto-generated catch block
          e.printStackTrace();
       }
       voterW.setVisible(false);
@@ -216,8 +213,8 @@ public class Controller implements IController, Serializable
          e.printStackTrace();
       }
    }
-   
-  public void vote() throws SQLException
+  @Override
+  public void vote()
    {
       for (int i = 0; i < voteList.size(); i++)
       {
@@ -225,21 +222,22 @@ public class Controller implements IController, Serializable
          {
             dbm.vote(voteList.get(i));
          }
-         catch (SQLException e)
+         catch (Exception e)
          {
-            // TODO Auto-generated catch block
             e.printStackTrace();
          }
       }
       voteList = new ArrayList<Candidate>();
    }
-
+  
+  @Override
    public void run()
    {
       logIn = new LogInWindow(this);
    }
-
-   public String[] getCandidatesToCombo(Position position) throws SQLException
+  
+  @Override
+   public String[] getCandidatesToCombo(Position position)
    {
       ArrayList<Candidate> list;
       String[] array = null;
@@ -252,15 +250,16 @@ public class Controller implements IController, Serializable
             array[i] = list.get(i).getName();
          }
       }
-      catch (SQLException e)
+      catch (Exception e)
       {
          e.printStackTrace();
       }
       
       return array;
    }
-
-   public String[] getPositionsToCombo() throws SQLException
+  
+  @Override
+   public String[] getPositionsToCombo()
    {
       ArrayList<Position> list;
       String[] array = null;
@@ -273,16 +272,16 @@ public class Controller implements IController, Serializable
             array[i] = list.get(i).getPositionName();
          }
       }
-      catch (SQLException e)
+      catch (Exception e)
       {
-         // TODO Auto-generated catch block
          e.printStackTrace();
       }
       
       return array;
    }
 
-   public void deletePosition(String positionName) throws SQLException
+  @Override
+   public void deletePosition(String positionName) 
    {
       try
       {
@@ -290,16 +289,24 @@ public class Controller implements IController, Serializable
       }
       catch (Exception e)
       {
-         // TODO Auto-generated catch block
          e.printStackTrace();
       }
    }
 
-   public void deleteCandidate(String candidateName, String positionName) throws SQLException
+  @Override
+   public void deleteCandidate(String candidateName, String positionName)
    {
-      dbm.deleteCandidate(candidateName, positionName);
+      try
+      {
+         dbm.deleteCandidate(candidateName, positionName);
+      }
+      catch (Exception e)
+      {
+         e.printStackTrace();
+      }
    }
 
+  @Override
    public Position getPosition(String positionName)
 
    {
@@ -318,13 +325,13 @@ public class Controller implements IController, Serializable
       }
       catch (Exception e)
       {
-         // TODO Auto-generated catch block
          e.printStackTrace();
       }        
       
       return pos;
    }
-   
+  
+  @Override
    public void reset(){
       try
       {
@@ -332,7 +339,6 @@ public class Controller implements IController, Serializable
       }
       catch (Exception e)
       {
-         // TODO Auto-generated catch block
          e.printStackTrace();
       }
    }
@@ -340,7 +346,14 @@ public class Controller implements IController, Serializable
    @Override
    public void addVote(String name, String pos)
    {
-      // TODO Auto-generated method stub
+      try
+      {
+         //do some stuff
+      }
+      catch (Exception e)
+      {
+         e.printStackTrace();
+      }
       
    }
 
