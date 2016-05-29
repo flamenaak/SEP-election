@@ -10,6 +10,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
+import model.Candidate;
 import model.Position;
 import controller.Controller;
 
@@ -76,10 +77,11 @@ public class NewCandidatePanel extends JPanel
 			String positionName = posComboBox.getSelectedItem().toString();
 			String name = nameField.getName();
 			Position position = new Position(positionName);
-			String descritption = "Empty";
+			String description = "Empty";
 			int ID = 1;
+			Candidate candidate = new Candidate(name, position, ID, description);
+		
+		controller.addCandidate(positionName, candidate);
 		}
-
-		controller.addCandidate(position, name, position, ID,description);
 	}
 }

@@ -106,14 +106,14 @@ public class DBManager implements IDBManager{
 	}
 
 	@Override
-	public void addCandidate(Position position, Candidate candidate) throws SQLException {
+	public void addCandidate(String position, Candidate candidate) throws SQLException {
 		connection = DriverManager.getConnection( "jdbc:postgresql://localhost:5432/postgres", "postgres", "password");
 
 		try{
 			PreparedStatement statement = connection.prepareStatement("INSERT INTO Candidates(name, position, voteCount, ID, description) VALUES(?,?,?,?,?)");
 
 			statement.setString(1, candidate.getName());
-			statement.setString(2, position.getPositionName());
+			statement.setString(2, position);
 			statement.setInt(3, 0);
 			statement.setInt(4, candidate.getID());
 			statement.setString(5, candidate.getDescription());

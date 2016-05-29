@@ -148,7 +148,7 @@ public class Controller implements IController, Serializable
    }
 
    @Override
-   public void addCandidate(Position position, Candidate candidate)
+   public void addCandidate(String position, Candidate candidate)
    {
       try
       {
@@ -287,16 +287,13 @@ public class Controller implements IController, Serializable
       }
    }
 
-<<<<<<< HEAD
    public void deleteCandidate(String candidateName, String positionName) throws SQLException
    {
       dbm.deleteCandidate(candidateName, positionName);
    }
 
-   public Position getPosition(int selectedIndex) throws SQLException
-=======
    public Position getPosition(String positionName)
->>>>>>> refs/heads/develop
+
    {
       Position pos = null;
       ArrayList<Position> list;
@@ -324,17 +321,4 @@ public class Controller implements IController, Serializable
 	   dbm.reset();
    }
 
-   public void deleteCandidate(String position, String candidate)
-   {
-      try
-      {
-         dbm.deleteCandidate(candidate, position);
-      }
-      catch (SQLException e)
-      {
-         // TODO Auto-generated catch block
-         e.printStackTrace();
-      }
-      
-   }
 }

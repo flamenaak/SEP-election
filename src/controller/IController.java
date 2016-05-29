@@ -20,7 +20,7 @@ public interface IController {
 	public void startElection();
 	public void endElection();
 	public void addPosition(Position position);
-	public void addCandidate(Position position, Candidate candidate);
+	public void addCandidate(String position, Candidate candidate);
 	
 	//public void viewCandidatesAndPositions();
 	//public void viewResults(Position position);
