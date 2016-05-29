@@ -1,5 +1,6 @@
 package controller;
 
+import java.io.Serializable;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
@@ -14,8 +15,9 @@ import view.AdminWindow;
 import view.LogInWindow;
 import view.VoterWindow;
 
-public class Controller implements IController
+public class Controller implements IController, Serializable
 {
+   private static final long serialVersionUID = 1L;
 
    private User user;
    private Voter voter;
@@ -77,31 +79,71 @@ public class Controller implements IController
    @Override
    public void changePassword(String password)
    {
-      dbm.changePassword(password, user.getName());
+      try
+      {
+         dbm.changePassword(password, user.getName());
+      }
+      catch (SQLException e)
+      {
+         // TODO Auto-generated catch block
+         e.printStackTrace();
+      }
    }
 
    @Override
    public void startElection()
    {
-      dbm.startElection();
+      try
+      {
+         dbm.startElection();
+      }
+      catch (SQLException e)
+      {
+         // TODO Auto-generated catch block
+         e.printStackTrace();
+      }
    }
 
    @Override
    public void endElection()
    {
-      dbm.stopElection();
+      try
+      {
+         dbm.stopElection();
+      }
+      catch (SQLException e)
+      {
+         // TODO Auto-generated catch block
+         e.printStackTrace();
+      }
    }
 
    @Override
    public void addPosition(Position position)
    {
-      dbm.addPosition(position);
+      try
+      {
+         dbm.addPosition(position);
+      }
+      catch (SQLException e)
+      {
+         // TODO Auto-generated catch block
+         e.printStackTrace();
+      }
    }
 
    @Override
    public void addCandidate(Position position, Candidate candidate)
    {
-      dbm.addCandidate(position, candidate);
+      try
+      {
+         dbm.addCandidate(position, candidate);
+      }
+      catch (SQLException e)
+      {
+         // TODO Auto-generated catch block
+         e.printStackTrace();
+      }
    }
 
    /*
@@ -146,7 +188,15 @@ public class Controller implements IController
    {
       for (int i = 0; i < voteList.size(); i++)
       {
-         dbm.vote(voteList.get(i));
+         try
+         {
+            dbm.vote(voteList.get(i));
+         }
+         catch (SQLException e)
+         {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+         }
       }
       voteList = new ArrayList<Candidate>();
    }
@@ -158,29 +208,58 @@ public class Controller implements IController
 
    public String[] getCandidatesToCombo(Position position)
    {
-      ArrayList<Candidate> list = dbm.getCandidates(position);
-      String[] array = new String[list.size()];
-      for (int i = 0; i < list.size(); i++)
+      ArrayList<Candidate> list;
+      String[] array = null;
+      try
       {
-         array[i] = list.get(i).getName();
+         list = dbm.getCandidates(position);
+         array = new String[list.size()];
+         for (int i = 0; i < list.size(); i++)
+         {
+            array[i] = list.get(i).getName();
+         }
       }
+      catch (SQLException e)
+      {
+         e.printStackTrace();
+      }
+      
       return array;
    }
 
    public String[] getPositionsToCombo()
    {
-      ArrayList<Position> list = dbm.getPositions();
-      String[] array = new String[list.size()];
-      for (int i = 0; i < list.size(); i++)
+      ArrayList<Position> list;
+      String[] array = null;
+      try
       {
-         array[i] = list.get(i).getPositionName();
+         list = dbm.getPositions();
+         array = new String[list.size()];
+         for (int i = 0; i < list.size(); i++)
+         {
+            array[i] = list.get(i).getPositionName();
+         }
       }
+      catch (SQLException e)
+      {
+         // TODO Auto-generated catch block
+         e.printStackTrace();
+      }
+      
       return array;
    }
 
    public void deletePosition(String positionName)
    {
-      dbm.deletePosition(positionName);
+      try
+      {
+         dbm.deletePosition(positionName);
+      }
+      catch (SQLException e)
+      {
+         // TODO Auto-generated catch block
+         e.printStackTrace();
+      }
    }
 
    public void deleteCandidate(String candidateName)
@@ -188,17 +267,27 @@ public class Controller implements IController
       dbm.deleteCandidate(candidateName);
    }
 
-   public Position getPosition(int selectedIndex)
+   public Position getPosition(int selectedIndex) 
    {
-      Position pos;
-      ArrayList<Position> list = dbm.getPositions();
-      for(int i = 0; i < list.size(); i++)
+      Position pos = null;
+      ArrayList<Position> list;
+      try
       {
-         if (selectedIndex == list.indexOf(i))
+         list = dbm.getPositions();
+         for(int i = 0; i < list.size(); i++)
          {
-            pos = list.get(i);
+            if (selectedIndex == list.indexOf(i))
+            {
+               pos = list.get(i);
+            }
          }
       }
+      catch (SQLException e)
+      {
+         // TODO Auto-generated catch block
+         e.printStackTrace();
+      }
+      
       return pos;
    }
 }
