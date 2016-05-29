@@ -22,11 +22,10 @@ public class Server implements IDBManager
 
    public static void main(String[] args)
    {
-
+      dbm = new DBManager();
+      System.setProperty("java.rmi.server.hostname", IP);
       try
       {
-         dbm = new DBManager();
-         System.setProperty("java.rmi.server.hostname", IP);
          Server obj = new Server();
          IDBManager stub = (IDBManager) UnicastRemoteObject
                .exportObject((Remote) obj, 0);
@@ -89,50 +88,52 @@ public class Server implements IDBManager
    }
 
    @Override
-   public void getCandidate(String name, Position position)
-         throws SQLException, RemoteException
+   public void getCandidate(String name, Position position) throws SQLException, RemoteException
    {
-      dbm.getCandidate(name, position);
+      // TODO Auto-generated method stub
+      
    }
 
    @Override
    public void vote(Candidate candidate) throws SQLException, RemoteException
    {
-      dbm.vote(candidate);
+      // TODO Auto-generated method stub
+      
    }
 
    @Override
-   public ArrayList<Candidate> getCandidates(Position position)
-         throws SQLException, RemoteException
+   public ArrayList<Candidate> getCandidates(Position position) throws SQLException, RemoteException
    {
-      return dbm.getCandidates(position);
+      // TODO Auto-generated method stub
+      return null;
    }
 
    @Override
-   public ArrayList<Position> getPositions()
-         throws SQLException, RemoteException
+   public ArrayList<Position> getPositions() throws SQLException, RemoteException
    {
-      return dbm.getPositions();
+      // TODO Auto-generated method stub
+      return null;
    }
 
    @Override
-   public void reset() throws SQLException
+   public void reset() throws SQLException, RemoteException
    {
-      dbm.reset();
+      // TODO Auto-generated method stub
+      
    }
 
    @Override
-   public void deletePosition(String position)
-         throws SQLException
+   public void deletePosition(String position) throws SQLException, RemoteException
    {
-      dbm.deletePosition(position);
+      // TODO Auto-generated method stub
+      
    }
 
    @Override
-   public void deleteCandidate(String candidate, String position)
-         throws SQLException
+   public void deleteCandidate(String candidate, String position) throws SQLException, RemoteException
    {
-      dbm.deleteCandidate(candidate, position);
+      // TODO Auto-generated method stub
+      
    }
 
 }
