@@ -81,7 +81,7 @@ public class ResultsView extends JPanel implements ActionListener
          {
             list.setListData(controller.getCandidatesToCombo(controller.getPosition(cBox.getSelectedItem().toString())));
          }
-         catch (SQLException e1)
+         catch (Exception e1)
          {
             // TODO Auto-generated catch block
             e1.printStackTrace();

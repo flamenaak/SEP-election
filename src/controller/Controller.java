@@ -198,7 +198,7 @@ public class Controller implements IController, Serializable
       logIn = new LogInWindow(this);
    }
 
-   public void addVote(String name, Position pos)
+   public void addVote(String name, String pos)
    {
       for (int i = 0; i < voteList.size(); i++)
       {
@@ -340,20 +340,6 @@ public class Controller implements IController, Serializable
       {
          e.printStackTrace();
       }
-   }
-
-   @Override
-   public void addVote(String name, String pos)
-   {
-      try
-      {
-         //do some stuff
-      }
-      catch (Exception e)
-      {
-         e.printStackTrace();
-      }
-      
    }
 
    @Override

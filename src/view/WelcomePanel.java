@@ -91,7 +91,7 @@ public class WelcomePanel extends JPanel
 		public void actionPerformed(ActionEvent e) {
 			try {
 				controller.reset();
-			} catch (SQLException e1) {
+			} catch (Exception e1) {
 			}
 		}
 	}
