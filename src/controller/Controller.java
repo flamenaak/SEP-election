@@ -192,7 +192,7 @@ public class Controller implements IController, Serializable
       logIn = new LogInWindow(this);
    }
 
-   public void addVote(String name, Position pos)
+   public void addVote(String name, String pos)
    {
       for (int i = 0; i < voteList.size(); i++)
       {
@@ -286,11 +286,7 @@ public class Controller implements IController, Serializable
          e.printStackTrace();
       }
    }
-<<<<<<< HEAD
 
-=======
-
->>>>>>> origin/Ben
    public void deleteCandidate(String candidateName, String positionName) throws SQLException
    {
       dbm.deleteCandidate(candidateName, positionName);
