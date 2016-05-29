@@ -78,8 +78,9 @@ public class NewCandidatePanel extends JPanel
 			Position position = new Position(positionName);
 			String descritption = "Empty";
 			int ID = 1;
+			controller.addCandidate(position, name);
 		}
 
-		controller.addCandidate(position, name, position, ID,description);
+		
 	}
 }
