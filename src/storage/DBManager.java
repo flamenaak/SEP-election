@@ -3,7 +3,9 @@ package storage;
 import java.rmi.RemoteException;
 import java.sql.*;
 import java.util.ArrayList;
+
 import model.*;
+
 import org.postgresql.Driver;
 
 public class DBManager implements IDBManager{
