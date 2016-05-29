@@ -289,7 +289,7 @@ public class DBManager implements IDBManager{
 	}
 
    @Override
-   public Election getElection() throws SQLException, RemoteException
+   public Election getElection() throws SQLException
    {
       // TODO Auto-generated method stub
       return null;

@@ -3,6 +3,8 @@ package view;
 import java.awt.Dimension;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 import javax.swing.JComboBox;
@@ -12,7 +14,7 @@ import javax.swing.JPanel;
 
 import controller.Controller;
 
-public class ResultsView extends JPanel
+public class ResultsView extends JPanel implements ActionListener
 {
    private JList list;
    private JComboBox cBox;
@@ -49,18 +51,34 @@ public class ResultsView extends JPanel
       
       c.gridx = 0;
       c.gridy = 2;
-      add(sub, c);
-      
-      
+      add(sub, c);     
    }
 
    private void initialize()
    {
       list = new JList();
-      cBox = new JComboBox();
+      cBox = new JComboBox(controller.getPositionsToCombo());
       refresh = new JButton("Refresh");
       c = new GridBagConstraints();
       sub = new JPanel(new GridBagLayout());
-      lab = new JLabel("Select Position");    
+      lab = new JLabel("Select Position");
+      cBox.addActionListener(this);
+      refresh.addActionListener(this);
    }
+
+   @Override
+   public void actionPerformed(ActionEvent e)
+   {
+      if(e.getSource().equals(refresh))
+      {
+         initialize();
+         build();
+      }
+      else if(e.getSource().equals(cBox))
+      {
+         list.setListData(controller.getCandidatesToCombo(controller.getPosition(cBox.getSelectedItem().toString())));
+      }
+   }
+   
+   
 }

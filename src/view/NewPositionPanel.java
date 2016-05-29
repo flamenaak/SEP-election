@@ -12,6 +12,7 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 
 import controller.Controller;
+import model.Position;
 
 public class NewPositionPanel extends JPanel implements ActionListener
 {
@@ -21,6 +22,7 @@ public class NewPositionPanel extends JPanel implements ActionListener
    private JButton save;
    private GridBagConstraints c;
    private JPanel subPanel;
+   private Position position;
    
    public NewPositionPanel(Controller cont)
    {
@@ -61,10 +63,13 @@ public class NewPositionPanel extends JPanel implements ActionListener
    
 
    @Override
-   public void actionPerformed(ActionEvent e)
+   public void actionPerformed(ActionEvent action)
    {
-      // TODO Auto-generated method stub
-      
+      if (action.getSource().equals(save))
+      {
+         position = new Position(tField.getText());
+         cont.addPosition(position);
+      }
    }
    
 }

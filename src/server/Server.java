@@ -1,10 +1,12 @@
 package server;
 
 import java.rmi.Remote;
+import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
 import java.rmi.server.UnicastRemoteObject;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 import model.Candidate;
 import model.Election;
@@ -83,6 +85,55 @@ public class Server implements IDBManager
          throws SQLException
    {
       dbm.changePassword(username, password);
+   }
+
+   @Override
+   public void getCandidate(String name, Position position) throws SQLException, RemoteException
+   {
+      // TODO Auto-generated method stub
+      
+   }
+
+   @Override
+   public void vote(Candidate candidate) throws SQLException, RemoteException
+   {
+      // TODO Auto-generated method stub
+      
+   }
+
+   @Override
+   public ArrayList<Candidate> getCandidates(Position position) throws SQLException, RemoteException
+   {
+      // TODO Auto-generated method stub
+      return null;
+   }
+
+   @Override
+   public ArrayList<Position> getPositions() throws SQLException, RemoteException
+   {
+      // TODO Auto-generated method stub
+      return null;
+   }
+
+   @Override
+   public void reset() throws SQLException, RemoteException
+   {
+      // TODO Auto-generated method stub
+      
+   }
+
+   @Override
+   public void deletePosition(String position) throws SQLException, RemoteException
+   {
+      // TODO Auto-generated method stub
+      
+   }
+
+   @Override
+   public void deleteCandidate(String candidate, String position) throws SQLException, RemoteException
+   {
+      // TODO Auto-generated method stub
+      
    }
 
 }
