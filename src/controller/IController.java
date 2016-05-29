@@ -27,10 +27,10 @@ public interface IController {
    
    public void addVote(String name, String pos);
    public void vote();
-   public void reset() throws SQLException;
+   public void reset();
    void run();
    String[] getCandidatesToCombo(Position position);
-   String[] getPositionsToCombo() throws SQLException;
+   String[] getPositionsToCombo();
    void deletePosition(String positionName);
    void deleteCandidate(String candidateName, String positionName);
    Position getPosition(String positionName);

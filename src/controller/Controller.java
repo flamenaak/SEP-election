@@ -259,7 +259,7 @@ public class Controller implements IController, Serializable
       return array;
    }
 
-   public String[] getPositionsToCombo() throws SQLException
+   public String[] getPositionsToCombo()
    {
       ArrayList<Position> list;
       String[] array = null;
