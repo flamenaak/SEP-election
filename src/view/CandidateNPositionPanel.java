@@ -78,7 +78,7 @@ public class CandidateNPositionPanel extends JPanel implements ActionListener
       if(action.getSource().equals(cBox))
       {
          //add the list of candidates to the Jlist according what he picked in the drop down
-        list = new JList(controller.getCandidatesToCombo(controller.getPosition(cBox.getSelectedIndex())));
+        list = new JList(controller.getCandidatesToCombo(controller.getPosition(cBox.getSelectedItem().toString())));
       }
       if (action.getSource().equals(deletePos))
       {
@@ -88,7 +88,7 @@ public class CandidateNPositionPanel extends JPanel implements ActionListener
       if (action.getSource().equals(deleteCand))
       {
          //delete candidate according which one he selected
-         controller.deleteCandidate(list.getSelectedValue().toString());
+         controller.deleteCandidate(cBox.getSelectedItem().toString(), list.getSelectedValue().toString());
       }
    }
 }

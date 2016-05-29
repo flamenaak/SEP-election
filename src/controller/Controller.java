@@ -314,4 +314,18 @@ public class Controller implements IController, Serializable
    public void reset() throws SQLException {
 	   dbm.reset();
    }
+
+   public void deleteCandidate(String position, String candidate)
+   {
+      try
+      {
+         dbm.deleteCandidate(candidate, position);
+      }
+      catch (SQLException e)
+      {
+         // TODO Auto-generated catch block
+         e.printStackTrace();
+      }
+      
+   }
 }
