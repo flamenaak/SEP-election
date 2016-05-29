@@ -31,7 +31,15 @@ public class Controller implements IController, Serializable
 
    public Controller()
    {
-      election = dbm.getElection();
+      try
+      {
+         election = dbm.getElection();
+      }
+      catch (SQLException e)
+      {
+         // TODO Auto-generated catch block
+         e.printStackTrace();
+      }
    }
 
    public void logIn(String name, char[] passwordIn)
@@ -280,7 +288,7 @@ public class Controller implements IController, Serializable
       {
          dbm.deletePosition(positionName);
       }
-      catch (SQLException e)
+      catch (Exception e)
       {
          // TODO Auto-generated catch block
          e.printStackTrace();
@@ -308,7 +316,7 @@ public class Controller implements IController, Serializable
             }
          }
       }
-      catch (SQLException e)
+      catch (Exception e)
       {
          // TODO Auto-generated catch block
          e.printStackTrace();
@@ -317,8 +325,23 @@ public class Controller implements IController, Serializable
       return pos;
    }
    
-   public void reset() throws SQLException {
-      dbm.reset();
+   public void reset(){
+      try
+      {
+         dbm.reset();
+      }
+      catch (Exception e)
+      {
+         // TODO Auto-generated catch block
+         e.printStackTrace();
+      }
+   }
+
+   @Override
+   public void addVote(String name, String pos)
+   {
+      // TODO Auto-generated method stub
+      
    }
 
 }
