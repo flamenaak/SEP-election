@@ -1,5 +1,6 @@
 package storage;
 
+import java.rmi.RemoteException;
 import java.sql.*;
 import java.util.ArrayList;
 
@@ -18,12 +19,28 @@ public class DBManager implements IDBManager{
       voter = null;
       admin = null;
       driver = new Driver();
-      DriverManager.registerDriver(driver);
+      try
+      {
+         DriverManager.registerDriver(driver);
+      }
+      catch (SQLException e)
+      {
+         // TODO Auto-generated catch block
+         e.printStackTrace();
+      }
    }
 
-   public User logIn(String username, String password) throws SQLException {
+   public User logIn(String username, String password){
 
-      connection = DriverManager.getConnection( "jdbc:postgresql://localhost:5432/postgres", "postgres", "password");
+      try
+      {
+         connection = DriverManager.getConnection( "jdbc:postgresql://localhost:5432/postgres", "postgres", "password");
+      }
+      catch (SQLException e)
+      {
+         // TODO Auto-generated catch block
+         e.printStackTrace();
+      }
 
       admin = null;
       voter = null;
@@ -50,8 +67,22 @@ public class DBManager implements IDBManager{
             }
          }
 
-      } finally {
-         connection.close();
+      }
+      catch (SQLException e)
+      {
+         // TODO Auto-generated catch block
+         e.printStackTrace();
+      }
+      finally {
+         try
+         {
+            connection.close();
+         }
+         catch (SQLException e)
+         {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+         }
       }
 
       if (admin == null)
@@ -62,8 +93,16 @@ public class DBManager implements IDBManager{
    }
 
    @Override
-   public void startElection() throws RemoteException {
-      connection = DriverManager.getConnection( "jdbc:postgresql://localhost:5432/postgres", "postgres", "password");
+   public void startElection(){
+      try
+      {
+         connection = DriverManager.getConnection( "jdbc:postgresql://localhost:5432/postgres", "postgres", "password");
+      }
+      catch (SQLException e)
+      {
+         // TODO Auto-generated catch block
+         e.printStackTrace();
+      }
 
       try {
          PreparedStatement statement = 
@@ -71,14 +110,36 @@ public class DBManager implements IDBManager{
 
          statement.executeUpdate();
 
-      } finally {
-         connection.close();
+      }
+      catch (SQLException e)
+      {
+         // TODO Auto-generated catch block
+         e.printStackTrace();
+      }
+      finally {
+         try
+         {
+            connection.close();
+         }
+         catch (SQLException e)
+         {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+         }
       }
    }
 
    @Override
-   public void stopElection() throws RemoteException {
-      connection = DriverManager.getConnection( "jdbc:postgresql://localhost:5432/postgres", "postgres", "password");
+   public void stopElection(){
+      try
+      {
+         connection = DriverManager.getConnection( "jdbc:postgresql://localhost:5432/postgres", "postgres", "password");
+      }
+      catch (SQLException e)
+      {
+         // TODO Auto-generated catch block
+         e.printStackTrace();
+      }
 
       try {
          PreparedStatement statement = 
@@ -86,28 +147,72 @@ public class DBManager implements IDBManager{
 
          statement.executeUpdate();
 
-      } finally {
-         connection.close();
+      }
+      catch (SQLException e)
+      {
+         // TODO Auto-generated catch block
+         e.printStackTrace();
+      }
+      finally {
+         try
+         {
+            connection.close();
+         }
+         catch (SQLException e)
+         {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+         }
       }
    }
 
    @Override
-   public void addPosition(Position position) throws RemoteException {
-      connection = DriverManager.getConnection( "jdbc:postgresql://localhost:5432/postgres", "postgres", "password");
+   public void addPosition(Position position){
+      try
+      {
+         connection = DriverManager.getConnection( "jdbc:postgresql://localhost:5432/postgres", "postgres", "password");
+      }
+      catch (SQLException e)
+      {
+         // TODO Auto-generated catch block
+         e.printStackTrace();
+      }
 
       try{
          PreparedStatement statement = connection.prepareStatement("INSERT INTO Positions (name) VALUES(?)");
 
          statement.setString(1, position.getPositionName());
 
-      } finally {
-         connection.close();
+      }
+      catch (SQLException e)
+      {
+         // TODO Auto-generated catch block
+         e.printStackTrace();
+      }
+      finally {
+         try
+         {
+            connection.close();
+         }
+         catch (SQLException e)
+         {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+         }
       }
 
    }
 
-	public void addCandidate(String position, Candidate candidate) throws RemoteException {
-		connection = DriverManager.getConnection( "jdbc:postgresql://localhost:5432/postgres", "postgres", "password");
+	public void addCandidate(String position, Candidate candidate){
+		try
+      {
+         connection = DriverManager.getConnection( "jdbc:postgresql://localhost:5432/postgres", "postgres", "password");
+      }
+      catch (SQLException e)
+      {
+         // TODO Auto-generated catch block
+         e.printStackTrace();
+      }
 
       try{
          PreparedStatement statement = connection.prepareStatement("INSERT INTO Candidates(name, position, voteCount, ID, description) VALUES(?,?,?,?,?)");
@@ -117,15 +222,37 @@ public class DBManager implements IDBManager{
 			statement.setInt(3, 0);
 			statement.setInt(4, candidate.getID());
 			statement.setString(5, candidate.getDescription());
-      } finally {
-         connection.close();
+      }
+      catch (SQLException e)
+      {
+         // TODO Auto-generated catch block
+         e.printStackTrace();
+      }
+      finally {
+         try
+         {
+            connection.close();
+         }
+         catch (SQLException e)
+         {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+         }
       }
    }
 
    @Override
-   public void changePassword(String username, String password) throws RemoteException {
+   public void changePassword(String username, String password){
 
-      connection = DriverManager.getConnection( "jdbc:postgresql://localhost:5432/postgres", "postgres", "password");
+      try
+      {
+         connection = DriverManager.getConnection( "jdbc:postgresql://localhost:5432/postgres", "postgres", "password");
+      }
+      catch (SQLException e)
+      {
+         // TODO Auto-generated catch block
+         e.printStackTrace();
+      }
 
       try {
          PreparedStatement statement = 
@@ -135,15 +262,37 @@ public class DBManager implements IDBManager{
          statement.setString(2, username);
          statement.executeUpdate();
 
-      } finally {
-         connection.close();
+      }
+      catch (SQLException e)
+      {
+         // TODO Auto-generated catch block
+         e.printStackTrace();
+      }
+      finally {
+         try
+         {
+            connection.close();
+         }
+         catch (SQLException e)
+         {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+         }
       }
 
    }
 
-   public void vote(Candidate candidate) throws RemoteException {
+   public void vote(Candidate candidate){
 
-      connection = DriverManager.getConnection( "jdbc:postgresql://localhost:5432/postgres", "postgres", "password");
+      try
+      {
+         connection = DriverManager.getConnection( "jdbc:postgresql://localhost:5432/postgres", "postgres", "password");
+      }
+      catch (SQLException e)
+      {
+         // TODO Auto-generated catch block
+         e.printStackTrace();
+      }
 
       try {
          PreparedStatement statement = connection.prepareStatement("UPDATE Candidate SET voteCount = ? WHERE name = ?");
@@ -153,14 +302,36 @@ public class DBManager implements IDBManager{
          statement.setString(2, candidate.getName());
          statement.executeUpdate();
 
-      } finally {
-         connection.close();
+      }
+      catch (SQLException e)
+      {
+         // TODO Auto-generated catch block
+         e.printStackTrace();
+      }
+      finally {
+         try
+         {
+            connection.close();
+         }
+         catch (SQLException e)
+         {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+         }
       }
    }
 
-	public Candidate getCandidate(String name, String positionName) throws RemoteException {
+	public Candidate getCandidate(String name, String positionName){
 		Candidate candidate = null;
-		connection = DriverManager.getConnection( "jdbc:postgresql://localhost:5432/postgres", "postgres", "password");
+		try
+      {
+         connection = DriverManager.getConnection( "jdbc:postgresql://localhost:5432/postgres", "postgres", "password");
+      }
+      catch (SQLException e)
+      {
+         // TODO Auto-generated catch block
+         e.printStackTrace();
+      }
 
 		try{
 			PreparedStatement statement = connection.prepareStatement("SELECT * FROM Candidates WHERE name = ? AND position = ?");
@@ -175,16 +346,29 @@ public class DBManager implements IDBManager{
 				candidate = new Candidate(result.getString(1), position, result.getInt(4), result.getString(5));
 				candidate.setVotes(result.getInt(3));
 			}
+		}
+      catch (SQLException e)
+      {
+         // TODO Auto-generated catch block
+         e.printStackTrace();
+      }
+		finally {
 			
-		} finally {
-			
-			connection.close();
+			try
+         {
+            connection.close();
+         }
+         catch (SQLException e)
+         {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+         }
 		}
 		return candidate;
 	}
 	
    @Override
-   public ArrayList<Candidate> getCandidates(Position position) throws RemoteException {
+   public ArrayList<Candidate> getCandidates(Position position){
 
       ArrayList<Candidate> candidates = new ArrayList<>();
 
@@ -202,16 +386,29 @@ public class DBManager implements IDBManager{
             candidates.add(temp);
 
          }
-
-      } finally {
-         connection.close();
+      }
+      catch (SQLException e)
+      {
+         // TODO Auto-generated catch block
+         e.printStackTrace();
+      }
+      finally {
+         try
+         {
+            connection.close();
+         }
+         catch (SQLException e)
+         {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+         }
       }
 
       return candidates;
 
    }
 
-   public ArrayList<Position> getPositions() throws RemoteException {
+   public ArrayList<Position> getPositions(){
 
       ArrayList<Position> positions = new ArrayList<>();
 
@@ -228,17 +425,39 @@ public class DBManager implements IDBManager{
 
          }
 
-      } finally {
-         connection.close();
+      }
+      catch (SQLException e)
+      {
+         // TODO Auto-generated catch block
+         e.printStackTrace();
+      }
+      finally {
+         try
+         {
+            connection.close();
+         }
+         catch (SQLException e)
+         {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+         }
       }
 
       return positions;
 
    }
 
-   public void reset() throws RemoteException{
+   public void reset(){
 
-      connection = DriverManager.getConnection( "jdbc:postgresql://localhost:5432/postgres", "postgres", "password");
+      try
+      {
+         connection = DriverManager.getConnection( "jdbc:postgresql://localhost:5432/postgres", "postgres", "password");
+      }
+      catch (SQLException e)
+      {
+         // TODO Auto-generated catch block
+         e.printStackTrace();
+      }
 
       try{
          PreparedStatement statement1 = connection.prepareStatement("DROP TABLE Users");
@@ -250,31 +469,72 @@ public class DBManager implements IDBManager{
          statement2.executeUpdate();
          statement3.executeUpdate();
          statement4.executeUpdate();
-
+      }
+      catch (SQLException e)
+      {
+         // TODO Auto-generated catch block
+         e.printStackTrace();
       } finally {
-         connection.close();
+         try
+         {
+            connection.close();
+         }
+         catch (SQLException e)
+         {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+         }
       }
    }
    
-   public void deletePosition(String position) throws RemoteException {
+   public void deletePosition(String position){
       
-      connection = DriverManager.getConnection( "jdbc:postgresql://localhost:5432/postgres", "postgres", "password");
+      try
+      {
+         connection = DriverManager.getConnection( "jdbc:postgresql://localhost:5432/postgres", "postgres", "password");
+      }
+      catch (SQLException e)
+      {
+         // TODO Auto-generated catch block
+         e.printStackTrace();
+      }
 
       try {
          PreparedStatement statement = connection.prepareStatement("DELETE FROM Positions WHERE name = ?");
       
          statement.setString(1, position);
          statement.executeUpdate();
-      
-      } finally {
-         connection.close();
+      }
+      catch (SQLException e)
+      {
+         // TODO Auto-generated catch block
+         e.printStackTrace();
+      }
+      finally {
+         try
+         {
+            connection.close();
+         }
+         catch (SQLException e)
+         {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+         }
       }
       
    }
    
-   public void deleteCandidate(String candidate, String position) throws RemoteException {
+   public void deleteCandidate(String candidate, String position) {
       
-      connection = DriverManager.getConnection( "jdbc:postgresql://localhost:5432/postgres", "postgres", "password");
+      try
+      {
+         connection = DriverManager.getConnection( "jdbc:postgresql://localhost:5432/postgres", "postgres", "password");
+      }
+      catch (SQLException e)
+      {
+         // TODO Auto-generated catch block
+         e.printStackTrace();
+      }
 
       try {
          PreparedStatement statement = connection.prepareStatement("DELETE FROM Candidates WHERE name = ? AND position = ?");
@@ -283,8 +543,20 @@ public class DBManager implements IDBManager{
          statement.setString(2, position);
          statement.executeUpdate();
       
-      } finally {
-         connection.close();
+      }
+      catch (Exception e)
+      {
+         e.printStackTrace();
+      }
+      finally {
+         try
+         {
+            connection.close();
+         }
+         catch (SQLException e)
+         {
+            e.printStackTrace();
+         }
       }
       
    }
