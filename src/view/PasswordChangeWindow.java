@@ -48,6 +48,8 @@ public class PasswordChangeWindow extends JPanel{
 
       JButton btnSavePassword = new JButton("Save password");
 
+      btnSavePassword.addActionListener(new buttonListener());
+      
       if (passwordField.getPassword().equals("") || passwordField_1.getPassword().equals("") || passwordField.getPassword().equals(passwordField_1.getPassword()))
          btnSavePassword.setEnabled(false);
 
@@ -55,6 +57,7 @@ public class PasswordChangeWindow extends JPanel{
       c.gridx = 0;
       c.gridy = 3;
       add(btnSavePassword, c);
+      
    }
    
    public class buttonListener implements ActionListener {
