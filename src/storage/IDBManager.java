@@ -18,7 +18,7 @@ public interface IDBManager extends Remote{
 	public void addPosition(Position position) throws SQLException;
 	public void addCandidate(String position, Candidate candidate) throws SQLException;
 	public void changePassword(String username, String password) throws SQLException;
-	public Candidate getCandidate(String name, Position position) throws SQLException;
+	public Candidate getCandidate(String name, String positionName) throws SQLException;
 	public void vote(Candidate candidate) throws SQLException;
 	public ArrayList<Candidate> getCandidates(Position position) throws SQLException;
 	public ArrayList<Position> getPositions() throws SQLException;
