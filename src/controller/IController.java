@@ -27,6 +27,13 @@ public interface IController {
    public void okPressed();
    
    public void addVote(String name, String pos);
+   public void vote();
    public void reset() throws SQLException;
+   void run();
+   String[] getCandidatesToCombo(Position position);
+   String[] getPositionsToCombo();
+   void deletePosition(String positionName);
+   void deleteCandidate(String candidateName, String positionName);
+   Position getPosition(String positionName);
    
 }
