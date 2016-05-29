@@ -65,6 +65,12 @@ public class Controller implements IController
          }
       }
    }
+   
+   @Override
+   public void adminLogOut()
+   {
+	   
+   }
 
    @Override
    public void voterLogOut()
@@ -142,7 +148,7 @@ public class Controller implements IController
       }
    }
    
-  public void vote()
+  public void vote() throws SQLException
    {
       for (int i = 0; i < voteList.size(); i++)
       {
@@ -156,7 +162,7 @@ public class Controller implements IController
       logIn = new LogInWindow(this);
    }
 
-   public String[] getCandidatesToCombo(Position position)
+   public String[] getCandidatesToCombo(Position position) throws SQLException
    {
       ArrayList<Candidate> list = dbm.getCandidates(position);
       String[] array = new String[list.size()];
@@ -178,7 +184,7 @@ public class Controller implements IController
       return array;
    }
 
-   public void deletePosition(String positionName)
+   public void deletePosition(String positionName) throws SQLException
    {
       dbm.deletePosition(positionName);
    }
@@ -200,5 +206,9 @@ public class Controller implements IController
          }
       }
       return pos;
+   }
+   
+   public void reset() throws SQLException {
+	   dbm.reset();
    }
 }
