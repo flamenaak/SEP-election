@@ -200,7 +200,7 @@ public class Controller implements IController, Serializable
       logIn = new LogInWindow(this);
    }
 
-   public void addVote(String name, String pos)
+   public void addVote(String name, Position pos)
    {
       for (int i = 0; i < voteList.size(); i++)
       {
@@ -260,7 +260,7 @@ public class Controller implements IController, Serializable
       return array;
    }
 
-   public String[] getPositionsToCombo()
+   public String[] getPositionsToCombo() throws SQLException
    {
       ArrayList<Position> list;
       String[] array = null;
@@ -295,6 +295,14 @@ public class Controller implements IController, Serializable
       }
    }
 
+
+  
+
+   public void deleteCandidate(String candidateName, String positionName) throws SQLException
+   {
+      dbm.deleteCandidate(candidateName, positionName);
+   }
+
    public Position getPosition(String positionName)
    {
       Position pos = null;
@@ -323,17 +331,11 @@ public class Controller implements IController, Serializable
 	   dbm.reset();
    }
 
-   public void deleteCandidate(String position, String candidate)
+   @Override
+   public void addVote(String name, String pos)
    {
-      try
-      {
-         dbm.deleteCandidate(candidate, position);
-      }
-      catch (SQLException e)
-      {
-         // TODO Auto-generated catch block
-         e.printStackTrace();
-      }
+      // TODO Auto-generated method stub
       
    }
+
 }
