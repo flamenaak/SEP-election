@@ -14,7 +14,7 @@ public class DBManager implements IDBManager{
    private Driver driver;
    private Connection connection;
 
-   public DBManager() throws SQLException {
+   public DBManager() throws RemoteException {
       voter = null;
       admin = null;
       driver = new Driver();
@@ -62,7 +62,7 @@ public class DBManager implements IDBManager{
    }
 
    @Override
-   public void startElection() throws SQLException {
+   public void startElection() throws RemoteException {
       connection = DriverManager.getConnection( "jdbc:postgresql://localhost:5432/postgres", "postgres", "password");
 
       try {
@@ -77,7 +77,7 @@ public class DBManager implements IDBManager{
    }
 
    @Override
-   public void stopElection() throws SQLException {
+   public void stopElection() throws RemoteException {
       connection = DriverManager.getConnection( "jdbc:postgresql://localhost:5432/postgres", "postgres", "password");
 
       try {
@@ -92,7 +92,7 @@ public class DBManager implements IDBManager{
    }
 
    @Override
-   public void addPosition(Position position) throws SQLException {
+   public void addPosition(Position position) throws RemoteException {
       connection = DriverManager.getConnection( "jdbc:postgresql://localhost:5432/postgres", "postgres", "password");
 
       try{
@@ -106,7 +106,7 @@ public class DBManager implements IDBManager{
 
    }
 
-	public void addCandidate(String position, Candidate candidate) throws SQLException {
+	public void addCandidate(String position, Candidate candidate) throws RemoteException {
 		connection = DriverManager.getConnection( "jdbc:postgresql://localhost:5432/postgres", "postgres", "password");
 
       try{
@@ -123,7 +123,7 @@ public class DBManager implements IDBManager{
    }
 
    @Override
-   public void changePassword(String username, String password) throws SQLException {
+   public void changePassword(String username, String password) throws RemoteException {
 
       connection = DriverManager.getConnection( "jdbc:postgresql://localhost:5432/postgres", "postgres", "password");
 
@@ -141,7 +141,7 @@ public class DBManager implements IDBManager{
 
    }
 
-   public void vote(Candidate candidate) throws SQLException {
+   public void vote(Candidate candidate) throws RemoteException {
 
       connection = DriverManager.getConnection( "jdbc:postgresql://localhost:5432/postgres", "postgres", "password");
 
@@ -158,7 +158,7 @@ public class DBManager implements IDBManager{
       }
    }
 
-	public Candidate getCandidate(String name, String positionName) throws SQLException {
+	public Candidate getCandidate(String name, String positionName) throws RemoteException {
 		Candidate candidate = null;
 		connection = DriverManager.getConnection( "jdbc:postgresql://localhost:5432/postgres", "postgres", "password");
 
@@ -184,7 +184,7 @@ public class DBManager implements IDBManager{
 	}
 	
    @Override
-   public ArrayList<Candidate> getCandidates(Position position) throws SQLException {
+   public ArrayList<Candidate> getCandidates(Position position) throws RemoteException {
 
       ArrayList<Candidate> candidates = new ArrayList<>();
 
@@ -211,7 +211,7 @@ public class DBManager implements IDBManager{
 
    }
 
-   public ArrayList<Position> getPositions() throws SQLException {
+   public ArrayList<Position> getPositions() throws RemoteException {
 
       ArrayList<Position> positions = new ArrayList<>();
 
@@ -236,7 +236,7 @@ public class DBManager implements IDBManager{
 
    }
 
-   public void reset() throws SQLException{
+   public void reset() throws RemoteException{
 
       connection = DriverManager.getConnection( "jdbc:postgresql://localhost:5432/postgres", "postgres", "password");
 
@@ -256,7 +256,7 @@ public class DBManager implements IDBManager{
       }
    }
    
-   public void deletePosition(String position) throws SQLException {
+   public void deletePosition(String position) throws RemoteException {
       
       connection = DriverManager.getConnection( "jdbc:postgresql://localhost:5432/postgres", "postgres", "password");
 
@@ -272,7 +272,7 @@ public class DBManager implements IDBManager{
       
    }
    
-   public void deleteCandidate(String candidate, String position) throws SQLException {
+   public void deleteCandidate(String candidate, String position) throws RemoteException {
       
       connection = DriverManager.getConnection( "jdbc:postgresql://localhost:5432/postgres", "postgres", "password");
 
@@ -290,7 +290,7 @@ public class DBManager implements IDBManager{
    }
 
    @Override
-   public Election getElection() throws SQLException
+   public Election getElection() throws RemoteException
    {
       // TODO Auto-generated method stub
       return null;

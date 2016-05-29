@@ -10,21 +10,21 @@ import model.*;
 
 public interface IDBManager extends Remote{
 
-	public User logIn(String username, String password) throws SQLException, RemoteException;
-	public Election getElection() throws SQLException, RemoteException;
+	public User logIn(String username, String password) throws RemoteException;
+	public Election getElection() throws RemoteException;
 
-	public void startElection() throws SQLException;
-	public void stopElection() throws SQLException;
-	public void addPosition(Position position) throws SQLException;
-	public void addCandidate(String position, Candidate candidate) throws SQLException;
-	public void changePassword(String username, String password) throws SQLException;
+	public void startElection() throws RemoteException;
+	public void stopElection() throws RemoteException;
+	public void addPosition(Position position) throws RemoteException;
+	public void addCandidate(String position, Candidate candidate) throws RemoteException;
+	public void changePassword(String username, String password) throws RemoteException;
 
-	public Candidate getCandidate(String name, String positionName) throws SQLException;
+	public Candidate getCandidate(String name, String positionName) throws RemoteException;
 
-	public void vote(Candidate candidate) throws SQLException;
-	public ArrayList<Candidate> getCandidates(Position position) throws SQLException;
-	public ArrayList<Position> getPositions() throws SQLException;
+	public void vote(Candidate candidate) throws RemoteException;
+	public ArrayList<Candidate> getCandidates(Position position) throws RemoteException;
+	public ArrayList<Position> getPositions() throws RemoteException;
 	public void reset() throws SQLException;
-	public void deletePosition(String position) throws SQLException;
-	public void deleteCandidate(String candidate, String position) throws SQLException;
+	public void deletePosition(String position) throws RemoteException;
+	public void deleteCandidate(String candidate, String position) throws RemoteException;
 	}
