@@ -31,7 +31,15 @@ public class Controller implements IController, Serializable
 
    public Controller()
    {
-      election = dbm.getElection();
+      try
+      {
+         election = dbm.getElection();
+      }
+      catch (SQLException e)
+      {
+         // TODO Auto-generated catch block
+         e.printStackTrace();
+      }
    }
 
    public void logIn(String name, char[] passwordIn)
