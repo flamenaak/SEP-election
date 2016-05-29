@@ -286,7 +286,11 @@ public class Controller implements IController, Serializable
          e.printStackTrace();
       }
    }
+<<<<<<< HEAD
 
+=======
+
+>>>>>>> origin/Ben
    public void deleteCandidate(String candidateName, String positionName) throws SQLException
    {
       dbm.deleteCandidate(candidateName, positionName);
