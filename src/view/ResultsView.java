@@ -5,6 +5,7 @@ import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.SQLException;
 
 import javax.swing.JButton;
 import javax.swing.JComboBox;
@@ -76,7 +77,15 @@ public class ResultsView extends JPanel implements ActionListener
       }
       else if(e.getSource().equals(cBox))
       {
-         list.setListData(controller.getCandidatesToCombo(controller.getPosition(cBox.getSelectedItem().toString())));
+         try
+         {
+            list.setListData(controller.getCandidatesToCombo(controller.getPosition(cBox.getSelectedItem().toString())));
+         }
+         catch (SQLException e1)
+         {
+            // TODO Auto-generated catch block
+            e1.printStackTrace();
+         }
       }
    }
    
