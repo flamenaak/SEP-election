@@ -70,18 +70,16 @@ public class NewCandidatePanel extends JPanel
    }
 
    public class buttonListener implements ActionListener{
-
-      @Override
-      public void actionPerformed(ActionEvent e) {
-         // TODO Auto-generated method stub
-         String positionName = posComboBox.getSelectedItem().toString();
-         String name = nameField.getName();
-         Position position = new Position(positionName);
-         String description = "Empty";
-         int ID = 1;
-         Candidate candidate = new Candidate(name, position, ID, description);
-      
-      controller.addCandidate(positionName, candidate);
-      }
-   }
+		public void actionPerformed(ActionEvent e) {
+			// TODO Auto-generated method stub
+			String positionName = posComboBox.getSelectedItem().toString();
+			String name = nameField.getName();
+			Position position = new Position(positionName);
+			String description = "Empty";
+			int ID = 1;
+			Candidate candidate = new Candidate(name, position, ID, description);
+		
+		controller.addCandidate(positionName, candidate);
+		}
+	}
 }

@@ -1,6 +1,5 @@
 package storage;
 
-import java.rmi.RemoteException;
 import java.sql.*;
 import java.util.ArrayList;
 
@@ -107,19 +106,17 @@ public class DBManager implements IDBManager{
 
    }
 
-   @Override
-   public void addCandidate(String position, Candidate candidate) throws SQLException {
-      connection = DriverManager.getConnection( "jdbc:postgresql://localhost:5432/postgres", "postgres", "password");
+	public void addCandidate(String position, Candidate candidate) throws SQLException {
+		connection = DriverManager.getConnection( "jdbc:postgresql://localhost:5432/postgres", "postgres", "password");
 
       try{
          PreparedStatement statement = connection.prepareStatement("INSERT INTO Candidates(name, position, voteCount, ID, description) VALUES(?,?,?,?,?)");
 
-         statement.setString(1, candidate.getName());
-         statement.setString(2, position);
-         statement.setInt(3, 0);
-         statement.setInt(4, candidate.getID());
-         statement.setString(5, candidate.getDescription());
-
+			statement.setString(1, candidate.getName());
+			statement.setString(2, position);
+			statement.setInt(3, 0);
+			statement.setInt(4, candidate.getID());
+			statement.setString(5, candidate.getDescription());
       } finally {
          connection.close();
       }
@@ -161,29 +158,31 @@ public class DBManager implements IDBManager{
       }
    }
 
-   public Candidate getCandidate(String name, Position position) throws SQLException {
+	public Candidate getCandidate(String name, String positionName) throws SQLException {
+		Candidate candidate = null;
+		connection = DriverManager.getConnection( "jdbc:postgresql://localhost:5432/postgres", "postgres", "password");
 
-      Candidate candidate = null;
-      connection = DriverManager.getConnection( "jdbc:postgresql://localhost:5432/postgres", "postgres", "password");
+		try{
+			PreparedStatement statement = connection.prepareStatement("SELECT * FROM Candidates WHERE name = ? AND position = ?");
+			statement.setString(1, name);
 
-      try{
-         PreparedStatement statement = connection.prepareStatement("SELECT * FROM Candidates WHERE name = ? AND position = ?");
-         statement.setString(1, name);
-         statement.setString(2, position.getPositionName());
-         ResultSet result= statement.executeQuery();
-         
-         while (result.next()) {
-            candidate = new Candidate(result.getString(1), position, result.getInt(4), result.getString(5));
-            candidate.setVotes(result.getInt(3));
-         }
-         
-      } finally {
-         
-         connection.close();
-      }
-      return candidate;
-   }
-
+			statement.setString(2, positionName);
+			ResultSet result= statement.executeQuery();
+			
+			while (result.next()) {
+				Position position = new Position(positionName);
+			
+				candidate = new Candidate(result.getString(1), position, result.getInt(4), result.getString(5));
+				candidate.setVotes(result.getInt(3));
+			}
+			
+		} finally {
+			
+			connection.close();
+		}
+		return candidate;
+	}
+	
    @Override
    public ArrayList<Candidate> getCandidates(Position position) throws SQLException {
 

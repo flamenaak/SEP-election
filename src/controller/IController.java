@@ -16,7 +16,6 @@ public interface IController {
    //public boolean checkName(String name);
    
    public void changePassword(String password);
-
    public void startElection();
    public void endElection();
    public void addPosition(Position position);
@@ -31,9 +30,9 @@ public interface IController {
    public void reset() throws SQLException;
    void run();
    String[] getCandidatesToCombo(Position position);
-   String[] getPositionsToCombo();
+   String[] getPositionsToCombo() throws SQLException;
    void deletePosition(String positionName);
    void deleteCandidate(String candidateName, String positionName);
    Position getPosition(String positionName);
-   
-}
+   Candidate getCandidate(String name, String position);
+	}

@@ -1,6 +1,7 @@
 package controller;
 
 import java.io.Serializable;
+import java.sql.SQLException;
 import java.util.ArrayList;
 
 import model.Admin;
@@ -257,9 +258,8 @@ public class Controller implements IController, Serializable
       
       return array;
    }
-  
-  @Override
-   public String[] getPositionsToCombo()
+
+   public String[] getPositionsToCombo() throws SQLException
    {
       ArrayList<Position> list;
       String[] array = null;
@@ -308,7 +308,6 @@ public class Controller implements IController, Serializable
 
   @Override
    public Position getPosition(String positionName)
-
    {
       Position pos = null;
       ArrayList<Position> list;
@@ -357,4 +356,10 @@ public class Controller implements IController, Serializable
       
    }
 
+   @Override
+   public Candidate getCandidate(String name, String position)
+   {
+      // TODO Auto-generated method stub
+      return null;
+   }
 }
