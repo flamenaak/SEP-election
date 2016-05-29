@@ -88,7 +88,7 @@ public class VoterWindow extends JFrame implements ActionListener
       if(e.getSource().equals(positionBox))
       {
          String positionName = (String) positionBox.getSelectedItem();
-         position = dbm.getPosition(positionName);
+         position = controller.getPosition(positionName);
       }
       else if(e.getSource().equals(candidateBox))
       {

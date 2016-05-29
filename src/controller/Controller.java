@@ -188,13 +188,13 @@ public class Controller implements IController
       dbm.deleteCandidate(candidateName);
    }
 
-   public Position getPosition(int selectedIndex)
+   public Position getPosition(String positionName)
    {
-      Position pos;
+      Position pos = null;
       ArrayList<Position> list = dbm.getPositions();
       for(int i = 0; i < list.size(); i++)
       {
-         if (selectedIndex == list.indexOf(i))
+         if (positionName == list.get(i).getPositionName())
          {
             pos = list.get(i);
          }
