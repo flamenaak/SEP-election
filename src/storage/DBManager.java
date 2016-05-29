@@ -159,18 +159,27 @@ public class DBManager implements IDBManager{
 		}
 	}
 
-	public void getCandidate(String name, String position) throws SQLException {
+	public Candidate getCandidate(String name, Position position) throws SQLException {
 
+		Candidate candidate = null;
 		connection = DriverManager.getConnection( "jdbc:postgresql://localhost:5432/postgres", "postgres", "password");
 
 		try{
 			PreparedStatement statement = connection.prepareStatement("SELECT * FROM Candidates WHERE name = ? AND position = ?");
 			statement.setString(1, name);
-			statement.setString(2, position);
-			statement.executeUpdate();
+			statement.setString(2, position.getPositionName());
+			ResultSet result= statement.executeQuery();
+			
+			while (result.next()) {
+				candidate = new Candidate(result.getString(1), position, result.getInt(4), result.getString(5));
+				candidate.setVotes(result.getInt(3));
+			}
+			
 		} finally {
+			
 			connection.close();
 		}
+		return candidate;
 	}
 
 	@Override
