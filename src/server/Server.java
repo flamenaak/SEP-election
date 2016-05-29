@@ -1,10 +1,12 @@
 package server;
 
 import java.rmi.Remote;
+import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
 import java.rmi.server.UnicastRemoteObject;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 import model.Candidate;
 import model.Election;
@@ -20,10 +22,11 @@ public class Server implements IDBManager
 
    public static void main(String[] args)
    {
-      dbm = new DBManager();
-      System.setProperty("java.rmi.server.hostname", IP);
+
       try
       {
+         dbm = new DBManager();
+         System.setProperty("java.rmi.server.hostname", IP);
          Server obj = new Server();
          IDBManager stub = (IDBManager) UnicastRemoteObject
                .exportObject((Remote) obj, 0);
@@ -83,6 +86,53 @@ public class Server implements IDBManager
          throws SQLException
    {
       dbm.changePassword(username, password);
+   }
+
+   @Override
+   public void getCandidate(String name, Position position)
+         throws SQLException, RemoteException
+   {
+      dbm.getCandidate(name, position);
+   }
+
+   @Override
+   public void vote(Candidate candidate) throws SQLException, RemoteException
+   {
+      dbm.vote(candidate);
+   }
+
+   @Override
+   public ArrayList<Candidate> getCandidates(Position position)
+         throws SQLException, RemoteException
+   {
+      return dbm.getCandidates(position);
+   }
+
+   @Override
+   public ArrayList<Position> getPositions()
+         throws SQLException, RemoteException
+   {
+      return dbm.getPositions();
+   }
+
+   @Override
+   public void reset() throws SQLException
+   {
+      dbm.reset();
+   }
+
+   @Override
+   public void deletePosition(String position)
+         throws SQLException
+   {
+      dbm.deletePosition(position);
+   }
+
+   @Override
+   public void deleteCandidate(String candidate, String position)
+         throws SQLException
+   {
+      dbm.deleteCandidate(candidate, position);
    }
 
 }
