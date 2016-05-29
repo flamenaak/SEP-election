@@ -131,7 +131,7 @@ public class Controller implements IController
       logIn = new LogInWindow(this);
    }
 
-   public void addVote(String name, String pos)
+   public void addVote(String name, Position pos)
    {
       for (int i = 0; i < voteList.size(); i++)
       {
@@ -173,7 +173,7 @@ public class Controller implements IController
       return array;
    }
 
-   public String[] getPositionsToCombo()
+   public String[] getPositionsToCombo() throws SQLException
    {
       ArrayList<Position> list = dbm.getPositions();
       String[] array = new String[list.size()];
@@ -189,9 +189,9 @@ public class Controller implements IController
       dbm.deletePosition(positionName);
    }
 
-   public void deleteCandidate(String candidateName)
+   public void deleteCandidate(String candidateName, String positionName) throws SQLException
    {
-      dbm.deleteCandidate(candidateName);
+      dbm.deleteCandidate(candidateName, positionName);
    }
 
    public Position getPosition(int selectedIndex) throws SQLException
