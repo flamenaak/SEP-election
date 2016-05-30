@@ -80,7 +80,8 @@ public class Controller implements IController, Serializable
    {
       try
       {
-         //do some stuff
+         adminW.close();
+         logIn = new LogInWindow(this);
       }
       catch (Exception e)
       {
@@ -109,7 +110,7 @@ public class Controller implements IController, Serializable
    {
       try
       {
-         dbm.changePassword(password, user.getName());
+         dbm.changePassword(user.getName(), password);
       }
       catch (Exception e)
       {
@@ -271,6 +272,7 @@ public class Controller implements IController, Serializable
          for (int i = 0; i < list.size(); i++)
          {
             array[i] = list.get(i).getPositionName();
+            System.out.println(array[i]);
          }
       }
       catch (Exception e)

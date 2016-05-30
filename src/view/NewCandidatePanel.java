@@ -19,7 +19,7 @@ public class NewCandidatePanel extends JPanel
 {
    private static final long serialVersionUID = 1L;
 
-   private JComboBox<Object> posComboBox;
+   private JComboBox<String> posComboBox;
    private JLabel position, name;
    private JTextField nameField;
    private Controller controller;
@@ -62,7 +62,7 @@ public class NewCandidatePanel extends JPanel
    private void initialize()
    {
       //setBounds(0, 0, 400, 200);
-      posComboBox = new JComboBox<Object>();      
+      posComboBox = new JComboBox<String>(controller.getPositionsToCombo());      
       name = new JLabel("Name");
       position = new JLabel("Position");
       nameField = new JTextField();

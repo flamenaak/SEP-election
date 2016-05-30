@@ -182,6 +182,7 @@ public class DBManager implements IDBManager{
          PreparedStatement statement = connection.prepareStatement("INSERT INTO Positions (name) VALUES(?)");
 
          statement.setString(1, position.getPositionName());
+         statement.executeUpdate();
 
       }
       catch (SQLException e)
@@ -256,7 +257,7 @@ public class DBManager implements IDBManager{
 
       try {
          PreparedStatement statement = 
-               connection.prepareStatement("UPDATE Users SET password = ? WHERE username = ?");
+               connection.prepareStatement("UPDATE Users SET password = ? WHERE name = ?");
 
          statement.setString(1, password);
          statement.setString(2, username);
@@ -369,6 +370,15 @@ public class DBManager implements IDBManager{
 	
    @Override
    public ArrayList<Candidate> getCandidates(Position position){
+      try
+      {
+         connection = DriverManager.getConnection( "jdbc:postgresql://localhost:5432/postgres", "postgres", "pass");
+      }
+      catch (SQLException e)
+      {
+         // TODO Auto-generated catch block
+         e.printStackTrace();
+      }
 
       ArrayList<Candidate> candidates = new ArrayList<>();
 
@@ -409,6 +419,15 @@ public class DBManager implements IDBManager{
    }
 
    public ArrayList<Position> getPositions(){
+      try
+      {
+         connection = DriverManager.getConnection( "jdbc:postgresql://localhost:5432/postgres", "postgres", "pass");
+      }
+      catch (SQLException e)
+      {
+         // TODO Auto-generated catch block
+         e.printStackTrace();
+      }
 
       ArrayList<Position> positions = new ArrayList<>();
 
@@ -417,6 +436,7 @@ public class DBManager implements IDBManager{
                connection.prepareStatement("SELECT * FROM Positions");
 
          ResultSet result= statement.executeQuery();
+         System.out.println(result);
 
          while (result.next()) {
 
@@ -564,8 +584,15 @@ public class DBManager implements IDBManager{
    @Override
    public Election getElection() throws RemoteException
    {
-      // TODO Auto-generated method stub
-      return null;
+      try
+      {
+         connection = DriverManager.getConnection( "jdbc:postgresql://localhost:5432/postgres", "postgres", "pass");
+      }
+      catch (SQLException e)
+      {
+         // TODO Auto-generated catch block
+         e.printStackTrace();
+      }      return null;
    }
 
 }

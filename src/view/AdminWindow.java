@@ -45,6 +45,11 @@ public class AdminWindow extends JFrame
       tabPane = new JTabbedPane();
       candiPanel = new JPanel();
    }
+   
+   public void close()
+   {
+      this.setVisible(false);
+   }
 
    private void createGUI()
    {

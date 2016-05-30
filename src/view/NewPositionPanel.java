@@ -57,6 +57,8 @@ public class NewPositionPanel extends JPanel implements ActionListener
       c.gridx = 0;
       c.gridy = 2;
       add(subPanel, c);
+      
+      save.addActionListener(this);
    }
    
    
