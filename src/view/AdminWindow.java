@@ -4,6 +4,8 @@ import java.awt.GridBagConstraints;
 import java.awt.Toolkit;
 import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -13,7 +15,7 @@ import javax.swing.event.ChangeListener;
 
 import controller.Controller;
 
-public class AdminWindow extends JFrame implements ChangeListener, FocusListener
+public class AdminWindow extends JFrame implements MouseListener
 {
 
    private JTabbedPane tabPane;
@@ -94,15 +96,19 @@ public class AdminWindow extends JFrame implements ChangeListener, FocusListener
       tabPane.add("Votes Results", resultsPanel);
       
       tabPane.setVisible(true);
-      tabPane.addChangeListener(this);
+      //tabPane.addChangeListener(this);
+      
+      candiPanel.addMouseListener(this);
+      viewPanel.addMouseListener(this);
+      resultsPanel.addMouseListener(this);
       
    }
    
    public void refreshPanel()
    {   
-      removeTabs();
-      createGUI();
-      build();  
+      ((ResultsView) resultsPanel).getNewCombo();
+      ((CandidateNPositionPanel) viewPanel).getNewCombo();
+      ((NewCandidatePanel) candiPanel).getNewCombo();
    }
    
    public void removeTabs()
@@ -117,7 +123,6 @@ public class AdminWindow extends JFrame implements ChangeListener, FocusListener
       build();
    }
 
-   @Override
    public void stateChanged(ChangeEvent e)
    {
       if(e.getSource().equals(candiPanel))
@@ -130,17 +135,45 @@ public class AdminWindow extends JFrame implements ChangeListener, FocusListener
    }
 
    @Override
-   public void focusGained(FocusEvent e)
+   public void mouseClicked(MouseEvent e)
    {
-      if(e.getSource().equals(candiPanel))
+      /*if(e.getSource().equals(candiPanel))
       {
-         ((NewCandidatePanel) candiPanel).initialize();
-         ((NewCandidatePanel) candiPanel).build();
+         ((NewCandidatePanel) candiPanel).getNewCombo();
       }
+      else if(e.getSource().equals(viewPanel))
+      {
+         ((CandidateNPositionPanel) viewPanel).getNewCombo();
+      } 
+      else if(e.getSource().equals(resultsPanel))
+      {
+         ((ResultsView) resultsPanel).getNewCombo();
+      } */
    }
 
    @Override
-   public void focusLost(FocusEvent e)
+   public void mousePressed(MouseEvent e)
+   {
+      // TODO Auto-generated method stub
+      
+   }
+
+   @Override
+   public void mouseReleased(MouseEvent e)
+   {
+      // TODO Auto-generated method stub
+      
+   }
+
+   @Override
+   public void mouseEntered(MouseEvent e)
+   {
+
+      
+   }
+
+   @Override
+   public void mouseExited(MouseEvent e)
    {
       // TODO Auto-generated method stub
       

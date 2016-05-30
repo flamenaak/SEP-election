@@ -14,6 +14,7 @@ import javax.swing.JList;
 import javax.swing.JPanel;
 
 import controller.Controller;
+import model.Position;
 
 public class ResultsView extends JPanel implements ActionListener
 {
@@ -41,13 +42,16 @@ public class ResultsView extends JPanel implements ActionListener
       c.gridx = 0;
       add(lab, c);
       
+      cBox.addActionListener(this);
       c.gridy = 1;
       add(cBox, c);
       
       c.gridheight = 1;
       c.gridx = 1;
+      list.setListData(controller.getResultsToCombo(new Position(cBox.getSelectedItem().toString())));
       add(list, c);
       
+      refresh.addActionListener(this);
       sub.add(refresh);
       
       c.gridx = 0;
@@ -63,10 +67,25 @@ public class ResultsView extends JPanel implements ActionListener
       c = new GridBagConstraints();
       sub = new JPanel(new GridBagLayout());
       lab = new JLabel("Select Position");
-      cBox.addActionListener(this);
-      refresh.addActionListener(this);
    }
 
+   public void getNewCombo()
+   {
+      remove(cBox);
+      cBox = new JComboBox<String>(controller.getPositionsToCombo());
+      cBox.setPreferredSize(new Dimension(100,25));
+      GridBagConstraints c4 = new GridBagConstraints();
+      cBox.addActionListener(this);
+      c4.gridx = 0;
+      c4.gridy = 1;
+
+      add(cBox, c4);
+      repaint();
+      
+      list.setListData(controller.getResultsToCombo(new Position(cBox.getSelectedItem().toString())));
+      list.repaint();
+   }
+   
    @Override
    public void actionPerformed(ActionEvent e)
    {
@@ -79,7 +98,8 @@ public class ResultsView extends JPanel implements ActionListener
       {
          try
          {
-            list.setListData(controller.getCandidatesToCombo(controller.getPosition(cBox.getSelectedItem().toString())));
+            list.setListData(controller.getResultsToCombo(new Position(cBox.getSelectedItem().toString())));
+            list.repaint();
          }
          catch (Exception e1)
          {

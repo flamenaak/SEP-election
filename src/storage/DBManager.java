@@ -223,6 +223,7 @@ public class DBManager implements IDBManager{
 			statement.setInt(3, 0);
 			statement.setInt(4, candidate.getID());
 			statement.setString(5, candidate.getDescription());
+			statement.executeUpdate();
       }
       catch (SQLException e)
       {
@@ -517,6 +518,11 @@ public class DBManager implements IDBManager{
       try {
          PreparedStatement statement = connection.prepareStatement("DELETE FROM Positions WHERE name = ?");
       
+         statement.setString(1, position);
+         statement.executeUpdate();
+         
+         statement = connection.prepareStatement("DELETE FROM Candidates WHERE position = ?");
+         
          statement.setString(1, position);
          statement.executeUpdate();
       }

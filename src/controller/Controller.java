@@ -94,7 +94,6 @@ public class Controller implements IController, Serializable
    {
       try
       {
-         vote();
          voterW.setVisible(false);
          logIn = new LogInWindow(this);
       }
@@ -348,5 +347,31 @@ public class Controller implements IController, Serializable
    public Candidate getCandidate(String name, String position)
    {
       return dbm.getCandidate(name, position);
+   }
+   
+   public void refreshAdmin()
+   {
+      adminW.refreshPanel();
+   }
+
+   public Object[] getResultsToCombo(Position position)
+   {
+      ArrayList<Candidate> list;
+      String[] array = null;
+      try
+      {
+         list = dbm.getCandidates(position);
+         array = new String[list.size()];
+         for (int i = 0; i < list.size(); i++)
+         {
+            array[i] = list.get(i).getName() + " " + list.get(i).getVotes();
+         }
+      }
+      catch (Exception e)
+      {
+         e.printStackTrace();
+      }
+      
+      return array;
    }
 }

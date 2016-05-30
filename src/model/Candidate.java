@@ -18,6 +18,14 @@ public class Candidate implements Serializable
       this.ID = ID;
       this.description = description;
    }
+   
+   public Candidate(String name, Position position)
+   {
+      this.name = name;
+      this.position = position;
+      ID = 0;
+      description = "";
+   }
 
    public String getName()
    {

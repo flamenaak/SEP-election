@@ -73,6 +73,7 @@ public class NewPositionPanel extends JPanel implements ActionListener
          cont.addPosition(position);
          System.out.println(position.getPositionName());
          tField.setText("");
+         cont.refreshAdmin();
       }
       
    }
