@@ -33,6 +33,7 @@ public class Controller implements IController, Serializable
    {
       try
       {
+         dbm = new DBManager();
          election = dbm.getElection();
       }
       catch (Exception e)
@@ -345,7 +346,6 @@ public class Controller implements IController, Serializable
    @Override
    public Candidate getCandidate(String name, String position)
    {
-      // TODO Auto-generated method stub
-      return null;
+      return dbm.getCandidate(name, position);
    }
 }

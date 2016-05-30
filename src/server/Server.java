@@ -22,13 +22,12 @@ public class Server implements IDBManager
 
    public static void main(String[] args)
    {
-      dbm = new DBManager();
-      System.setProperty("java.rmi.server.hostname", IP);
       try
       {
+         dbm = new DBManager();
+         System.setProperty("java.rmi.server.hostname", IP);
          Server obj = new Server();
-         IDBManager stub = (IDBManager) UnicastRemoteObject
-               .exportObject((Remote) obj, 0);
+         IDBManager stub = (IDBManager) UnicastRemoteObject.exportObject((Remote) obj, 0);
 
          // Bind the remote object's stub in the registry
          Registry registry = LocateRegistry.getRegistry();
@@ -44,96 +43,95 @@ public class Server implements IDBManager
    }
 
    @Override
-   public User logIn(String username, String password) throws SQLException
+   public User logIn(String username, String password)
    {
       return dbm.logIn(username, password);
    }
 
    @Override
-   public Election getElection() throws SQLException
+   public Election getElection() throws RemoteException
    {
       return dbm.getElection();
    }
 
    @Override
-   public void startElection() throws SQLException
+   public void startElection()
    {
       dbm.startElection();
    }
 
    @Override
-   public void stopElection() throws SQLException
+   public void stopElection() throws RemoteException
    {
       dbm.stopElection();
    }
 
    @Override
-   public void addPosition(Position position) throws SQLException
+   public void addPosition(Position position) throws RemoteException
    {
       dbm.addPosition(position);
    }
 
    @Override
-   public void addCandidate(Position position, Candidate candidate)
-         throws SQLException
+   public void addCandidate(String position, Candidate candidate) throws RemoteException
    {
       dbm.addCandidate(position, candidate);
    }
 
    @Override
-   public void changePassword(String username, String password)
-         throws SQLException
+   public void changePassword(String username, String password) throws RemoteException
    {
       dbm.changePassword(username, password);
    }
 
    @Override
-   public void getCandidate(String name, Position position) throws SQLException, RemoteException
+   public Candidate getCandidate(String name, String position) throws RemoteException
    {
-      // TODO Auto-generated method stub
-      
+      return dbm.getCandidate(name, position);
+
    }
 
    @Override
-   public void vote(Candidate candidate) throws SQLException, RemoteException
+   public void vote(Candidate candidate) throws RemoteException
    {
       // TODO Auto-generated method stub
-      
+
    }
 
    @Override
-   public ArrayList<Candidate> getCandidates(Position position) throws SQLException, RemoteException
+   public ArrayList<Candidate> getCandidates(Position position) throws RemoteException
    {
       // TODO Auto-generated method stub
       return null;
    }
 
    @Override
-   public ArrayList<Position> getPositions() throws SQLException, RemoteException
+   public ArrayList<Position> getPositions() throws RemoteException
    {
       // TODO Auto-generated method stub
       return null;
    }
 
    @Override
-   public void reset() throws SQLException, RemoteException
+   public void reset() throws RemoteException
    {
       // TODO Auto-generated method stub
-      
+
    }
 
    @Override
-   public void deletePosition(String position) throws SQLException, RemoteException
+   public void deletePosition(String position) throws RemoteException
    {
       // TODO Auto-generated method stub
-      
+
    }
 
    @Override
-   public void deleteCandidate(String candidate, String position) throws SQLException, RemoteException
+   public void deleteCandidate(String candidate, String position) throws RemoteException
    {
       // TODO Auto-generated method stub
-      
+
    }
+
 
 }
