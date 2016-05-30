@@ -34,7 +34,7 @@ public class DBManager implements IDBManager{
 
       try
       {
-         connection = DriverManager.getConnection( "jdbc:postgresql://localhost:5432/postgres", "postgres", "password");
+         connection = DriverManager.getConnection( "jdbc:postgresql://localhost:5432/postgres", "postgres", "pass");
       }
       catch (SQLException e)
       {
