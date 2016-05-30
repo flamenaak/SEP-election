@@ -48,11 +48,6 @@ public class AdminWindow extends JFrame
 
    private void createGUI()
    {
-      tabPane.add(candiPanel, "Add candidate");
-      candiPanel.setOpaque(false);
-      tabPane.addTab("Firzt", new JPanel());
-      tabPane.addTab("Firzt", new JPanel());
-
 	  setResizable(false);
       // candiPanel, positionPanel, viewPanel, resultsPanel, passwordPanel;
 

@@ -69,7 +69,10 @@ public class NewPositionPanel extends JPanel implements ActionListener
       {
          position = new Position(tField.getText());
          cont.addPosition(position);
+         System.out.println(position.getPositionName());
+         tField.setText("");
       }
+      
    }
    
 }

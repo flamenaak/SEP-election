@@ -96,7 +96,7 @@ public class DBManager implements IDBManager{
    public void startElection(){
       try
       {
-         connection = DriverManager.getConnection( "jdbc:postgresql://localhost:5432/postgres", "postgres", "password");
+         connection = DriverManager.getConnection( "jdbc:postgresql://localhost:5432/postgres", "postgres", "pass");
       }
       catch (SQLException e)
       {
@@ -133,7 +133,7 @@ public class DBManager implements IDBManager{
    public void stopElection(){
       try
       {
-         connection = DriverManager.getConnection( "jdbc:postgresql://localhost:5432/postgres", "postgres", "password");
+         connection = DriverManager.getConnection( "jdbc:postgresql://localhost:5432/postgres", "postgres", "pass");
       }
       catch (SQLException e)
       {
@@ -170,7 +170,7 @@ public class DBManager implements IDBManager{
    public void addPosition(Position position){
       try
       {
-         connection = DriverManager.getConnection( "jdbc:postgresql://localhost:5432/postgres", "postgres", "password");
+         connection = DriverManager.getConnection( "jdbc:postgresql://localhost:5432/postgres", "postgres", "pass");
       }
       catch (SQLException e)
       {
@@ -206,7 +206,7 @@ public class DBManager implements IDBManager{
 	public void addCandidate(String position, Candidate candidate){
 		try
       {
-         connection = DriverManager.getConnection( "jdbc:postgresql://localhost:5432/postgres", "postgres", "password");
+         connection = DriverManager.getConnection( "jdbc:postgresql://localhost:5432/postgres", "postgres", "pass");
       }
       catch (SQLException e)
       {
@@ -246,7 +246,7 @@ public class DBManager implements IDBManager{
 
       try
       {
-         connection = DriverManager.getConnection( "jdbc:postgresql://localhost:5432/postgres", "postgres", "password");
+         connection = DriverManager.getConnection( "jdbc:postgresql://localhost:5432/postgres", "postgres", "pass");
       }
       catch (SQLException e)
       {
@@ -286,7 +286,7 @@ public class DBManager implements IDBManager{
 
       try
       {
-         connection = DriverManager.getConnection( "jdbc:postgresql://localhost:5432/postgres", "postgres", "password");
+         connection = DriverManager.getConnection( "jdbc:postgresql://localhost:5432/postgres", "postgres", "pass");
       }
       catch (SQLException e)
       {
@@ -325,7 +325,7 @@ public class DBManager implements IDBManager{
 		Candidate candidate = null;
 		try
       {
-         connection = DriverManager.getConnection( "jdbc:postgresql://localhost:5432/postgres", "postgres", "password");
+         connection = DriverManager.getConnection( "jdbc:postgresql://localhost:5432/postgres", "postgres", "pass");
       }
       catch (SQLException e)
       {
@@ -451,7 +451,7 @@ public class DBManager implements IDBManager{
 
       try
       {
-         connection = DriverManager.getConnection( "jdbc:postgresql://localhost:5432/postgres", "postgres", "password");
+         connection = DriverManager.getConnection( "jdbc:postgresql://localhost:5432/postgres", "postgres", "pass");
       }
       catch (SQLException e)
       {
@@ -491,7 +491,7 @@ public class DBManager implements IDBManager{
       
       try
       {
-         connection = DriverManager.getConnection( "jdbc:postgresql://localhost:5432/postgres", "postgres", "password");
+         connection = DriverManager.getConnection( "jdbc:postgresql://localhost:5432/postgres", "postgres", "pass");
       }
       catch (SQLException e)
       {
@@ -528,7 +528,7 @@ public class DBManager implements IDBManager{
       
       try
       {
-         connection = DriverManager.getConnection( "jdbc:postgresql://localhost:5432/postgres", "postgres", "password");
+         connection = DriverManager.getConnection( "jdbc:postgresql://localhost:5432/postgres", "postgres", "pass");
       }
       catch (SQLException e)
       {
