@@ -1,7 +1,7 @@
 package controller;
 
 import java.io.Serializable;
-import java.sql.SQLException;
+import java.rmi.RemoteException;
 import java.util.ArrayList;
 
 import model.Admin;
