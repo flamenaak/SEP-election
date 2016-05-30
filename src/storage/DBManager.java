@@ -436,7 +436,6 @@ public class DBManager implements IDBManager{
                connection.prepareStatement("SELECT * FROM Positions");
 
          ResultSet result= statement.executeQuery();
-         System.out.println(result);
 
          while (result.next()) {
 
@@ -480,15 +479,11 @@ public class DBManager implements IDBManager{
       }
 
       try{
-         PreparedStatement statement1 = connection.prepareStatement("DROP TABLE Users");
-         PreparedStatement statement2 = connection.prepareStatement("DROP TABLE Candidate");
-         PreparedStatement statement3 = connection.prepareStatement("DROP TABLE Election");
-         PreparedStatement statement4 = connection.prepareStatement("DROP TABLE Position");
+         PreparedStatement statement1 = connection.prepareStatement("DELETE FROM Candidates");
+         PreparedStatement statement2 = connection.prepareStatement("DELETE FROM Positions");
 
          statement1.executeUpdate();
          statement2.executeUpdate();
-         statement3.executeUpdate();
-         statement4.executeUpdate();
       }
       catch (SQLException e)
       {

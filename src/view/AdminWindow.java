@@ -2,14 +2,18 @@ package view;
 import java.awt.Dimension;
 import java.awt.GridBagConstraints;
 import java.awt.Toolkit;
+import java.awt.event.FocusEvent;
+import java.awt.event.FocusListener;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JTabbedPane;
+import javax.swing.event.ChangeEvent;
+import javax.swing.event.ChangeListener;
 
 import controller.Controller;
 
-public class AdminWindow extends JFrame
+public class AdminWindow extends JFrame implements ChangeListener, FocusListener
 {
 
    private JTabbedPane tabPane;
@@ -25,6 +29,8 @@ public class AdminWindow extends JFrame
       this.createComponents();
       this.createGUI();
       this.setFrame();
+      build();
+      add(tabPane);
    }
 
    private void setFrame()
@@ -38,6 +44,7 @@ public class AdminWindow extends JFrame
       setLocation(x, y);
       setVisible(true);
       setDefaultCloseOperation(EXIT_ON_CLOSE);
+      setResizable(true);
    }
 
    private void createComponents()
@@ -73,7 +80,12 @@ public class AdminWindow extends JFrame
       
       welcome = new WelcomePanel(controller);
       welcome.setOpaque(false);
-      
+
+      tabPane.repaint();
+   }
+   
+   public void build()
+   {
       tabPane.add("Welcome", welcome);
       tabPane.add("New Candidate", candiPanel);
       tabPane.add("New Position", positionPanel);
@@ -82,8 +94,55 @@ public class AdminWindow extends JFrame
       tabPane.add("Votes Results", resultsPanel);
       
       tabPane.setVisible(true);
-      add(tabPane);
+      tabPane.addChangeListener(this);
+      
+   }
+   
+   public void refreshPanel()
+   {   
+      removeTabs();
+      createGUI();
+      build();  
+   }
+   
+   public void removeTabs()
+   {
+      tabPane.remove(candiPanel);
+      tabPane.remove(welcome);
+      tabPane.remove(positionPanel);
+      tabPane.remove(viewPanel);
+      tabPane.remove(passwordPanel);
+      tabPane.remove(resultsPanel);
+      createGUI();
+      build();
+   }
 
-      tabPane.repaint();
+   @Override
+   public void stateChanged(ChangeEvent e)
+   {
+      if(e.getSource().equals(candiPanel))
+      {
+         
+         System.out.println(78);
+        refreshPanel();
+      } 
+      
+   }
+
+   @Override
+   public void focusGained(FocusEvent e)
+   {
+      if(e.getSource().equals(candiPanel))
+      {
+         ((NewCandidatePanel) candiPanel).initialize();
+         ((NewCandidatePanel) candiPanel).build();
+      }
+   }
+
+   @Override
+   public void focusLost(FocusEvent e)
+   {
+      // TODO Auto-generated method stub
+      
    }
 }

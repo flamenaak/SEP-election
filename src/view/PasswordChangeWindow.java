@@ -71,7 +71,6 @@ public class PasswordChangeWindow extends JPanel{
          controller.changePassword(password);
          passwordField.setText("");
          passwordField_1.setText("");
-         System.out.println(password);
       }  
    }
 

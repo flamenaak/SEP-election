@@ -33,7 +33,7 @@ public class NewCandidatePanel extends JPanel
       setVisible(true);
    }
 
-   private void build()
+   public void build()
    {
       GridBagConstraints c1 = new GridBagConstraints();
       GridBagConstraints c2 = new GridBagConstraints();
@@ -59,7 +59,7 @@ public class NewCandidatePanel extends JPanel
 
    }
 
-   private void initialize()
+   public void initialize()
    {
       //setBounds(0, 0, 400, 200);
       posComboBox = new JComboBox<String>(controller.getPositionsToCombo());      

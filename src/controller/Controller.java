@@ -272,7 +272,6 @@ public class Controller implements IController, Serializable
          for (int i = 0; i < list.size(); i++)
          {
             array[i] = list.get(i).getPositionName();
-            System.out.println(array[i]);
          }
       }
       catch (Exception e)
