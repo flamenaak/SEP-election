@@ -73,17 +73,19 @@ public class WelcomePanel extends JPanel
 
    private void disableButtons()
    {
-      
-      if (controller.getElection() == false)
+      System.out.println(controller.getElection());
+      if (controller.getElection())
+      {
+         start.setEnabled(false);
+         stop.setEnabled(true);
+         
+      }
+      else
       {
          start.setEnabled(true);
          stop.setEnabled(false);
       }
-      else
-      {
-         start.setEnabled(false);
-         stop.setEnabled(true);
-      }
+      repaint();
    }
 
    public class startListener implements ActionListener

@@ -15,7 +15,7 @@ import javax.swing.event.ChangeListener;
 
 import controller.Controller;
 
-public class AdminWindow extends JFrame implements MouseListener
+public class AdminWindow extends JFrame
 {
 
    private JTabbedPane tabPane;
@@ -84,6 +84,12 @@ public class AdminWindow extends JFrame implements MouseListener
       welcome.setOpaque(false);
 
       tabPane.repaint();
+      if (controller.getElection() == true)
+      {
+         candiPanel.setEnabled(false);
+         positionPanel.setEnabled(false);
+         viewPanel.setEnabled(false);
+      }
    }
    
    public void build()
@@ -98,9 +104,6 @@ public class AdminWindow extends JFrame implements MouseListener
       tabPane.setVisible(true);
       //tabPane.addChangeListener(this);
       
-      candiPanel.addMouseListener(this);
-      viewPanel.addMouseListener(this);
-      resultsPanel.addMouseListener(this);
       
    }
    
@@ -109,6 +112,7 @@ public class AdminWindow extends JFrame implements MouseListener
       ((ResultsView) resultsPanel).getNewCombo();
       ((CandidateNPositionPanel) viewPanel).getNewCombo();
       ((NewCandidatePanel) candiPanel).getNewCombo();
+      
    }
    
    public void removeTabs()
@@ -131,51 +135,6 @@ public class AdminWindow extends JFrame implements MouseListener
          System.out.println(78);
         refreshPanel();
       } 
-      
-   }
-
-   @Override
-   public void mouseClicked(MouseEvent e)
-   {
-      /*if(e.getSource().equals(candiPanel))
-      {
-         ((NewCandidatePanel) candiPanel).getNewCombo();
-      }
-      else if(e.getSource().equals(viewPanel))
-      {
-         ((CandidateNPositionPanel) viewPanel).getNewCombo();
-      } 
-      else if(e.getSource().equals(resultsPanel))
-      {
-         ((ResultsView) resultsPanel).getNewCombo();
-      } */
-   }
-
-   @Override
-   public void mousePressed(MouseEvent e)
-   {
-      // TODO Auto-generated method stub
-      
-   }
-
-   @Override
-   public void mouseReleased(MouseEvent e)
-   {
-      // TODO Auto-generated method stub
-      
-   }
-
-   @Override
-   public void mouseEntered(MouseEvent e)
-   {
-
-      
-   }
-
-   @Override
-   public void mouseExited(MouseEvent e)
-   {
-      // TODO Auto-generated method stub
       
    }
 }

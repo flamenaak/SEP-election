@@ -106,7 +106,7 @@ public class DBManager implements IDBManager{
 
       try {
          PreparedStatement statement = 
-               connection.prepareStatement("UPDATE Election SET active = true WHERE active = false");
+               connection.prepareStatement("UPDATE Election SET active = 'true' WHERE active = 'false'");
 
          statement.executeUpdate();
 
@@ -143,7 +143,7 @@ public class DBManager implements IDBManager{
 
       try {
          PreparedStatement statement = 
-               connection.prepareStatement("UPDATE Election SET active = false WHERE active = true");
+               connection.prepareStatement("UPDATE election SET active = 'false' WHERE active = 'true'");
 
          statement.executeUpdate();
 

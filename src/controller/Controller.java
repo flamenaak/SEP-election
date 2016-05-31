@@ -122,7 +122,7 @@ public class Controller implements IController, Serializable
    {
       try
       {
-         dbm.getElection().startElection();
+         
          dbm.startElection();
       }
       catch (Exception e)
@@ -136,7 +136,7 @@ public class Controller implements IController, Serializable
    {
       try
       {
-         dbm.getElection().closeEection();
+         
          dbm.stopElection();
       }
       catch (Exception e)
