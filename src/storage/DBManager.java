@@ -360,7 +360,7 @@ public class DBManager implements IDBManager{
 		return candidate;
 	}
 	
-   @Override
+	@Override
    public ArrayList<Candidate> getCandidates(Position position){
       try
       {

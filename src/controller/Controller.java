@@ -37,6 +37,7 @@ public class Controller implements IController, Serializable
       {
          this.dbm = dbm;
          election = dbm.getElection();
+         voteList = new ArrayList<>();
       }
       catch (Exception e)
       {
@@ -203,7 +204,7 @@ public class Controller implements IController, Serializable
          try
          {
             dbm.vote(voteList.get(i));
-            ((Voter) user).vote();
+            ((Voter)user).vote();
          }
          catch (Exception e)
          {
@@ -276,12 +277,15 @@ public class Controller implements IController, Serializable
       try
       {
          vote();
-         voterW.setVisible(false);
-         logIn = new LogInWindow(this);
+         
       }
       catch (Exception e)
       {
          e.printStackTrace();
+      }
+      finally
+      {
+         voterLogOut();
       }
    }
 
@@ -295,7 +299,7 @@ public class Controller implements IController, Serializable
          list = dbm.getPositions();
          for (int i = 0; i < list.size(); i++)
          {
-            if (positionName == list.get(i).getPositionName())
+            if (positionName.equals(list.get(i).getPositionName()))
             {
                pos = list.get(i);
             }
