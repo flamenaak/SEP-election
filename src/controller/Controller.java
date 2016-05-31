@@ -204,7 +204,6 @@ public class Controller implements IController, Serializable
          try
          {
             dbm.vote(voteList.get(i));
-            ((Voter)user).vote();
          }
          catch (Exception e)
          {

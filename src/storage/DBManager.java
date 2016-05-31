@@ -62,8 +62,6 @@ public class DBManager implements IDBManager{
                admin = new Admin(username, password);
             else {
                voter = new Voter(username, password);
-               if (voted)
-                  voter.vote();
             }
          }
 
@@ -294,7 +292,11 @@ public class DBManager implements IDBManager{
          statement.setInt(1, candidate.getVotes());
          statement.setString(2, candidate.getName());
          statement.executeUpdate();
-
+         
+         statement = connection.prepareStatement("UPDATE Users SET voted = ? WHERE name = ?");
+         statement.setBoolean(1, true);
+         statement.setString(2, voter.getName());
+         statement.executeUpdate();
       }
       catch (SQLException e)
       {
