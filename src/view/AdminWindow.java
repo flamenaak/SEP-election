@@ -103,8 +103,7 @@ public class AdminWindow extends JFrame
       
       tabPane.setVisible(true);
       //tabPane.addChangeListener(this);
-      
-      
+     
    }
    
    public void refreshPanel()
