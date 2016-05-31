@@ -288,7 +288,7 @@ public class DBManager implements IDBManager{
       }
 
       try {
-         PreparedStatement statement = connection.prepareStatement("UPDATE Candidate SET voteCount = ? WHERE name = ?");
+         PreparedStatement statement = connection.prepareStatement("UPDATE Candidates SET voteCount = ? WHERE name = ?");
 
          candidate.giveVote();
          statement.setInt(1, candidate.getVotes());

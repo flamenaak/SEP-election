@@ -2,6 +2,7 @@ package controller;
 
 import java.rmi.RemoteException;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 import model.Candidate;
 import model.Election;

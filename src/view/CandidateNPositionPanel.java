@@ -17,8 +17,8 @@ import model.Position;
 
 public class CandidateNPositionPanel extends JPanel implements ActionListener
 {
-   private JList list;
-   private JComboBox cBox;
+   private JList<String> list;
+   private JComboBox<String> cBox;
    private GridBagConstraints c;
    private JLabel lab;
    private Controller controller;
@@ -60,11 +60,13 @@ public class CandidateNPositionPanel extends JPanel implements ActionListener
       try
       {
       list.setListData(controller.getCandidatesToCombo(new Position(cBox.getSelectedItem().toString())));
+
       }
       catch(Exception e)
       {
         // e.printStackTrace();
       }
+
       c.gridheight = 1;
       c.gridx = 1;
       add(list, c); 
@@ -103,7 +105,14 @@ public class CandidateNPositionPanel extends JPanel implements ActionListener
       add(cBox, c4);
       repaint();
       
-      list.setListData(controller.getCandidatesToCombo(new Position(cBox.getSelectedItem().toString())));
+      try{
+         list.setListData(controller.getCandidatesToCombo(new Position(cBox.getSelectedItem().toString())));
+
+      }
+      catch(Exception e)
+      {
+         
+      }
       list.repaint();
    }
 
