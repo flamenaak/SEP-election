@@ -57,7 +57,14 @@ public class CandidateNPositionPanel extends JPanel implements ActionListener
       add(cBox, c);
       
       list.setPreferredSize(new Dimension(200,150));
-      list.setListData(controller.getCandidatesToCombo(new Position(cBox.getSelectedItem().toString())));
+      try
+      {
+         list.setListData(controller.getCandidatesToCombo(new Position(cBox.getSelectedItem().toString())));
+      }
+      catch(Exception e)
+      {
+         //e.printStackTrace();
+      }
       c.gridheight = 1;
       c.gridx = 1;
       add(list, c); 

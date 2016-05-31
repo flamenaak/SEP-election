@@ -74,7 +74,7 @@ public class Controller implements IController, Serializable
          }
       }
    }
-   
+
    @Override
    public void adminLogOut()
    {
@@ -101,7 +101,7 @@ public class Controller implements IController, Serializable
       {
          e.printStackTrace();
       }
-     
+
    }
 
    @Override
@@ -122,6 +122,7 @@ public class Controller implements IController, Serializable
    {
       try
       {
+         dbm.getElection().startElection();
          dbm.startElection();
       }
       catch (Exception e)
@@ -135,6 +136,7 @@ public class Controller implements IController, Serializable
    {
       try
       {
+         dbm.getElection().closeEection();
          dbm.stopElection();
       }
       catch (Exception e)
@@ -215,8 +217,9 @@ public class Controller implements IController, Serializable
          e.printStackTrace();
       }
    }
-  @Override
-  public void vote()
+
+   @Override
+   public void vote()
    {
       for (int i = 0; i < voteList.size(); i++)
       {
@@ -231,14 +234,14 @@ public class Controller implements IController, Serializable
       }
       voteList = new ArrayList<Candidate>();
    }
-  
-  @Override
+
+   @Override
    public void run()
    {
       logIn = new LogInWindow(this);
    }
-  
-  @Override
+
+   @Override
    public String[] getCandidatesToCombo(Position position)
    {
       ArrayList<Candidate> list;
@@ -256,7 +259,7 @@ public class Controller implements IController, Serializable
       {
          e.printStackTrace();
       }
-      
+
       return array;
    }
 
@@ -277,12 +280,12 @@ public class Controller implements IController, Serializable
       {
          e.printStackTrace();
       }
-      
+
       return array;
    }
 
-  @Override
-   public void deletePosition(String positionName) 
+   @Override
+   public void deletePosition(String positionName)
    {
       try
       {
@@ -294,7 +297,7 @@ public class Controller implements IController, Serializable
       }
    }
 
-  @Override
+   @Override
    public void deleteCandidate(String candidateName, String positionName)
    {
       try
@@ -307,7 +310,7 @@ public class Controller implements IController, Serializable
       }
    }
 
-  @Override
+   @Override
    public Position getPosition(String positionName)
    {
       Position pos = null;
@@ -315,7 +318,7 @@ public class Controller implements IController, Serializable
       try
       {
          list = dbm.getPositions();
-         for(int i = 0; i < list.size(); i++)
+         for (int i = 0; i < list.size(); i++)
          {
             if (positionName == list.get(i).getPositionName())
             {
@@ -326,13 +329,14 @@ public class Controller implements IController, Serializable
       catch (Exception e)
       {
          e.printStackTrace();
-      }        
-      
+      }
+
       return pos;
    }
-  
-  @Override
-   public void reset(){
+
+   @Override
+   public void reset()
+   {
       try
       {
          dbm.reset();
@@ -348,7 +352,7 @@ public class Controller implements IController, Serializable
    {
       return dbm.getCandidate(name, position);
    }
-   
+
    public void refreshAdmin()
    {
       adminW.refreshPanel();
@@ -371,7 +375,22 @@ public class Controller implements IController, Serializable
       {
          e.printStackTrace();
       }
-      
+
       return array;
+   }
+
+   public boolean getElection()
+   {
+      boolean election = false;
+      try
+      {
+         election = dbm.getElection().getState();
+       }
+      catch (RemoteException e)
+      {
+         e.printStackTrace();
+      }
+      return election;
+
    }
 }

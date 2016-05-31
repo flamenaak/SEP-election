@@ -585,15 +585,20 @@ public class DBManager implements IDBManager{
    @Override
    public Election getElection() throws RemoteException
    {
+      Election election = null;
       try
       {
          connection = DriverManager.getConnection( "jdbc:postgresql://localhost:5432/postgres", "postgres", "pass");
+         
+         PreparedStatement statement = connection.prepareStatement("SELECT * FROM Election");
+         ResultSet result = statement.executeQuery();
+         election = new Election(result.next());
       }
       catch (SQLException e)
       {
          // TODO Auto-generated catch block
          e.printStackTrace();
-      }      return null;
+      }      return election;
    }
 
 }

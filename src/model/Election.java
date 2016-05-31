@@ -10,13 +10,10 @@ public class Election implements Serializable
    private boolean active;
    private ArrayList<Position> positions;
 
-   private Controller controller;
-
-   public Election(Controller controller)
+   public Election(boolean b)
    {
-      active = false;
+      active = b;
       positions = new ArrayList<>();
-      this.controller = controller;
    }
 
    public void addPosition(Position pos)
@@ -71,6 +68,11 @@ public class Election implements Serializable
    public ArrayList<Position> getPositions()
    {
       return positions;
+   }
+
+   public boolean getState()
+   {
+      return active;
    }
 
 }
