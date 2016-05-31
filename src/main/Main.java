@@ -1,12 +1,15 @@
 package main;
+import java.rmi.RemoteException;
+
 import controller.Controller;
-import view.AdminWindow;
+import storage.DBManager;
 
 public class Main
 {
-   public static void main(String[] args)
+   public static void main(String[] args) throws RemoteException
    {
-      Controller con = new Controller();
+      DBManager dbm = new DBManager();
+      Controller con = new Controller(dbm);
       con.run();
    }
 }
