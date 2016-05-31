@@ -405,4 +405,9 @@ public class Controller implements IController, Serializable
       return election;
 
    }
+
+   public void disableTabs(String string)
+   {
+      adminW.disableTabs(string);
+   }
 }

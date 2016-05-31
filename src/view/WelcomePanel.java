@@ -97,6 +97,7 @@ public class WelcomePanel extends JPanel
          stop.setEnabled(true);
          controller.startElection();
          System.out.println("changing election state to" + controller.getElection());
+         controller.disableTabs("start");
       }
    }
 
@@ -109,6 +110,7 @@ public class WelcomePanel extends JPanel
          start.setEnabled(true);
          controller.endElection();
          System.out.println("changing election state to" + controller.getElection());
+         controller.disableTabs("stop");
       }
    }
 

@@ -1,4 +1,5 @@
 package view;
+
 import java.awt.Dimension;
 import java.awt.GridBagConstraints;
 import java.awt.Toolkit;
@@ -22,7 +23,7 @@ public class AdminWindow extends JFrame
    private GridBagConstraints c;
 
    private JPanel candiPanel, positionPanel, viewPanel, resultsPanel, passwordPanel, welcome;
-    private Controller controller;
+   private Controller controller;
 
    public AdminWindow(Controller controller)
    {
@@ -33,6 +34,10 @@ public class AdminWindow extends JFrame
       this.setFrame();
       build();
       add(tabPane);
+      if(controller.getElection())
+         disableTabs("start");
+      if(!controller.getElection())
+         disableTabs("stop");
    }
 
    private void setFrame()
@@ -54,7 +59,7 @@ public class AdminWindow extends JFrame
       tabPane = new JTabbedPane();
       candiPanel = new JPanel();
    }
-   
+
    public void close()
    {
       this.setVisible(false);
@@ -62,7 +67,7 @@ public class AdminWindow extends JFrame
 
    private void createGUI()
    {
-	  setResizable(false);
+      setResizable(false);
       // candiPanel, positionPanel, viewPanel, resultsPanel, passwordPanel;
 
       candiPanel = new NewCandidatePanel(controller);
@@ -70,16 +75,16 @@ public class AdminWindow extends JFrame
 
       positionPanel = new NewPositionPanel(controller);
       positionPanel.setOpaque(false);
-      
+
       viewPanel = new CandidateNPositionPanel(controller);
       viewPanel.setOpaque(false);
-      
+
       passwordPanel = new PasswordChangeWindow(controller);
       passwordPanel.setOpaque(false);
-      
+
       resultsPanel = new ResultsView(controller);
       resultsPanel.setOpaque(false);
-      
+
       welcome = new WelcomePanel(controller);
       welcome.setOpaque(false);
 
@@ -91,7 +96,7 @@ public class AdminWindow extends JFrame
          viewPanel.setEnabled(false);
       }
    }
-   
+
    public void build()
    {
       tabPane.add("Welcome", welcome);
@@ -100,38 +105,60 @@ public class AdminWindow extends JFrame
       tabPane.add("Registered entities", viewPanel);
       tabPane.add("Change password", passwordPanel);
       tabPane.add("Votes Results", resultsPanel);
-      
-      tabPane.setVisible(true);      
+
+      tabPane.setVisible(true);
    }
-   
+
    public void refreshPanel()
-   {   
+   {
       ((ResultsView) resultsPanel).getNewCombo();
       ((CandidateNPositionPanel) viewPanel).getNewCombo();
       ((NewCandidatePanel) candiPanel).getNewCombo();
-      
+
    }
-   
+
    public void removeTabs()
    {
-      tabPane.remove(candiPanel);
-      tabPane.remove(welcome);
-      tabPane.remove(positionPanel);
-      tabPane.remove(viewPanel);
-      tabPane.remove(passwordPanel);
-      tabPane.remove(resultsPanel);
-      createGUI();
-      build();
+     for(int i =0; i < tabPane.getComponentCount(); i++)
+     {
+        tabPane.removeAll();
+     }
    }
 
    public void stateChanged(ChangeEvent e)
    {
-      if(e.getSource().equals(candiPanel))
+      if (e.getSource().equals(candiPanel))
       {
-         
+
          System.out.println(78);
-        refreshPanel();
-      } 
-      
+         refreshPanel();
+      }
+
+   }
+
+   public void disableTabs(String string)
+   {
+      switch (string)
+      {
+         case "start":       
+            System.out.println("disabling");
+            removeTabs();
+            tabPane.add("Welcome", welcome);
+            tabPane.add("Change password", passwordPanel);
+            tabPane.add("Votes Results", resultsPanel);
+            repaint();
+            break;
+         case "stop":     
+            System.out.println("enabling");
+            removeTabs();
+            tabPane.add("Welcome", welcome);
+            tabPane.add("New Candidate", candiPanel);
+            tabPane.add("New Position", positionPanel);
+            tabPane.add("Registered entities", viewPanel);
+            tabPane.add("Change password", passwordPanel);
+            tabPane.add("Votes Results", resultsPanel);
+            repaint();
+            break;
+      }
    }
 }
