@@ -121,8 +121,7 @@ public class Controller implements IController, Serializable
    public void startElection()
    {
       try
-      {
-         
+      {         
          dbm.startElection();
       }
       catch (Exception e)
