@@ -4,6 +4,9 @@ import java.io.Serializable;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
 
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
+
 import model.Admin;
 import model.Candidate;
 import model.Election;
@@ -59,9 +62,18 @@ public class Controller implements IController, Serializable
             }
             else if (dbm.logIn(name, password) instanceof Voter)
             {
-               logIn.close();
-               voterW = new VoterWindow(this);
-               logIn.clearFields();
+               Voter voter = new Voter(name, password);
+               if (!voter.voted())
+               {
+                  logIn.close();
+                  voterW = new VoterWindow(this);
+                  logIn.clearFields();
+               }
+               else
+               {
+                  JOptionPane.showMessageDialog(new JFrame(), "You have already voted");
+                  logIn.clearFields();
+               }
             }
             else
             {
@@ -226,6 +238,7 @@ public class Controller implements IController, Serializable
          try
          {
             dbm.vote(voteList.get(i));
+            ((Voter) user).vote();
          }
          catch (Exception e)
          {
@@ -385,7 +398,7 @@ public class Controller implements IController, Serializable
       try
       {
          election = dbm.getElection().getState();
-       }
+      }
       catch (RemoteException e)
       {
          e.printStackTrace();

@@ -12,9 +12,20 @@ public class Voter extends User implements Serializable
       super(name, password);
       voted = false;
    }
+   
+   public Voter(String name, String password, boolean voted)
+   {
+      super(name, password);
+      this.voted = voted;
+   }
 
    public void vote()
    {
       voted = true;
+   }
+   
+   public boolean voted()
+   {
+      return voted;
    }
 }
