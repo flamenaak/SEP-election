@@ -102,8 +102,6 @@ public class AdminWindow extends JFrame
       tabPane.add("Votes Results", resultsPanel);
       
       tabPane.setVisible(true);
-      //tabPane.addChangeListener(this);
-     
    }
    
    public void refreshPanel()

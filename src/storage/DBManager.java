@@ -106,7 +106,7 @@ public class DBManager implements IDBManager{
 
       try {
          PreparedStatement statement = 
-               connection.prepareStatement("UPDATE Election SET active = 'true' WHERE active = 'false'");
+               connection.prepareStatement("UPDATE Election SET active = 'true'");
 
          statement.executeUpdate();
 
@@ -134,19 +134,10 @@ public class DBManager implements IDBManager{
       try
       {
          connection = DriverManager.getConnection( "jdbc:postgresql://localhost:5432/postgres", "postgres", "pass");
-      }
-      catch (SQLException e)
-      {
-         // TODO Auto-generated catch block
-         e.printStackTrace();
-      }
-
-      try {
          PreparedStatement statement = 
-               connection.prepareStatement("UPDATE election SET active = 'false' WHERE active = 'true'");
+               connection.prepareStatement("UPDATE election SET active = 'false'");
 
          statement.executeUpdate();
-
       }
       catch (SQLException e)
       {
@@ -592,7 +583,8 @@ public class DBManager implements IDBManager{
          
          PreparedStatement statement = connection.prepareStatement("SELECT * FROM Election");
          ResultSet result = statement.executeQuery();
-         election = new Election(result.next());
+         result.next();
+         election = new Election(result.getBoolean("active"));
       }
       catch (SQLException e)
       {
