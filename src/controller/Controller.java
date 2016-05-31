@@ -4,9 +4,6 @@ import java.io.Serializable;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
 
-import javax.swing.JFrame;
-import javax.swing.JOptionPane;
-
 import model.Admin;
 import model.Candidate;
 import model.Election;
@@ -18,6 +15,7 @@ import storage.IDBManager;
 import view.AdminWindow;
 import view.LogInWindow;
 import view.VoterWindow;
+import controller.IController;
 
 public class Controller implements IController, Serializable
 {
@@ -350,5 +348,67 @@ public class Controller implements IController, Serializable
    public void disableTabs(String string)
    {
       adminW.disableTabs(string);
+   }
+   
+   @Override
+   public void addPosition(Position position)
+   {
+      try
+      {
+         dbm.addPosition(position);
+      }
+      catch (Exception e)
+      {
+         e.printStackTrace();
+      }
+   }
+   
+   @Override
+   public void deletePosition(String positionName)
+   {
+      try
+      {
+         dbm.deletePosition(positionName);
+      }
+      catch (Exception e)
+      {
+         e.printStackTrace();
+      }
+   }
+   
+   @Override
+   public void deleteCandidate(String candidateName, String positionName)
+   {
+      try
+      {
+         dbm.deleteCandidate(candidateName, positionName);
+      }
+      catch (Exception e)
+      {
+         e.printStackTrace();
+      }
+   }
+   
+   @Override
+   public Candidate getCandidate(String name, String position) throws RemoteException
+   {
+      return dbm.getCandidate(name, position);
+   }
+
+   public void refreshAdmin()
+   {
+      adminW.refreshPanel();
+   }
+   
+   @Override
+   public void reset(){
+      try
+      {
+         dbm.reset();
+      }
+      catch (Exception e)
+      {
+         e.printStackTrace();
+      }
    }
 }

@@ -2,7 +2,6 @@ package controller;
 
 import java.rmi.RemoteException;
 import java.sql.SQLException;
-import java.util.ArrayList;
 
 import model.Candidate;
 import model.Election;
@@ -37,4 +36,4 @@ public interface IController {
    void deleteCandidate(String candidateName, String positionName);
    Position getPosition(String positionName);
    Candidate getCandidate(String name, String position) throws RemoteException;
-	}
+   }
