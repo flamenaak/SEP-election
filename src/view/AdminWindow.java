@@ -84,6 +84,12 @@ public class AdminWindow extends JFrame
       welcome.setOpaque(false);
 
       tabPane.repaint();
+      if (controller.getElection() == true)
+      {
+         candiPanel.setEnabled(false);
+         positionPanel.setEnabled(false);
+         viewPanel.setEnabled(false);
+      }
    }
    
    public void build()
@@ -103,6 +109,7 @@ public class AdminWindow extends JFrame
       ((ResultsView) resultsPanel).getNewCombo();
       ((CandidateNPositionPanel) viewPanel).getNewCombo();
       ((NewCandidatePanel) candiPanel).getNewCombo();
+      
    }
    
    public void removeTabs()

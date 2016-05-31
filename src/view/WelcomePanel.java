@@ -73,17 +73,19 @@ public class WelcomePanel extends JPanel
 
    private void disableButtons()
    {
-      
-      if (controller.getElection() == false)
+      System.out.println(controller.getElection());
+      if (controller.getElection())
+      {
+         start.setEnabled(false);
+         stop.setEnabled(true);
+         
+      }
+      else if(!controller.getElection())
       {
          start.setEnabled(true);
          stop.setEnabled(false);
       }
-      else
-      {
-         start.setEnabled(false);
-         stop.setEnabled(true);
-      }
+      repaint();
    }
 
    public class startListener implements ActionListener
@@ -94,6 +96,7 @@ public class WelcomePanel extends JPanel
          start.setEnabled(false);
          stop.setEnabled(true);
          controller.startElection();
+         System.out.println("changing election state to" + controller.getElection());
       }
    }
 
@@ -105,6 +108,7 @@ public class WelcomePanel extends JPanel
          stop.setEnabled(false);
          start.setEnabled(true);
          controller.endElection();
+         System.out.println("changing election state to" + controller.getElection());
       }
    }
 
