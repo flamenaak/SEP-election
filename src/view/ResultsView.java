@@ -50,12 +50,13 @@ public class ResultsView extends JPanel implements ActionListener
       c.gridx = 1;
       try
       {
-         list.setListData(controller.getResultsToCombo(new Position(cBox.getSelectedItem().toString())));
+         list.setListData(controller.getResultsToCombo(new Position(cBox.getSelectedItem().toString())));   
       }
-      catch(Exception e)
+      catch (Exception e)
       {
-         
+         //e.printStackTrace();
       }
+     
       add(list, c);
       
       refresh.addActionListener(this);
