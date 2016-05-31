@@ -19,7 +19,7 @@ import storage.IDBManager;
 //java -classpath "D:\ICTengineering\EclipseProjects\SEP-election\bin;D:\ICT engineering\PostgresSQL\postgresql-9.4.1208.jre6.jar" -Djava.rmi.server.codebase=file:"D:\ICTengineering\EclipseProjects\SEP-election\bin" server.Server
 public class Server implements IDBManager
 {
-   private static String IP = "10.52.225.141";
+   private static String IP = "192.168.1.95";
    private static DBManager dbm;
 
    public static void main(String[] args)
@@ -78,6 +78,7 @@ public class Server implements IDBManager
    public void addCandidate(String position, Candidate candidate) throws RemoteException
    {
       dbm.addCandidate(position, candidate);
+      System.out.println("adding candidate " + candidate.getName());
    }
 
    @Override

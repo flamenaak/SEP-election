@@ -1,24 +1,27 @@
 package client;
 
+import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
 
 import controller.Controller;
+import storage.DBManager;
 import storage.IDBManager;
 
 public class Client
 {
    private static Controller controller;
 
-   public static void main(String[] args)
+   public static void main(String[] args) throws RemoteException
    {
-
-      controller = new Controller();
-      String host = "10.52.225.141";
+      IDBManager dbm;
+      
+      String host = "192.168.1.95";
       try
       {
          Registry registry = LocateRegistry.getRegistry(host);
          IDBManager stub = (IDBManager) registry.lookup("Hello");
+         controller = new Controller(stub);
 
          controller.run();
          System.out.println("client");

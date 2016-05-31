@@ -10,7 +10,7 @@ import model.Election;
 import model.Position;
 import model.User;
 import model.Voter;
-import storage.DBManager;
+import storage.IDBManager;
 import view.AdminWindow;
 import view.LogInWindow;
 import view.VoterWindow;
@@ -23,17 +23,17 @@ public class Controller implements IController, Serializable
    private Voter voter;
    private Admin admin;
    private Election election;
-   private DBManager dbm;
+   private IDBManager dbm;
    private LogInWindow logIn;
    private AdminWindow adminW;
    private VoterWindow voterW;
    private ArrayList<Candidate> voteList;
 
-   public Controller()
+   public Controller(IDBManager dbm)
    {
       try
       {
-         dbm = new DBManager();
+         this.dbm = dbm;
          election = dbm.getElection();
       }
       catch (Exception e)
@@ -344,7 +344,7 @@ public class Controller implements IController, Serializable
    }
 
    @Override
-   public Candidate getCandidate(String name, String position)
+   public Candidate getCandidate(String name, String position) throws RemoteException
    {
       return dbm.getCandidate(name, position);
    }

@@ -1,5 +1,6 @@
 package controller;
 
+import java.rmi.RemoteException;
 import java.sql.SQLException;
 
 import model.Candidate;
@@ -34,5 +35,5 @@ public interface IController {
    void deletePosition(String positionName);
    void deleteCandidate(String candidateName, String positionName);
    Position getPosition(String positionName);
-   Candidate getCandidate(String name, String position);
+   Candidate getCandidate(String name, String position) throws RemoteException;
 	}
