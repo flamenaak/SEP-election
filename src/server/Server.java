@@ -15,9 +15,12 @@ import model.User;
 import storage.DBManager;
 import storage.IDBManager;
 
+// rmiregistry -J-Djava.rmi.server.codebase=file:"D:\ICTengineering\EclipseProjects\SEP-election\bin\\"
+   // java -classpath "D:\ICTengineering\EclipseProjects\SEP-election\bin" -Djava.rmi.server.codebase=file:"D:\ICTengineering\EclipseProjects\SEP-election\bin" server.Server
+
 public class Server implements IDBManager
 {
-   private static String IP = "192.168.1.1";
+   private static String IP = "10.10.17.228";
    private static DBManager dbm;
 
    public static void main(String[] args)
@@ -94,42 +97,37 @@ public class Server implements IDBManager
    @Override
    public void vote(Candidate candidate) throws RemoteException
    {
-      // TODO Auto-generated method stub
-
+      dbm.vote(candidate);
    }
 
    @Override
    public ArrayList<Candidate> getCandidates(Position position) throws RemoteException
    {
-      // TODO Auto-generated method stub
-      return null;
+      return dbm.getCandidates(position);
    }
 
    @Override
    public ArrayList<Position> getPositions() throws RemoteException
    {
-      // TODO Auto-generated method stub
-      return null;
+      return dbm.getPositions();
    }
 
    @Override
    public void reset() throws RemoteException
    {
-      // TODO Auto-generated method stub
-
+      dbm.reset();
    }
 
    @Override
    public void deletePosition(String position) throws RemoteException
    {
-      // TODO Auto-generated method stub
-
+      dbm.deletePosition(position);
    }
 
    @Override
    public void deleteCandidate(String candidate, String position) throws RemoteException
    {
-      // TODO Auto-generated method stub
+      dbm.deleteCandidate(candidate, position);
 
    }
 
