@@ -15,7 +15,7 @@ import javax.swing.event.ChangeListener;
 
 import controller.Controller;
 
-public class AdminWindow extends JFrame implements MouseListener
+public class AdminWindow extends JFrame
 {
 
    private JTabbedPane tabPane;
@@ -95,13 +95,7 @@ public class AdminWindow extends JFrame implements MouseListener
       tabPane.add("Change password", passwordPanel);
       tabPane.add("Votes Results", resultsPanel);
       
-      tabPane.setVisible(true);
-      //tabPane.addChangeListener(this);
-      
-      candiPanel.addMouseListener(this);
-      viewPanel.addMouseListener(this);
-      resultsPanel.addMouseListener(this);
-      
+      tabPane.setVisible(true);      
    }
    
    public void refreshPanel()
@@ -131,51 +125,6 @@ public class AdminWindow extends JFrame implements MouseListener
          System.out.println(78);
         refreshPanel();
       } 
-      
-   }
-
-   @Override
-   public void mouseClicked(MouseEvent e)
-   {
-      /*if(e.getSource().equals(candiPanel))
-      {
-         ((NewCandidatePanel) candiPanel).getNewCombo();
-      }
-      else if(e.getSource().equals(viewPanel))
-      {
-         ((CandidateNPositionPanel) viewPanel).getNewCombo();
-      } 
-      else if(e.getSource().equals(resultsPanel))
-      {
-         ((ResultsView) resultsPanel).getNewCombo();
-      } */
-   }
-
-   @Override
-   public void mousePressed(MouseEvent e)
-   {
-      // TODO Auto-generated method stub
-      
-   }
-
-   @Override
-   public void mouseReleased(MouseEvent e)
-   {
-      // TODO Auto-generated method stub
-      
-   }
-
-   @Override
-   public void mouseEntered(MouseEvent e)
-   {
-
-      
-   }
-
-   @Override
-   public void mouseExited(MouseEvent e)
-   {
-      // TODO Auto-generated method stub
       
    }
 }
