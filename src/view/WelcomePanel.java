@@ -91,6 +91,7 @@ public class WelcomePanel extends JPanel
 		public void actionPerformed(ActionEvent e) {
 			try {
 				controller.reset();
+				controller.refreshAdmin();
 			} catch (Exception e1) {
 			}
 		}

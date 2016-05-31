@@ -57,7 +57,14 @@ public class CandidateNPositionPanel extends JPanel implements ActionListener
       add(cBox, c);
       
       list.setPreferredSize(new Dimension(200,150));
+      try
+      {
       list.setListData(controller.getCandidatesToCombo(new Position(cBox.getSelectedItem().toString())));
+      }
+      catch(Exception e)
+      {
+        // e.printStackTrace();
+      }
       c.gridheight = 1;
       c.gridx = 1;
       add(list, c); 
@@ -96,7 +103,7 @@ public class CandidateNPositionPanel extends JPanel implements ActionListener
       add(cBox, c4);
       repaint();
       
-      list.setListData(controller.getResultsToCombo(new Position(cBox.getSelectedItem().toString())));
+      list.setListData(controller.getCandidatesToCombo(new Position(cBox.getSelectedItem().toString())));
       list.repaint();
    }
 

@@ -16,11 +16,10 @@ import storage.DBManager;
 import storage.IDBManager;
 
 // rmiregistry -J-Djava.rmi.server.codebase=file:"D:\ICTengineering\EclipseProjects\SEP-election\bin\\"
-   // java -classpath "D:\ICTengineering\EclipseProjects\SEP-election\bin" -Djava.rmi.server.codebase=file:"D:\ICTengineering\EclipseProjects\SEP-election\bin" server.Server
-
+//java -classpath "D:\ICTengineering\EclipseProjects\SEP-election\bin;D:\ICT engineering\PostgresSQL\postgresql-9.4.1208.jre6.jar" -Djava.rmi.server.codebase=file:"D:\ICTengineering\EclipseProjects\SEP-election\bin" server.Server
 public class Server implements IDBManager
 {
-   private static String IP = "10.10.17.228";
+   private static String IP = "10.52.225.141";
    private static DBManager dbm;
 
    public static void main(String[] args)
@@ -130,6 +129,5 @@ public class Server implements IDBManager
       dbm.deleteCandidate(candidate, position);
 
    }
-
 
 }

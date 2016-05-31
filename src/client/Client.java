@@ -14,7 +14,7 @@ public class Client
    {
 
       controller = new Controller();
-      String host = "10.52.230.56";
+      String host = "10.52.225.141";
       try
       {
          Registry registry = LocateRegistry.getRegistry(host);
