@@ -69,6 +69,8 @@ public class PasswordChangeWindow extends JPanel{
             password += chars[i];
          }
          controller.changePassword(password);
+         passwordField.setText("");
+         passwordField_1.setText("");
       }  
    }
 

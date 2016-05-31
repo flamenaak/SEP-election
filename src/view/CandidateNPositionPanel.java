@@ -13,6 +13,7 @@ import javax.swing.JList;
 import javax.swing.JPanel;
 
 import controller.Controller;
+import model.Position;
 
 public class CandidateNPositionPanel extends JPanel implements ActionListener
 {
@@ -46,20 +47,30 @@ public class CandidateNPositionPanel extends JPanel implements ActionListener
       
       cBox.setPreferredSize(new Dimension(100,25));
       
-      list.setPreferredSize(new Dimension(200,150));
+      
       c.gridy = 0;
       c.gridx = 0;
       add(lab, c);
       
       c.gridy = 1;
+      cBox.addActionListener(this);
       add(cBox, c);
       
+      list.setPreferredSize(new Dimension(200,150));
+      list.setListData(controller.getCandidatesToCombo(new Position(cBox.getSelectedItem().toString())));
       c.gridheight = 1;
       c.gridx = 1;
       add(list, c); 
       
-      add(deletePos);
-      add(deleteCand);
+      deletePos.addActionListener(this);
+      deleteCand.addActionListener(this);
+      
+      c.gridy = 2;
+      c.gridx = 0;
+      add(deletePos, c);
+      
+      c.gridx = 1;
+      add(deleteCand, c);
    }
 
    private void initialize()
@@ -71,6 +82,23 @@ public class CandidateNPositionPanel extends JPanel implements ActionListener
       deletePos = new JButton("Delete Position");
       deleteCand = new JButton("Delete Candidate");
    }
+   
+   public void getNewCombo()
+   {
+      remove(cBox);
+      cBox = new JComboBox<String>(controller.getPositionsToCombo());
+      cBox.setPreferredSize(new Dimension(100,25));
+      cBox.addActionListener(this);
+      GridBagConstraints c4 = new GridBagConstraints();
+      c4.gridx = 0;
+      c4.gridy = 1;
+
+      add(cBox, c4);
+      repaint();
+      
+      list.setListData(controller.getResultsToCombo(new Position(cBox.getSelectedItem().toString())));
+      list.repaint();
+   }
 
    @Override
    public void actionPerformed(ActionEvent action)
@@ -78,17 +106,22 @@ public class CandidateNPositionPanel extends JPanel implements ActionListener
       if(action.getSource().equals(cBox))
       {
          //add the list of candidates to the Jlist according what he picked in the drop down
-        list = new JList(controller.getCandidatesToCombo(controller.getPosition(cBox.getSelectedItem().toString())));
+        list.setListData(controller.getCandidatesToCombo(new Position(cBox.getSelectedItem().toString())));
+        list.repaint();
       }
-      if (action.getSource().equals(deletePos))
+      else if (action.getSource().equals(deletePos))
       {
          //delete position according, which one he selected
          controller.deletePosition(cBox.getSelectedItem().toString());
+         controller.refreshAdmin();
       }
-      if (action.getSource().equals(deleteCand))
+      else if (action.getSource().equals(deleteCand))
       {
          //delete candidate according which one he selected
-         controller.deleteCandidate(cBox.getSelectedItem().toString(), list.getSelectedValue().toString());
+         controller.deleteCandidate(list.getSelectedValue().toString(), cBox.getSelectedItem().toString());
+         System.out.println(list.getSelectedValue().toString());
+         list.setListData(controller.getCandidatesToCombo(new Position(cBox.getSelectedItem().toString())));
+         list.repaint();
       }
    }
 }

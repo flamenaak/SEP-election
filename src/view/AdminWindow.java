@@ -2,14 +2,20 @@ package view;
 import java.awt.Dimension;
 import java.awt.GridBagConstraints;
 import java.awt.Toolkit;
+import java.awt.event.FocusEvent;
+import java.awt.event.FocusListener;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JTabbedPane;
+import javax.swing.event.ChangeEvent;
+import javax.swing.event.ChangeListener;
 
 import controller.Controller;
 
-public class AdminWindow extends JFrame
+public class AdminWindow extends JFrame implements MouseListener
 {
 
    private JTabbedPane tabPane;
@@ -25,6 +31,8 @@ public class AdminWindow extends JFrame
       this.createComponents();
       this.createGUI();
       this.setFrame();
+      build();
+      add(tabPane);
    }
 
    private void setFrame()
@@ -38,6 +46,7 @@ public class AdminWindow extends JFrame
       setLocation(x, y);
       setVisible(true);
       setDefaultCloseOperation(EXIT_ON_CLOSE);
+      setResizable(true);
    }
 
    private void createComponents()
@@ -45,14 +54,14 @@ public class AdminWindow extends JFrame
       tabPane = new JTabbedPane();
       candiPanel = new JPanel();
    }
+   
+   public void close()
+   {
+      this.setVisible(false);
+   }
 
    private void createGUI()
    {
-      tabPane.add(candiPanel, "Add candidate");
-      candiPanel.setOpaque(false);
-      tabPane.addTab("Firzt", new JPanel());
-      tabPane.addTab("Firzt", new JPanel());
-
 	  setResizable(false);
       // candiPanel, positionPanel, viewPanel, resultsPanel, passwordPanel;
 
@@ -73,7 +82,12 @@ public class AdminWindow extends JFrame
       
       welcome = new WelcomePanel(controller);
       welcome.setOpaque(false);
-      
+
+      tabPane.repaint();
+   }
+   
+   public void build()
+   {
       tabPane.add("Welcome", welcome);
       tabPane.add("New Candidate", candiPanel);
       tabPane.add("New Position", positionPanel);
@@ -82,8 +96,86 @@ public class AdminWindow extends JFrame
       tabPane.add("Votes Results", resultsPanel);
       
       tabPane.setVisible(true);
-      add(tabPane);
+      //tabPane.addChangeListener(this);
+      
+      candiPanel.addMouseListener(this);
+      viewPanel.addMouseListener(this);
+      resultsPanel.addMouseListener(this);
+      
+   }
+   
+   public void refreshPanel()
+   {   
+      ((ResultsView) resultsPanel).getNewCombo();
+      ((CandidateNPositionPanel) viewPanel).getNewCombo();
+      ((NewCandidatePanel) candiPanel).getNewCombo();
+   }
+   
+   public void removeTabs()
+   {
+      tabPane.remove(candiPanel);
+      tabPane.remove(welcome);
+      tabPane.remove(positionPanel);
+      tabPane.remove(viewPanel);
+      tabPane.remove(passwordPanel);
+      tabPane.remove(resultsPanel);
+      createGUI();
+      build();
+   }
 
-      tabPane.repaint();
+   public void stateChanged(ChangeEvent e)
+   {
+      if(e.getSource().equals(candiPanel))
+      {
+         
+         System.out.println(78);
+        refreshPanel();
+      } 
+      
+   }
+
+   @Override
+   public void mouseClicked(MouseEvent e)
+   {
+      /*if(e.getSource().equals(candiPanel))
+      {
+         ((NewCandidatePanel) candiPanel).getNewCombo();
+      }
+      else if(e.getSource().equals(viewPanel))
+      {
+         ((CandidateNPositionPanel) viewPanel).getNewCombo();
+      } 
+      else if(e.getSource().equals(resultsPanel))
+      {
+         ((ResultsView) resultsPanel).getNewCombo();
+      } */
+   }
+
+   @Override
+   public void mousePressed(MouseEvent e)
+   {
+      // TODO Auto-generated method stub
+      
+   }
+
+   @Override
+   public void mouseReleased(MouseEvent e)
+   {
+      // TODO Auto-generated method stub
+      
+   }
+
+   @Override
+   public void mouseEntered(MouseEvent e)
+   {
+
+      
+   }
+
+   @Override
+   public void mouseExited(MouseEvent e)
+   {
+      // TODO Auto-generated method stub
+      
    }
 }
