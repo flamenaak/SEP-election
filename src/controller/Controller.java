@@ -44,21 +44,6 @@ public class Controller implements IController, Serializable
       }
       catch (Exception e)
       {
-         e.printStackTrace();
-      }
-   }
-
-   public Controller()
-   {
-      try
-      {
-         dbm = new DBManager();
-         election = dbm.getElection();
-         voteList = new ArrayList<>();
-      }
-      catch (Exception e)
-      {
-         e.printStackTrace();
       }
    }
 
@@ -72,7 +57,6 @@ public class Controller implements IController, Serializable
       }
       catch (Exception e)
       {
-         e.printStackTrace();
       }
    }
 
@@ -105,7 +89,6 @@ public class Controller implements IController, Serializable
          }
          catch (Exception e)
          {
-            e.printStackTrace();
          }
       }
    }
@@ -120,7 +103,6 @@ public class Controller implements IController, Serializable
       }
       catch (Exception e)
       {
-         e.printStackTrace();
       }
 
    }
@@ -130,12 +112,10 @@ public class Controller implements IController, Serializable
    {
       try
       {
-
          dbm.stopElection();
       }
       catch (Exception e)
       {
-         e.printStackTrace();
       }
    }
 
@@ -148,7 +128,6 @@ public class Controller implements IController, Serializable
       }
       catch (Exception e)
       {
-         e.printStackTrace();
       }
    }
 
@@ -161,7 +140,6 @@ public class Controller implements IController, Serializable
       }
       catch (Exception e)
       {
-         e.printStackTrace();
       }
    }
 
@@ -178,11 +156,6 @@ public class Controller implements IController, Serializable
       }
    }
 
-   /*
-    * @Override public ArrayList<Candidate> viewCandidatesAndPositions() {
-    * return election.getAllCandidates();; }
-    */
-
    public void addVote(String name, String pos)
    {
       for (int i = 0; i < voteList.size(); i++)
@@ -196,7 +169,6 @@ public class Controller implements IController, Serializable
       }
       catch (Exception e)
       {
-         e.printStackTrace();
       }
    }
 
@@ -211,7 +183,6 @@ public class Controller implements IController, Serializable
          }
          catch (Exception e)
          {
-            e.printStackTrace();
          }
       }
       voteList = new ArrayList<Candidate>();
@@ -239,19 +210,10 @@ public class Controller implements IController, Serializable
       }
       catch (Exception e)
       {
-         e.printStackTrace();
       }
 
       return array;
    }
-
-   /*
-    * @Override public ArrayList<Candidate> viewResults(Election election,
-    * Position position) { ArrayList<Candidate> winning = new ArrayList<>(); for
-    * (int i = 0; i < election.getPositions().size(); i++) {
-    * winning.add(election.getPosition(i).getWinningCandidate()); } return
-    * winning; }
-    */
 
    public String[] getPositionsToCombo()
    {
@@ -268,7 +230,6 @@ public class Controller implements IController, Serializable
       }
       catch (Exception e)
       {
-         e.printStackTrace();
       }
 
       return array;
@@ -280,11 +241,9 @@ public class Controller implements IController, Serializable
       try
       {
          vote();
-         
       }
       catch (Exception e)
       {
-         e.printStackTrace();
       }
       finally
       {
@@ -310,7 +269,6 @@ public class Controller implements IController, Serializable
       }
       catch (Exception e)
       {
-         e.printStackTrace();
       }
 
       return pos;
@@ -331,7 +289,6 @@ public class Controller implements IController, Serializable
       }
       catch (Exception e)
       {
-         e.printStackTrace();
       }
 
       return array;
@@ -346,7 +303,6 @@ public class Controller implements IController, Serializable
       }
       catch (RemoteException e)
       {
-         e.printStackTrace();
       }
       return election;
 
@@ -366,7 +322,6 @@ public class Controller implements IController, Serializable
       }
       catch (Exception e)
       {
-         e.printStackTrace();
       }
    }
    
@@ -379,7 +334,6 @@ public class Controller implements IController, Serializable
       }
       catch (Exception e)
       {
-         e.printStackTrace();
       }
    }
    
@@ -392,14 +346,21 @@ public class Controller implements IController, Serializable
       }
       catch (Exception e)
       {
-         e.printStackTrace();
       }
    }
    
    @Override
-   public Candidate getCandidate(String name, String position) throws RemoteException
+   public Candidate getCandidate(String name, String position)
    {
-      return dbm.getCandidate(name, position);
+      Candidate candidate = null;
+      try
+      {
+         candidate = dbm.getCandidate(name, position);
+      }
+      catch (RemoteException e)
+      {
+      }
+      return candidate;
    }
 
    public void refreshAdmin()
@@ -415,7 +376,6 @@ public class Controller implements IController, Serializable
       }
       catch (Exception e)
       {
-         e.printStackTrace();
       }
    }
 }

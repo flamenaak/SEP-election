@@ -27,8 +27,6 @@ public class DBManager implements IDBManager
       }
       catch (SQLException e)
       {
-         // TODO Auto-generated catch block
-         e.printStackTrace();
       }
    }
 
@@ -40,21 +38,19 @@ public class DBManager implements IDBManager
 
       try
       {
-         connection = DriverManager.getConnection("jdbc:postgresql://localhost:5432/postgres", "postgres", "pass");
+         connection = DriverManager.getConnection(
+               "jdbc:postgresql://localhost:5432/postgres", "postgres", "pass");
       }
       catch (SQLException e)
       {
-         // TODO Auto-generated catch block
-         e.printStackTrace();
       }
 
       try
       {
-         PreparedStatement statement = connection
-               .prepareStatement("SELECT * FROM Users WHERE name = ? AND password = ?");
+         PreparedStatement statement = connection.prepareStatement(
+               "SELECT * FROM Users WHERE name = ? AND password = ?");
          statement.setString(1, username);
          statement.setString(2, password);
-         
 
          ResultSet result = statement.executeQuery();
 
@@ -64,16 +60,13 @@ public class DBManager implements IDBManager
             adminBoolean = result.getBoolean("admin");
             voted = result.getBoolean("voted");
          }
-         statement = connection
-               .prepareStatement("SELECT * FROM election");
+         statement = connection.prepareStatement("SELECT * FROM election");
          result = statement.executeQuery();
          result.next();
          active = result.getBoolean("active");
       }
       catch (SQLException e)
       {
-         // TODO Auto-generated catch block
-         e.printStackTrace();
       }
       finally
       {
@@ -83,8 +76,6 @@ public class DBManager implements IDBManager
          }
          catch (SQLException e)
          {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
          }
       }
       try
@@ -102,7 +93,6 @@ public class DBManager implements IDBManager
       }
       catch (Exception e)
       {
-         e.printStackTrace();
       }
       return null;
    }
@@ -112,25 +102,23 @@ public class DBManager implements IDBManager
    {
       try
       {
-         connection = DriverManager.getConnection("jdbc:postgresql://localhost:5432/postgres", "postgres", "pass");
+         connection = DriverManager.getConnection(
+               "jdbc:postgresql://localhost:5432/postgres", "postgres", "pass");
       }
       catch (SQLException e)
       {
-         // TODO Auto-generated catch block
-         e.printStackTrace();
       }
 
       try
       {
-         PreparedStatement statement = connection.prepareStatement("UPDATE Election SET active = 'true'");
+         PreparedStatement statement = connection
+               .prepareStatement("UPDATE Election SET active = 'true'");
 
          statement.executeUpdate();
 
       }
       catch (SQLException e)
       {
-         // TODO Auto-generated catch block
-         e.printStackTrace();
       }
       finally
       {
@@ -140,8 +128,6 @@ public class DBManager implements IDBManager
          }
          catch (SQLException e)
          {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
          }
       }
    }
@@ -151,15 +137,15 @@ public class DBManager implements IDBManager
    {
       try
       {
-         connection = DriverManager.getConnection("jdbc:postgresql://localhost:5432/postgres", "postgres", "pass");
-         PreparedStatement statement = connection.prepareStatement("UPDATE election SET active = 'false'");
+         connection = DriverManager.getConnection(
+               "jdbc:postgresql://localhost:5432/postgres", "postgres", "pass");
+         PreparedStatement statement = connection
+               .prepareStatement("UPDATE election SET active = 'false'");
 
          statement.executeUpdate();
       }
       catch (SQLException e)
       {
-         // TODO Auto-generated catch block
-         e.printStackTrace();
       }
       finally
       {
@@ -169,8 +155,6 @@ public class DBManager implements IDBManager
          }
          catch (SQLException e)
          {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
          }
       }
    }
@@ -180,26 +164,24 @@ public class DBManager implements IDBManager
    {
       try
       {
-         connection = DriverManager.getConnection("jdbc:postgresql://localhost:5432/postgres", "postgres", "pass");
+         connection = DriverManager.getConnection(
+               "jdbc:postgresql://localhost:5432/postgres", "postgres", "pass");
       }
       catch (SQLException e)
       {
-         // TODO Auto-generated catch block
-         e.printStackTrace();
       }
 
       try
       {
-         PreparedStatement statement = connection.prepareStatement("INSERT INTO Positions (name) VALUES(?)");
+         PreparedStatement statement = connection
+               .prepareStatement("INSERT INTO Positions (name) VALUES(?)");
 
          statement.setString(1, position.getPositionName());
          statement.executeUpdate();
-
       }
       catch (SQLException e)
       {
-         // TODO Auto-generated catch block
-         e.printStackTrace();
+
       }
       finally
       {
@@ -209,41 +191,34 @@ public class DBManager implements IDBManager
          }
          catch (SQLException e)
          {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
          }
       }
-
    }
 
    public void addCandidate(String position, Candidate candidate)
    {
       try
       {
-         connection = DriverManager.getConnection("jdbc:postgresql://localhost:5432/postgres", "postgres", "pass");
+         connection = DriverManager.getConnection(
+               "jdbc:postgresql://localhost:5432/postgres", "postgres", "pass");
       }
       catch (SQLException e)
       {
-         // TODO Auto-generated catch block
-         e.printStackTrace();
       }
 
       try
       {
          PreparedStatement statement = connection.prepareStatement(
-               "INSERT INTO Candidates(name, position, voteCount, ID, description) VALUES(?,?,?,?,?)");
+               "INSERT INTO Candidates(name, position, voteCount) VALUES(?,?,?)");
 
          statement.setString(1, candidate.getName());
          statement.setString(2, position);
          statement.setInt(3, 0);
-         //statement.setInt(4, candidate.getID());
-         //statement.setString(5, candidate.getDescription());
+
          statement.executeUpdate();
       }
       catch (SQLException e)
       {
-         // TODO Auto-generated catch block
-         e.printStackTrace();
       }
       finally
       {
@@ -253,8 +228,6 @@ public class DBManager implements IDBManager
          }
          catch (SQLException e)
          {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
          }
       }
    }
@@ -265,27 +238,24 @@ public class DBManager implements IDBManager
 
       try
       {
-         connection = DriverManager.getConnection("jdbc:postgresql://localhost:5432/postgres", "postgres", "pass");
+         connection = DriverManager.getConnection(
+               "jdbc:postgresql://localhost:5432/postgres", "postgres", "pass");
       }
       catch (SQLException e)
       {
-         // TODO Auto-generated catch block
-         e.printStackTrace();
       }
 
       try
       {
-         PreparedStatement statement = connection.prepareStatement("UPDATE Users SET password = ? WHERE name = ?");
+         PreparedStatement statement = connection.prepareStatement(
+               "UPDATE Users SET password = ? WHERE name = ?");
 
          statement.setString(1, password);
          statement.setString(2, username);
          statement.executeUpdate();
-
       }
       catch (SQLException e)
       {
-         // TODO Auto-generated catch block
-         e.printStackTrace();
       }
       finally
       {
@@ -295,11 +265,8 @@ public class DBManager implements IDBManager
          }
          catch (SQLException e)
          {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
          }
       }
-
    }
 
    public void vote(Candidate candidate)
@@ -307,33 +274,31 @@ public class DBManager implements IDBManager
 
       try
       {
-         connection = DriverManager.getConnection("jdbc:postgresql://localhost:5432/postgres", "postgres", "pass");
+         connection = DriverManager.getConnection(
+               "jdbc:postgresql://localhost:5432/postgres", "postgres", "pass");
       }
       catch (SQLException e)
       {
-         // TODO Auto-generated catch block
-         e.printStackTrace();
       }
 
       try
       {
-         PreparedStatement statement = connection
-               .prepareStatement("UPDATE Candidates SET voteCount = ? WHERE name = ?");
+         PreparedStatement statement = connection.prepareStatement(
+               "UPDATE Candidates SET voteCount = ? WHERE name = ?");
 
          candidate.giveVote();
          statement.setInt(1, candidate.getVotes());
          statement.setString(2, candidate.getName());
          statement.executeUpdate();
 
-         statement = connection.prepareStatement("UPDATE Users SET voted = ? WHERE name = ?");
+         statement = connection
+               .prepareStatement("UPDATE Users SET voted = ? WHERE name = ?");
          statement.setBoolean(1, true);
          statement.setString(2, voter.getName());
          statement.executeUpdate();
       }
       catch (SQLException e)
       {
-         // TODO Auto-generated catch block
-         e.printStackTrace();
       }
       finally
       {
@@ -343,8 +308,6 @@ public class DBManager implements IDBManager
          }
          catch (SQLException e)
          {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
          }
       }
    }
@@ -354,18 +317,17 @@ public class DBManager implements IDBManager
       Candidate candidate = null;
       try
       {
-         connection = DriverManager.getConnection("jdbc:postgresql://localhost:5432/postgres", "postgres", "pass");
+         connection = DriverManager.getConnection(
+               "jdbc:postgresql://localhost:5432/postgres", "postgres", "pass");
       }
       catch (SQLException e)
       {
-         // TODO Auto-generated catch block
-         e.printStackTrace();
       }
 
       try
       {
-         PreparedStatement statement = connection
-               .prepareStatement("SELECT * FROM Candidates WHERE name = ? AND position = ?");
+         PreparedStatement statement = connection.prepareStatement(
+               "SELECT * FROM Candidates WHERE name = ? AND position = ?");
          statement.setString(1, name);
 
          statement.setString(2, positionName);
@@ -375,26 +337,22 @@ public class DBManager implements IDBManager
          {
             Position position = new Position(positionName);
 
-            candidate = new Candidate(result.getString(1), position, result.getInt(4), result.getString(5));
+            candidate = new Candidate(result.getString(1), position,
+                  result.getInt(4), result.getString(5));
             candidate.setVotes(result.getInt(3));
          }
       }
       catch (SQLException e)
       {
-         // TODO Auto-generated catch block
-         e.printStackTrace();
       }
       finally
       {
-
          try
          {
             connection.close();
          }
          catch (SQLException e)
          {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
          }
       }
       return candidate;
@@ -405,36 +363,32 @@ public class DBManager implements IDBManager
    {
       try
       {
-         connection = DriverManager.getConnection("jdbc:postgresql://localhost:5432/postgres", "postgres", "pass");
+         connection = DriverManager.getConnection(
+               "jdbc:postgresql://localhost:5432/postgres", "postgres", "pass");
       }
       catch (SQLException e)
       {
-         // TODO Auto-generated catch block
-         e.printStackTrace();
       }
 
       ArrayList<Candidate> candidates = new ArrayList<>();
 
       try
       {
-         PreparedStatement statement = connection.prepareStatement("SELECT * FROM Candidates WHERE position = ?");
+         PreparedStatement statement = connection
+               .prepareStatement("SELECT * FROM Candidates WHERE position = ?");
 
          statement.setString(1, position.getPositionName());
          ResultSet result = statement.executeQuery();
 
          while (result.next())
          {
-
-            Candidate temp = new Candidate(result.getString(1), position, result.getInt(4), result.getString(5));
+            Candidate temp = new Candidate(result.getString(1), position);
             temp.setVotes(result.getInt(3));
             candidates.add(temp);
-
          }
       }
       catch (SQLException e)
       {
-         // TODO Auto-generated catch block
-         e.printStackTrace();
       }
       finally
       {
@@ -444,32 +398,29 @@ public class DBManager implements IDBManager
          }
          catch (SQLException e)
          {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
          }
       }
 
       return candidates;
-
    }
 
    public ArrayList<Position> getPositions()
    {
       try
       {
-         connection = DriverManager.getConnection("jdbc:postgresql://localhost:5432/postgres", "postgres", "pass");
+         connection = DriverManager.getConnection(
+               "jdbc:postgresql://localhost:5432/postgres", "postgres", "pass");
       }
       catch (SQLException e)
       {
-         // TODO Auto-generated catch block
-         e.printStackTrace();
       }
 
       ArrayList<Position> positions = new ArrayList<>();
 
       try
       {
-         PreparedStatement statement = connection.prepareStatement("SELECT * FROM Positions");
+         PreparedStatement statement = connection
+               .prepareStatement("SELECT * FROM Positions");
 
          ResultSet result = statement.executeQuery();
 
@@ -478,14 +429,10 @@ public class DBManager implements IDBManager
 
             Position temp = new Position(result.getString(1));
             positions.add(temp);
-
          }
-
       }
       catch (SQLException e)
       {
-         // TODO Auto-generated catch block
-         e.printStackTrace();
       }
       finally
       {
@@ -495,40 +442,34 @@ public class DBManager implements IDBManager
          }
          catch (SQLException e)
          {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
          }
       }
-
       return positions;
-
    }
 
    public void reset()
    {
-
       try
       {
-         connection = DriverManager.getConnection("jdbc:postgresql://localhost:5432/postgres", "postgres", "pass");
+         connection = DriverManager.getConnection(
+               "jdbc:postgresql://localhost:5432/postgres", "postgres", "pass");
       }
       catch (SQLException e)
       {
-         // TODO Auto-generated catch block
-         e.printStackTrace();
       }
 
       try
       {
-         PreparedStatement statement1 = connection.prepareStatement("DELETE FROM Candidates");
-         PreparedStatement statement2 = connection.prepareStatement("DELETE FROM Positions");
-
+         PreparedStatement statement1 = connection
+               .prepareStatement("DELETE FROM Candidates");
+         PreparedStatement statement2 = connection
+               .prepareStatement("DELETE FROM Positions");
+         
          statement1.executeUpdate();
          statement2.executeUpdate();
       }
       catch (SQLException e)
       {
-         // TODO Auto-generated catch block
-         e.printStackTrace();
       }
       finally
       {
@@ -538,28 +479,25 @@ public class DBManager implements IDBManager
          }
          catch (SQLException e)
          {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
          }
       }
    }
 
    public void deletePosition(String position)
    {
-
       try
       {
-         connection = DriverManager.getConnection("jdbc:postgresql://localhost:5432/postgres", "postgres", "pass");
+         connection = DriverManager.getConnection(
+               "jdbc:postgresql://localhost:5432/postgres", "postgres", "pass");
       }
       catch (SQLException e)
       {
-         // TODO Auto-generated catch block
-         e.printStackTrace();
       }
 
       try
       {
-         PreparedStatement statement = connection.prepareStatement("DELETE FROM Positions WHERE name = ?");
+         PreparedStatement statement = connection
+               .prepareStatement("DELETE FROM Positions WHERE name = ?");
 
          statement.setString(1, position);
          statement.executeUpdate();
@@ -571,8 +509,6 @@ public class DBManager implements IDBManager
       }
       catch (SQLException e)
       {
-         // TODO Auto-generated catch block
-         e.printStackTrace();
       }
       finally
       {
@@ -582,11 +518,8 @@ public class DBManager implements IDBManager
          }
          catch (SQLException e)
          {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
          }
       }
-
    }
 
    public void deleteCandidate(String candidate, String position)
@@ -594,27 +527,24 @@ public class DBManager implements IDBManager
 
       try
       {
-         connection = DriverManager.getConnection("jdbc:postgresql://localhost:5432/postgres", "postgres", "pass");
+         connection = DriverManager.getConnection(
+               "jdbc:postgresql://localhost:5432/postgres", "postgres", "pass");
       }
       catch (SQLException e)
       {
-         // TODO Auto-generated catch block
-         e.printStackTrace();
       }
 
       try
       {
-         PreparedStatement statement = connection
-               .prepareStatement("DELETE FROM Candidates WHERE name = ? AND position = ?");
+         PreparedStatement statement = connection.prepareStatement(
+               "DELETE FROM Candidates WHERE name = ? AND position = ?");
 
          statement.setString(1, candidate);
          statement.setString(2, position);
          statement.executeUpdate();
-
       }
       catch (Exception e)
       {
-         e.printStackTrace();
       }
       finally
       {
@@ -624,10 +554,8 @@ public class DBManager implements IDBManager
          }
          catch (SQLException e)
          {
-            e.printStackTrace();
          }
       }
-
    }
 
    @Override
@@ -636,17 +564,17 @@ public class DBManager implements IDBManager
       Election election = null;
       try
       {
-         connection = DriverManager.getConnection("jdbc:postgresql://localhost:5432/postgres", "postgres", "pass");
+         connection = DriverManager.getConnection(
+               "jdbc:postgresql://localhost:5432/postgres", "postgres", "pass");
 
-         PreparedStatement statement = connection.prepareStatement("SELECT * FROM Election");
+         PreparedStatement statement = connection
+               .prepareStatement("SELECT * FROM Election");
          ResultSet result = statement.executeQuery();
          result.next();
          election = new Election(result.getBoolean("active"));
       }
       catch (SQLException e)
       {
-         // TODO Auto-generated catch block
-         e.printStackTrace();
       }
       return election;
    }
