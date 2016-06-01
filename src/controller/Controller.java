@@ -4,6 +4,9 @@ import java.io.Serializable;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
 
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
+
 import model.Admin;
 import model.Candidate;
 import model.Election;
@@ -97,6 +100,7 @@ public class Controller implements IController, Serializable
             else
             {
                logIn.clearFields();
+               JOptionPane.showMessageDialog(new JFrame(), "Unable to log in. Check your username and password. You can only vote once.");
             }
          }
          catch (Exception e)

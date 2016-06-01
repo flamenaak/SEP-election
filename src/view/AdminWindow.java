@@ -141,7 +141,6 @@ public class AdminWindow extends JFrame
       switch (string)
       {
          case "start":       
-            System.out.println("disabling");
             removeTabs();
             tabPane.add("Welcome", welcome);
             tabPane.add("Change password", passwordPanel);
@@ -149,7 +148,6 @@ public class AdminWindow extends JFrame
             repaint();
             break;
          case "stop":     
-            System.out.println("enabling");
             removeTabs();
             tabPane.add("Welcome", welcome);
             tabPane.add("New Candidate", candiPanel);

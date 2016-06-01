@@ -61,7 +61,7 @@ public class DBManager implements IDBManager{
             if (adminBoolean)
                admin = new Admin(username, password);
             else {
-               voter = new Voter(username, password);
+               voter = new Voter(username, password, voted);
             }
          }
 
@@ -83,7 +83,7 @@ public class DBManager implements IDBManager{
          }
       }
 
-      if (admin == null)
+      if (admin == null && !voter.voted())
          return voter;
       if (voter == null)
          return admin;

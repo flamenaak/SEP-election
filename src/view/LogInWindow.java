@@ -20,7 +20,7 @@ import controller.Controller;
 
 
 
-public class LogInWindow implements ActionListener
+public class LogInWindow implements ActionListener, KeyListener
 {
    private JFrame logInFrame;
    private JPanel leftPanel, rightPanel;
@@ -42,7 +42,7 @@ public class LogInWindow implements ActionListener
    private void assignActionListener()
    {
       butt.addActionListener(this);
-      
+      password.addKeyListener(this);
    }
 
    private void createComponents()
@@ -89,7 +89,6 @@ public class LogInWindow implements ActionListener
       c.gridx = 1;
       logInFrame.add(rightPanel, c);
       c.gridy = 1;
-      butt.addActionListener((ActionListener) this);
       logInFrame.add(butt, c);
    }
 
@@ -115,6 +114,29 @@ public class LogInWindow implements ActionListener
    {
       name.setText("");
       password.setText("");
+   }
+   
+   @Override
+   public void keyPressed(KeyEvent arg0)
+   {
+      // TODO Auto-generated method stub
+      
+   }
+
+   @Override
+   public void keyReleased(KeyEvent e)
+   {
+      if(e.getKeyCode() == KeyEvent.VK_ENTER)
+      {
+         controller.logIn(name.getText(), this.password.getPassword());
+      }      
+   }
+
+   @Override
+   public void keyTyped(KeyEvent arg0)
+   {
+      // TODO Auto-generated method stub
+      
    }
 
 }

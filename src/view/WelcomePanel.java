@@ -73,7 +73,6 @@ public class WelcomePanel extends JPanel
 
    private void disableButtons()
    {
-      System.out.println(controller.getElection());
       if (controller.getElection())
       {
          start.setEnabled(false);
