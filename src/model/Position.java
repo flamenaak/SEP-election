@@ -7,12 +7,10 @@ public class Position implements Serializable
 {
    private static final long serialVersionUID = 1L;
    private String positionName;
-   private ArrayList<Candidate> candidateList;
-
+   
    public Position(String positionName)
    {
       this.positionName = positionName;
-      candidateList = new ArrayList<Candidate>();
    }
 
    public String getPositionName()
@@ -20,7 +18,7 @@ public class Position implements Serializable
       return positionName;
    }
 
-   public void addCandidate(Candidate candidate)
+   /*public void addCandidate(Candidate candidate)
    {
       candidateList.add(candidate);
    }
@@ -40,5 +38,5 @@ public class Position implements Serializable
       }
 
       return candidateArray;
-   }
+   }*/
 }
