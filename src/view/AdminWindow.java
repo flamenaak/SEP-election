@@ -1,26 +1,19 @@
 package view;
 
 import java.awt.Dimension;
-import java.awt.GridBagConstraints;
 import java.awt.Toolkit;
-import java.awt.event.FocusEvent;
-import java.awt.event.FocusListener;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JTabbedPane;
-import javax.swing.event.ChangeEvent;
-import javax.swing.event.ChangeListener;
 
 import controller.Controller;
 
 public class AdminWindow extends JFrame
 {
+   private static final long serialVersionUID = 1L;
 
    private JTabbedPane tabPane;
-   private GridBagConstraints c;
 
    private JPanel candiPanel, positionPanel, viewPanel, resultsPanel, passwordPanel, welcome;
    private Controller controller;
@@ -68,8 +61,7 @@ public class AdminWindow extends JFrame
    private void createGUI()
    {
       setResizable(false);
-      // candiPanel, positionPanel, viewPanel, resultsPanel, passwordPanel;
-
+     
       candiPanel = new NewCandidatePanel(controller);
       candiPanel.setOpaque(false);
 
@@ -123,17 +115,6 @@ public class AdminWindow extends JFrame
      {
         tabPane.removeAll();
      }
-   }
-
-   public void stateChanged(ChangeEvent e)
-   {
-      if (e.getSource().equals(candiPanel))
-      {
-
-         System.out.println(78);
-         refreshPanel();
-      }
-
    }
 
    public void disableTabs(String string)

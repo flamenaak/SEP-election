@@ -8,15 +8,11 @@ public class Candidate implements Serializable
    private String name;
    private int voteCounter = 0;
    private Position position;
-   //private int ID;
-   //private String description;
-
+  
    public Candidate(String name, Position position, int ID, String description)
    {
       this.name = name;
       this.position = position;
-      //this.ID = ID;
-      //this.description = description;
    }
    
    public Candidate(String name, Position position)
@@ -59,25 +55,4 @@ public class Candidate implements Serializable
    {
       this.position = position;
    }
-
-   /*public int getID()
-   {
-      return ID;
-   }
-
-   public void setID(int iD)
-   {
-      ID = iD;
-   }*/
-
-  /* public String getDescription()
-   {
-      return description;
-   }
-
-   public void setDescription(String description)
-   {
-      this.description = description;
-   }
-*/
 }

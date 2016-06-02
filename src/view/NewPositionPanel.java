@@ -16,6 +16,8 @@ import model.Position;
 
 public class NewPositionPanel extends JPanel implements ActionListener
 {
+   private static final long serialVersionUID = 1L;
+   
    private Controller cont;
    private JLabel label;
    private JTextField tField;
@@ -61,9 +63,6 @@ public class NewPositionPanel extends JPanel implements ActionListener
       save.addActionListener(this);
    }
    
-   
-   
-
    @Override
    public void actionPerformed(ActionEvent action)
    {
@@ -71,11 +70,9 @@ public class NewPositionPanel extends JPanel implements ActionListener
       {
          position = new Position(tField.getText());
          cont.addPosition(position);
-         System.out.println(position.getPositionName());
          tField.setText("");
+         
          cont.refreshAdmin();
-      }
-      
-   }
-   
+      }  
+   }  
 }

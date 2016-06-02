@@ -5,7 +5,6 @@ import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.sql.SQLException;
 
 import javax.swing.JButton;
 import javax.swing.JComboBox;
@@ -18,8 +17,11 @@ import model.Position;
 
 public class ResultsView extends JPanel implements ActionListener
 {
+   private static final long serialVersionUID = 1L;
+   
+   @SuppressWarnings("rawtypes")
    private JList list;
-   private JComboBox cBox;
+   private JComboBox<String> cBox;
    private JButton refresh;
    private GridBagConstraints c;
    private JPanel sub;
@@ -34,6 +36,7 @@ public class ResultsView extends JPanel implements ActionListener
       build();
    }
 
+   @SuppressWarnings("unchecked")
    private void build()
    {
       cBox.setPreferredSize(new Dimension(100,25));
@@ -49,9 +52,12 @@ public class ResultsView extends JPanel implements ActionListener
       c.gridheight = 1;
       c.gridx = 1;
    
-      try {
-      list.setListData(controller.getResultsToCombo(new Position(cBox.getSelectedItem().toString())));
-      } catch (NullPointerException e) {
+      try 
+      {
+         list.setListData(controller.getResultsToCombo(new Position(cBox.getSelectedItem().toString())));
+      } 
+      catch (NullPointerException e)
+      {
       }
       
       add(list, c);
@@ -64,16 +70,18 @@ public class ResultsView extends JPanel implements ActionListener
       add(sub, c);     
    }
 
+   @SuppressWarnings("rawtypes")
    private void initialize()
    {
       list = new JList();
-      cBox = new JComboBox(controller.getPositionsToCombo());
+      cBox = new JComboBox<String>(controller.getPositionsToCombo());
       refresh = new JButton("Refresh");
       c = new GridBagConstraints();
       sub = new JPanel(new GridBagLayout());
       lab = new JLabel("Select Position");
    }
 
+   @SuppressWarnings("unchecked")
    public void getNewCombo()
    {
       remove(cBox);
@@ -93,11 +101,11 @@ public class ResultsView extends JPanel implements ActionListener
       }
       catch(Exception e)
       {
-         
       }
       list.repaint();
    }
    
+   @SuppressWarnings("unchecked")
    @Override
    public void actionPerformed(ActionEvent e)
    {

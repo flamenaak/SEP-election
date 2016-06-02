@@ -4,7 +4,6 @@ import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.sql.SQLException;
 
 import javax.swing.JButton;
 import javax.swing.JLabel;
@@ -14,6 +13,8 @@ import controller.Controller;
 
 public class WelcomePanel extends JPanel
 {
+   private static final long serialVersionUID = 1L;
+   
    private JLabel instructions;
    private JButton start, stop, logOut, reset;
    private GridBagConstraints c;

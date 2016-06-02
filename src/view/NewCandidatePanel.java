@@ -63,12 +63,10 @@ public class NewCandidatePanel extends JPanel
       c4.gridwidth = 2;
       butt.addActionListener(new ButtonListener());
       add(butt, c4);
-
    }
 
    public void initialize()
    {
-      // setBounds(0, 0, 400, 200);
       posComboBox = new JComboBox<String>(controller.getPositionsToCombo());
       name = new JLabel("Name");
       position = new JLabel("Position");
@@ -105,8 +103,7 @@ public class NewCandidatePanel extends JPanel
             nameField.setText("");
             
             controller.refreshAdmin();
-         }
-         
+         }      
       }
    }
 }

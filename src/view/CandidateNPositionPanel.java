@@ -17,6 +17,7 @@ import model.Position;
 
 public class CandidateNPositionPanel extends JPanel implements ActionListener
 {
+   private static final long serialVersionUID = 1L;
    private JList<String> list;
    private JComboBox<String> cBox;
    private GridBagConstraints c;
@@ -24,7 +25,7 @@ public class CandidateNPositionPanel extends JPanel implements ActionListener
    private Controller controller;
    private JButton deletePos;
    private JButton deleteCand;
-   
+   private JButton refresh;
    
    public CandidateNPositionPanel(Controller controller)
    {
@@ -33,12 +34,11 @@ public class CandidateNPositionPanel extends JPanel implements ActionListener
       initialize();
       build();
    }
-
-   private void build()
+private void build()
    {
       try
       {
-         cBox = new JComboBox(controller.getPositionsToCombo());
+         cBox = new JComboBox<String>(controller.getPositionsToCombo());
       }
       catch (Exception e)
       {
@@ -60,19 +60,18 @@ public class CandidateNPositionPanel extends JPanel implements ActionListener
       try
       {
       list.setListData(controller.getCandidatesToCombo(new Position(cBox.getSelectedItem().toString())));
-
       }
       catch(Exception e)
       {
         // e.printStackTrace();
       }
-
       c.gridheight = 1;
       c.gridx = 1;
       add(list, c); 
       
       deletePos.addActionListener(this);
       deleteCand.addActionListener(this);
+      refresh.addActionListener(this);
       
       c.gridy = 2;
       c.gridx = 0;
@@ -80,16 +79,19 @@ public class CandidateNPositionPanel extends JPanel implements ActionListener
       
       c.gridx = 1;
       add(deleteCand, c);
+      
+      c.gridx = 2;
+      add(refresh, c);
    }
-
    private void initialize()
    {
-      list = new JList();
-      cBox = new JComboBox();
+      list = new JList<String>();
+      cBox = new JComboBox<String>();
       c = new GridBagConstraints();
       lab = new JLabel("Select Position");  
       deletePos = new JButton("Delete Position");
       deleteCand = new JButton("Delete Candidate");
+      refresh = new JButton("Refresh");
    }
    
    public void getNewCombo()
@@ -101,13 +103,11 @@ public class CandidateNPositionPanel extends JPanel implements ActionListener
       GridBagConstraints c4 = new GridBagConstraints();
       c4.gridx = 0;
       c4.gridy = 1;
-
       add(cBox, c4);
       repaint();
       
       try{
          list.setListData(controller.getCandidatesToCombo(new Position(cBox.getSelectedItem().toString())));
-
       }
       catch(Exception e)
       {
@@ -115,7 +115,6 @@ public class CandidateNPositionPanel extends JPanel implements ActionListener
       }
       list.repaint();
    }
-
    @Override
    public void actionPerformed(ActionEvent action)
    {
@@ -138,6 +137,12 @@ public class CandidateNPositionPanel extends JPanel implements ActionListener
          System.out.println(list.getSelectedValue().toString());
          list.setListData(controller.getCandidatesToCombo(new Position(cBox.getSelectedItem().toString())));
          list.repaint();
+      }
+      else if (action.getSource().equals(refresh))
+      {
+    	  removeAll();
+          initialize();
+          build();
       }
    }
 }

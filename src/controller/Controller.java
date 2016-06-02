@@ -9,11 +9,9 @@ import javax.swing.JOptionPane;
 
 import model.Admin;
 import model.Candidate;
-import model.Election;
 import model.Position;
 import model.User;
 import model.Voter;
-import storage.DBManager;
 import storage.IDBManager;
 import view.AdminWindow;
 import view.LogInWindow;
@@ -25,9 +23,6 @@ public class Controller implements IController, Serializable
    private static final long serialVersionUID = 1L;
 
    private User user;
-   private Voter voter;
-   private Admin admin;
-   private Election election;
    private IDBManager dbm;
    private LogInWindow logIn;
    private AdminWindow adminW;
@@ -39,7 +34,6 @@ public class Controller implements IController, Serializable
       try
       {
          this.dbm = dbm;
-         election = dbm.getElection();
          voteList = new ArrayList<>();
       }
       catch (Exception e)
@@ -66,7 +60,7 @@ public class Controller implements IController, Serializable
       {
          String password = new String(passwordIn);
          user = new User(name, password);
-         // System.out.println(password);
+
          try
          {
             if (dbm.logIn(name, password) instanceof Admin)
@@ -152,7 +146,6 @@ public class Controller implements IController, Serializable
       }
       catch (Exception e)
       {
-         e.printStackTrace();
       }
    }
 

@@ -337,8 +337,7 @@ public class DBManager implements IDBManager
          {
             Position position = new Position(positionName);
 
-            candidate = new Candidate(result.getString(1), position,
-                  result.getInt(4), result.getString(5));
+            candidate = new Candidate(result.getString(1), position);
             candidate.setVotes(result.getInt(3));
          }
       }
@@ -578,5 +577,4 @@ public class DBManager implements IDBManager
       }
       return election;
    }
-
 }

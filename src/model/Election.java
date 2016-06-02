@@ -1,8 +1,6 @@
 package model;
 
 import java.io.Serializable;
-import java.util.ArrayList;
-import controller.*;
 
 public class Election implements Serializable
 {
@@ -13,7 +11,6 @@ public class Election implements Serializable
    {
       active = b;
    }
-
 
    public void startElection()
    {
