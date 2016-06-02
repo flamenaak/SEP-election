@@ -78,12 +78,14 @@ public class WelcomePanel extends JPanel
       {
          start.setEnabled(false);
          stop.setEnabled(true);
+         reset.setEnabled(false);
          
       }
       else if(!controller.getElection())
       {
          start.setEnabled(true);
          stop.setEnabled(false);
+         reset.setEnabled(true);
       }
       repaint();
    }
@@ -95,8 +97,8 @@ public class WelcomePanel extends JPanel
       {
          start.setEnabled(false);
          stop.setEnabled(true);
+         reset.setEnabled(false);
          controller.startElection();
-         System.out.println("changing election state to" + controller.getElection());
          controller.disableTabs("start");
       }
    }
@@ -108,8 +110,9 @@ public class WelcomePanel extends JPanel
       {
          stop.setEnabled(false);
          start.setEnabled(true);
+         reset.setEnabled(true);
          controller.endElection();
-         System.out.println("changing election state to" + controller.getElection());
+         
          controller.disableTabs("stop");
       }
    }

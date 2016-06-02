@@ -17,7 +17,9 @@ import view.AdminWindow;
 import view.LogInWindow;
 import view.VoterWindow;
 import controller.IController;
-
+/**
+ * The Controller class is responsible for the communication between the GUI and DBManager
+ */
 public class Controller implements IController, Serializable
 {
    private static final long serialVersionUID = 1L;
@@ -54,7 +56,12 @@ public class Controller implements IController, Serializable
       }
    }
 
-   public void logIn(String name, char[] passwordIn)
+   public void logIn(String name, char[] passwordIn) 
+   /*
+    * Check if the password and name are in the database by calling the database
+    * opening the admin window if its a admin 
+    * opening the voter window if its a voter
+    */
    {
       if (!name.equals(""))
       {
@@ -65,7 +72,7 @@ public class Controller implements IController, Serializable
          {
             if (dbm.logIn(name, password) instanceof Admin)
             {
-               logIn.close();
+               logIn.close(); 
                adminW = new AdminWindow(this);
                logIn.clearFields();
             }
@@ -79,6 +86,7 @@ public class Controller implements IController, Serializable
             {
                logIn.clearFields();
                JOptionPane.showMessageDialog(new JFrame(), "Unable to log in. Check your username and password. You can only vote once.");
+            //The option pane shows the dialog message if something is wrong with the password or username
             }
          }
          catch (Exception e)
@@ -190,6 +198,7 @@ public class Controller implements IController, Serializable
    @Override
    public String[] getCandidatesToCombo(Position position)
    {
+      //return candidates in a proper form to the comboBox
       ArrayList<Candidate> list;
       String[] array = null;
       try
@@ -210,6 +219,7 @@ public class Controller implements IController, Serializable
 
    public String[] getPositionsToCombo()
    {
+    //return positions in a proper form to the comboBox
       ArrayList<Position> list;
       String[] array = null;
       try
@@ -247,6 +257,7 @@ public class Controller implements IController, Serializable
    @Override
    public Position getPosition(String positionName)
    {
+      //just return a specific position
       Position pos = null;
       ArrayList<Position> list;
       try

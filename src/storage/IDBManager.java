@@ -4,7 +4,6 @@ import java.util.ArrayList;
 
 import java.rmi.Remote;
 import java.rmi.RemoteException;
-import java.sql.SQLException;
 
 import model.*;
 

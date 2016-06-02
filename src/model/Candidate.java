@@ -8,12 +8,6 @@ public class Candidate implements Serializable
    private String name;
    private int voteCounter = 0;
    private Position position;
-  
-   public Candidate(String name, Position position, int ID, String description)
-   {
-      this.name = name;
-      this.position = position;
-   }
    
    public Candidate(String name, Position position)
    {

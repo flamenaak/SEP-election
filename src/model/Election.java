@@ -6,6 +6,13 @@ public class Election implements Serializable
 {
    private static final long serialVersionUID = 1L;
    private boolean active;
+   private static Election instance = new Election();
+   
+   private Election(){};
+   
+   public static Election getInstance() {
+      return instance;
+   }
 
    public Election(boolean b)
    {
