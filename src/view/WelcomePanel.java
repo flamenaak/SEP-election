@@ -4,7 +4,6 @@ import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.sql.SQLException;
 
 import javax.swing.JButton;
 import javax.swing.JLabel;
@@ -14,6 +13,8 @@ import controller.Controller;
 
 public class WelcomePanel extends JPanel
 {
+   private static final long serialVersionUID = 1L;
+   
    private JLabel instructions;
    private JButton start, stop, logOut, reset;
    private GridBagConstraints c;
@@ -77,12 +78,14 @@ public class WelcomePanel extends JPanel
       {
          start.setEnabled(false);
          stop.setEnabled(true);
+         reset.setEnabled(false);
          
       }
       else if(!controller.getElection())
       {
          start.setEnabled(true);
          stop.setEnabled(false);
+         reset.setEnabled(true);
       }
       repaint();
    }
@@ -94,8 +97,8 @@ public class WelcomePanel extends JPanel
       {
          start.setEnabled(false);
          stop.setEnabled(true);
+         reset.setEnabled(false);
          controller.startElection();
-         System.out.println("changing election state to" + controller.getElection());
          controller.disableTabs("start");
       }
    }
@@ -107,8 +110,9 @@ public class WelcomePanel extends JPanel
       {
          stop.setEnabled(false);
          start.setEnabled(true);
+         reset.setEnabled(true);
          controller.endElection();
-         System.out.println("changing election state to" + controller.getElection());
+         
          controller.disableTabs("stop");
       }
    }

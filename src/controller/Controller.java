@@ -9,25 +9,22 @@ import javax.swing.JOptionPane;
 
 import model.Admin;
 import model.Candidate;
-import model.Election;
 import model.Position;
 import model.User;
 import model.Voter;
-import storage.DBManager;
 import storage.IDBManager;
 import view.AdminWindow;
 import view.LogInWindow;
 import view.VoterWindow;
 import controller.IController;
-
+/**
+ * The Controller class is responsible for the communication between the GUI and DBManager
+ */
 public class Controller implements IController, Serializable
 {
    private static final long serialVersionUID = 1L;
 
    private User user;
-   private Voter voter;
-   private Admin admin;
-   private Election election;
    private IDBManager dbm;
    private LogInWindow logIn;
    private AdminWindow adminW;
@@ -39,26 +36,10 @@ public class Controller implements IController, Serializable
       try
       {
          this.dbm = dbm;
-         election = dbm.getElection();
          voteList = new ArrayList<>();
       }
       catch (Exception e)
       {
-         e.printStackTrace();
-      }
-   }
-
-   public Controller()
-   {
-      try
-      {
-         dbm = new DBManager();
-         election = dbm.getElection();
-         voteList = new ArrayList<>();
-      }
-      catch (Exception e)
-      {
-         e.printStackTrace();
       }
    }
 
@@ -72,22 +53,26 @@ public class Controller implements IController, Serializable
       }
       catch (Exception e)
       {
-         e.printStackTrace();
       }
    }
 
-   public void logIn(String name, char[] passwordIn)
+   public void logIn(String name, char[] passwordIn) 
+   /*
+    * Check if the password and name are in the database by calling the database
+    * opening the admin window if its a admin 
+    * opening the voter window if its a voter
+    */
    {
       if (!name.equals(""))
       {
          String password = new String(passwordIn);
          user = new User(name, password);
-         // System.out.println(password);
+
          try
          {
             if (dbm.logIn(name, password) instanceof Admin)
             {
-               logIn.close();
+               logIn.close(); 
                adminW = new AdminWindow(this);
                logIn.clearFields();
             }
@@ -101,11 +86,11 @@ public class Controller implements IController, Serializable
             {
                logIn.clearFields();
                JOptionPane.showMessageDialog(new JFrame(), "Unable to log in. Check your username and password. You can only vote once.");
+            //The option pane shows the dialog message if something is wrong with the password or username
             }
          }
          catch (Exception e)
          {
-            e.printStackTrace();
          }
       }
    }
@@ -120,7 +105,6 @@ public class Controller implements IController, Serializable
       }
       catch (Exception e)
       {
-         e.printStackTrace();
       }
 
    }
@@ -130,12 +114,10 @@ public class Controller implements IController, Serializable
    {
       try
       {
-
          dbm.stopElection();
       }
       catch (Exception e)
       {
-         e.printStackTrace();
       }
    }
 
@@ -148,7 +130,6 @@ public class Controller implements IController, Serializable
       }
       catch (Exception e)
       {
-         e.printStackTrace();
       }
    }
 
@@ -161,7 +142,6 @@ public class Controller implements IController, Serializable
       }
       catch (Exception e)
       {
-         e.printStackTrace();
       }
    }
 
@@ -174,14 +154,8 @@ public class Controller implements IController, Serializable
       }
       catch (Exception e)
       {
-         e.printStackTrace();
       }
    }
-
-   /*
-    * @Override public ArrayList<Candidate> viewCandidatesAndPositions() {
-    * return election.getAllCandidates();; }
-    */
 
    public void addVote(String name, String pos)
    {
@@ -196,7 +170,6 @@ public class Controller implements IController, Serializable
       }
       catch (Exception e)
       {
-         e.printStackTrace();
       }
    }
 
@@ -211,7 +184,6 @@ public class Controller implements IController, Serializable
          }
          catch (Exception e)
          {
-            e.printStackTrace();
          }
       }
       voteList = new ArrayList<Candidate>();
@@ -226,6 +198,7 @@ public class Controller implements IController, Serializable
    @Override
    public String[] getCandidatesToCombo(Position position)
    {
+      //return candidates in a proper form to the comboBox
       ArrayList<Candidate> list;
       String[] array = null;
       try
@@ -239,22 +212,14 @@ public class Controller implements IController, Serializable
       }
       catch (Exception e)
       {
-         e.printStackTrace();
       }
 
       return array;
    }
 
-   /*
-    * @Override public ArrayList<Candidate> viewResults(Election election,
-    * Position position) { ArrayList<Candidate> winning = new ArrayList<>(); for
-    * (int i = 0; i < election.getPositions().size(); i++) {
-    * winning.add(election.getPosition(i).getWinningCandidate()); } return
-    * winning; }
-    */
-
    public String[] getPositionsToCombo()
    {
+    //return positions in a proper form to the comboBox
       ArrayList<Position> list;
       String[] array = null;
       try
@@ -268,7 +233,6 @@ public class Controller implements IController, Serializable
       }
       catch (Exception e)
       {
-         e.printStackTrace();
       }
 
       return array;
@@ -280,11 +244,9 @@ public class Controller implements IController, Serializable
       try
       {
          vote();
-         
       }
       catch (Exception e)
       {
-         e.printStackTrace();
       }
       finally
       {
@@ -295,6 +257,7 @@ public class Controller implements IController, Serializable
    @Override
    public Position getPosition(String positionName)
    {
+      //just return a specific position
       Position pos = null;
       ArrayList<Position> list;
       try
@@ -310,7 +273,6 @@ public class Controller implements IController, Serializable
       }
       catch (Exception e)
       {
-         e.printStackTrace();
       }
 
       return pos;
@@ -331,7 +293,6 @@ public class Controller implements IController, Serializable
       }
       catch (Exception e)
       {
-         e.printStackTrace();
       }
 
       return array;
@@ -346,7 +307,6 @@ public class Controller implements IController, Serializable
       }
       catch (RemoteException e)
       {
-         e.printStackTrace();
       }
       return election;
 
@@ -366,7 +326,6 @@ public class Controller implements IController, Serializable
       }
       catch (Exception e)
       {
-         e.printStackTrace();
       }
    }
    
@@ -379,7 +338,6 @@ public class Controller implements IController, Serializable
       }
       catch (Exception e)
       {
-         e.printStackTrace();
       }
    }
    
@@ -392,14 +350,21 @@ public class Controller implements IController, Serializable
       }
       catch (Exception e)
       {
-         e.printStackTrace();
       }
    }
    
    @Override
-   public Candidate getCandidate(String name, String position) throws RemoteException
+   public Candidate getCandidate(String name, String position)
    {
-      return dbm.getCandidate(name, position);
+      Candidate candidate = null;
+      try
+      {
+         candidate = dbm.getCandidate(name, position);
+      }
+      catch (RemoteException e)
+      {
+      }
+      return candidate;
    }
 
    public void refreshAdmin()
@@ -415,7 +380,6 @@ public class Controller implements IController, Serializable
       }
       catch (Exception e)
       {
-         e.printStackTrace();
       }
    }
 }

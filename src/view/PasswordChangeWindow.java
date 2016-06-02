@@ -18,6 +18,7 @@ import controller.Controller;
 
 public class PasswordChangeWindow extends JPanel implements KeyListener
 {
+   private static final long serialVersionUID = 1L;
    private JPasswordField passwordField;
    private JPasswordField passwordField_1;
    private GridBagConstraints c;

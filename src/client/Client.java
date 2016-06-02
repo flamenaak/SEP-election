@@ -5,7 +5,6 @@ import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
 
 import controller.Controller;
-import storage.DBManager;
 import storage.IDBManager;
 
 public class Client
@@ -14,7 +13,6 @@ public class Client
 
    public static void main(String[] args) throws RemoteException
    {
-      IDBManager dbm;
       
       String host = "192.168.1.95";
       try

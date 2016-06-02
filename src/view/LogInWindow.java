@@ -18,8 +18,6 @@ import javax.swing.JPasswordField;
 
 import controller.Controller;
 
-
-
 public class LogInWindow implements ActionListener, KeyListener
 {
    private JFrame logInFrame;
@@ -118,9 +116,7 @@ public class LogInWindow implements ActionListener, KeyListener
    
    @Override
    public void keyPressed(KeyEvent arg0)
-   {
-      // TODO Auto-generated method stub
-      
+   {      
    }
 
    @Override
@@ -135,8 +131,6 @@ public class LogInWindow implements ActionListener, KeyListener
    @Override
    public void keyTyped(KeyEvent arg0)
    {
-      // TODO Auto-generated method stub
-      
    }
 
 }

@@ -5,24 +5,19 @@ import java.awt.FlowLayout;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.ArrayList;
-
-import javafx.scene.control.ComboBox;
 
 import javax.swing.*;
 
 import controller.Controller;
-import model.Candidate;
-import model.Election;
 import model.Position;
 
 public class VoterWindow extends JFrame implements ActionListener
 {
-	private static JComboBox<String> candidateBox;
+   private static final long serialVersionUID = 1L;
+   
+   private static JComboBox<String> candidateBox;
 	private static JComboBox<String> positionBox;
 	private static Position position;
-	private static Election election;
-	private JPanel comboBoxPanel;
 	private JPanel voter;
 	private JButton ok;
 	private JButton logOut;
