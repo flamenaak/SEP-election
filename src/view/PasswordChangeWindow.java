@@ -50,8 +50,14 @@ public class PasswordChangeWindow extends JPanel{
 
       btnSavePassword.addActionListener(new buttonListener());
       
-      if (passwordField.getPassword().equals("") || passwordField_1.getPassword().equals("") || passwordField.getPassword().equals(passwordField_1.getPassword()))
-         btnSavePassword.setEnabled(false);
+      /*if (passwordField.getPassword().equals("") || passwordField_1.getPassword().equals("") || passwordField.getPassword().equals(!(passwordField_1.getPassword())))
+         btnSavePassword.setEnabled(false);*/
+      
+      if(!(passwordField.getPassword().equals(passwordField_1.getPassword()))){
+    	  btnSavePassword.setEnabled(false);
+      } else if(passwordField.getPassword().equals("")){
+    	  btnSavePassword.setEnabled(false);
+      }
 
       btnSavePassword.setBounds(227, 168, 119, 58);
       c.gridx = 0;

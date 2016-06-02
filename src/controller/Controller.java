@@ -34,7 +34,7 @@ public class Controller implements IController, Serializable
       try
       {
          dbm = new DBManager();
-         election = dbm.getElection();
+         //election = dbm.getElection();
       }
       catch (Exception e)
       {
